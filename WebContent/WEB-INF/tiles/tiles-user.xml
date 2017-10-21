@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/pages/layout/baseLayout.jsp">
+		<put-attribute name="title" value="Template" />
+		<put-attribute name="header" value="/pages/layout/header.jsp" />
+		<put-attribute name="body" value="/pages/layout/body.jsp" />
+		<put-attribute name="footer" value="/pages/layout/footer.jsp" />
+		<put-attribute name="menu" value="" />
+	</definition>
+
+	<definition name="userLink" extends="baseLayout">
+	
+		<put-attribute name="title" value="User" />
+		<put-attribute name="body" value="/pages/user/user.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+
+	<definition name="calendarLink" extends="baseLayout">
+		<put-attribute name="title" value="Enter My Hours" />
+		<put-attribute name="body" value="/pages/user/calendar.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+	
+	<definition name="getCalendarLink" extends="baseLayout">
+		<put-attribute name="title" value="Enter My Hours" />
+		<put-attribute name="body" value="/pages/user/pum.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+		
+	<definition name="saveUtilizationLink" extends="baseLayout">
+		<put-attribute name="title" value="Save My Hours" />
+		<put-attribute name="body" value="/pages/user/successfullySaved.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+
+		<definition name="viewMyHoursLink" extends="baseLayout">
+		<put-attribute name="title" value="View My Hours" />
+		<put-attribute name="body" value="/pages/user/viewPUM.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+
+	<definition name="inputYearLink" extends="baseLayout">
+		<put-attribute name="title" value="Utilization Summary" />
+		<put-attribute name="body" value="/pages/user/utilSummaryYear.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+	
+	<definition name="utilizationSummaryLink" extends="baseLayout">
+		<put-attribute name="title" value="Utilization Summary" />
+		<put-attribute name="body" value="/pages/user/utilizationSummary.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+	
+	<definition name="showAllHolidaysLink" extends="baseLayout">
+		<put-attribute name="title" value="Show Holidays" />
+		<put-attribute name="body" value="/pages/user/showAllHolidays.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+	
+</tiles-definitions>

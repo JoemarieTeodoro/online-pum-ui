@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="admin" namespace="/admin" extends="default">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="adminHomeLink" method="home"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="adminHome" type="tiles">adminHomeLink</result>
+		</action>
+		
+		<action name="uploadCSVLink" method="uploadCSV"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+		</action>
+		
+		<action name="projectEngagementLink" method="projectEngagement"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="projectEngagementLink" type="tiles">projectEngagementLink</result>
+		</action>
+		
+		<action name="downloadPUMLink" method="downloadPUM"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="downloadPUMLink" type="tiles">downloadPUMLink</result>
+		</action>
+		
+		<action name="definePUMYearLink" method="definePUMYear"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="definePUMYearLink" type="tiles">definePUMYearLink</result>
+		</action>
+		
+		<action name="viewPUMYearLink" method="viewPUMYear"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="viewPUMYearLink" type="tiles">viewPUMYearLink</result>
+		</action>
+		
+		<action name="viewAllPUMYearLink" method="viewAllPUMYear"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink</result>
+		</action>
+		
+		<action name="defineHolidaysLink" method="defineHolidays"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="defineHolidaysLink" type="tiles">defineHolidaysLink</result>
+		</action>
+		
+		<action name="searchEmployeeLink" method="searchEmployee"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="searchEmployeeLink" type="tiles">searchEmployeeLink</result>
+		</action>
+
+		<action name="viewAllPUMYearLink" method="viewAllPUMYear"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink</result>
+		</action>
+		
+		<action name="showAllHolidaysLink" method="showAllHolidays"
+			class="com.ibm.opum.user.action.UserAction">
+			<result name="showAllHolidaysLink" type="tiles">adminShowAllHolidaysLink</result>
+		</action>
+		<action name="searchHolidayLink" method="searchHoliday"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="searchHolidayLink" type="tiles">searchHolidayLink</result>
+		</action>
+		
+		<action name="adminCalendarLink" method="utilization"
+			class="com.ibm.opum.user.action.UserAction">
+			<result name="calendarLink" type="tiles">adminCalendarLink</result>
+		</action>
+		
+		<action name="getCalendarLink" method="getCalendar"
+			class="com.ibm.opum.calendar.GenerateCalendarAction">
+			<result name="success" type="tiles">adminGetCalendarLink</result>
+		</action>
+		
+	</package>
+</struts>

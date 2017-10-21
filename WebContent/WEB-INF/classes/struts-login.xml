@@ -1,0 +1,29 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="login" namespace="/login" extends="default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<interceptors>
+        	<interceptor name="interceptor" class="com.ibm.opum.login.action.Interceptor" />
+      	</interceptors>
+		
+		<action name="loginLink" method="login"
+		class="com.ibm.opum.login.action.LogInLinkAction">
+			<result name="login" type="tiles">loginLink</result>
+		</action>
+		
+		<action name="authenticateLink" method="authenticate"
+		class="com.ibm.opum.login.action.LogInLinkAction">
+			<result name="login" type="tiles">loginLink</result>
+			<result name="admin" type="tiles">adminHomeLink</result>
+			<result name="user" type="tiles">userLink</result>
+		</action>
+
+	
+	</package>
+</struts>

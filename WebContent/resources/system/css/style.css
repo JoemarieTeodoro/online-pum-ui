@@ -1,0 +1,264 @@
+.background{
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url(../images/login/background.JPG);
+}
+
+.bodyStyle{
+      width: 100%;
+      margin-left:auto; 
+
+margin-right:auto;
+      
+}
+
+.ibm-social-tools{
+	display: none;
+}
+
+.bodyStyle .homeStyle {
+	min-height:575px;
+}
+
+.bodyStyle .nonhomeStyle #ibm-pcon {
+	min-height:575px;
+	margin-left: 20px;
+	margin-bottom: 0px;
+}
+
+
+.moduleStyle img{
+	margin-left: 30px;
+}
+
+.dijitTooltipContainer {
+	border: 1px solid #111110 !important;
+	box-shadow: 0 0 3px 3px #0F0F0F !important;
+}
+
+.dropdown, .dropdownSecond {
+	width: 260px;
+}
+
+.dropdownSecond {
+	margin-left: 150px;
+	margin-top: 25px;
+}
+
+.textfield {
+	width: 250px;
+}
+
+.search-text {
+	width: 200px;
+	margin-right: 20px;
+}
+
+.search-label {
+	margin-top: 10px;
+}
+
+
+.rowStyle {
+	align: left;
+	margin-left: 150px
+}
+
+.ibm-btn-sec {
+	margin-left: 50px
+}
+
+.dateadded {
+	padding: 0;
+	padding-left: 0;
+	min-width: 96px;
+}
+
+.dateapplied {
+	padding: 0;
+	padding-left: 0;
+	min-width: 98px;
+}
+
+.scrollTable {
+	width: 136%;
+	min-height: 200 px;
+	max-height:460px;
+	overflow: auto;
+}
+
+.errorMsg, .actionMsg, .emptyMsg, .successMsg, .searchMsg{
+	border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;-moz-border-radius:.5em;
+	-webkit-border-radius:.5em;
+	border-radius:.5em;
+	
+}
+.errorMsg{
+	margin-top: 25px;
+	margin-bottom: 10px;
+	 color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url(../images/message/error.png);
+    padding-right:0px;
+    margin-right: 0px;
+    width: 350px;
+}
+.errorMsg span{
+	 color: #D8000C;
+    
+}
+.actionMsg{
+   color: #00529B !important;
+   background-color: #BDE5F8;
+   background-image: url(../images/message/info.png);
+   margin-left:0px;
+ }
+ 
+.actionMsg span{
+	 color: #00529B;
+    
+}
+
+.successMsg{
+	 color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url(../images/message/success.png);
+    
+	width: 230px;
+	margin-top: 25px;
+	margin-bottom: 0px;
+	margin-left: 100px;
+}
+
+.successMsg span{
+	 color: #4F8A10;
+}
+
+.emptyMsg{
+	color: white;
+	width: 230px;
+	margin-top: 25px;
+	margin-bottom: 0px;
+	line-height: 50;
+}
+
+.errorMsg li, .actionMsg, .actionListMsg{
+	list-style: none;
+}
+
+.tableList{
+	margin-top: -30px;
+}
+.tableList tr td h1{
+	width: 300px;
+}
+
+.trStyle{
+	width: 300px;
+}
+
+.tdStyle{
+	margin-left: 100px;
+	height: 82px;
+}
+.modules{
+	margin-top: 20px;
+	 width: 980px;
+	 position: relative;
+  	margin-left: auto ;
+ 	 margin-right: auto ;
+}
+
+form.ibm-column-form label{
+	margin-top: 7px;
+}
+
+.buttonStyle{
+	margin-left: 15px;
+}
+
+.isa_error, .isa_success {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:0px 0px 0px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;-moz-border-radius:.5em;
+	-webkit-border-radius:.5em;
+	border-radius:.5em;
+ 	width: 250px;
+}
+.isa_error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('../images/message/error.png');
+}
+.isa_error span{
+    color: #D8000C;
+}
+.isa_error li{
+    padding-bottom: 0px;
+}
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('../images/message/success.png');
+}
+.isa_success span{
+    color: #4F8A10;
+}
+.actionmessage {
+    background-color:yellow;
+    font-weight:bold;
+    border:0px;
+    width:400px;
+}
+ul.actionMessage li {
+    color:green;
+    padding-bottom: 0px;
+}
+.workstationId{
+	text-decoration:none;
+	font-weight: bold;
+	color:blue;
+}
+a.workstationId:link{color:blue}
+a.workstationId:active{color:blue}
+a.workstationId:visited{color:blue}
+a.workstationId:hover{color:blue;text-decoration:underline;}
+.workstationForm{
+	margin-left: auto;
+	margin-right: auto;
+	height: 300px;
+}
+.workstationForm td{
+	width: 180px;
+}
+img.wsImage {
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+ 
+img.wsImage:hover {
+  -webkit-transform: rotate(-15deg);
+     -moz-transform: rotate(-15deg);
+       -o-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+label[for*=selectAssets-]:after {
+    content:"\A"; white-space:pre;;
+}
+table.assetTable{
+	margin-left:auto; 
+    margin-right:auto;
+}
+table.assetTable td{
+	width: 70px
+}

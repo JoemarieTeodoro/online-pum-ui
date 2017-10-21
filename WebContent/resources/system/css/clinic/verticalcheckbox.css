@@ -1,0 +1,7 @@
+label[for*=past_med-]:after {
+    content:"\A"; white-space:pre;;
+}
+
+label[for*=family_history-]:after {
+    content:"\A"; white-space:pre;;
+}

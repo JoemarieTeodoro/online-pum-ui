@@ -1,0 +1,31 @@
+		<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.action.extension" value=","/>
+	<package name="default" namespace="/" extends="struts-default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
+		<global-results>
+	            <result name="login" type="redirect">/login/loginLink</result>
+	    </global-results> 
+	</package>
+	
+	<include file="struts-login.xml"></include>
+	<include file="struts-admin.xml"></include>
+	<include file="struts-register.xml"></include>
+	<include file="struts-user.xml"></include>
+<!-- 	<include file="struts-leave.xml"></include>
+	<include file="struts-asset.xml"></include>
+	<include file="struts-clinic.xml"></include>
+	<include file="struts-employee.xml"></include>
+	<include file="struts-security.xml"></include>
+	<include file="struts-applicant.xml"></include>
+	<include file="struts-workstation.xml"></include> -->
+	
+</struts>

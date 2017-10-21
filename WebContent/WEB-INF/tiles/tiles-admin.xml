@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/pages/layout/baseLayout.jsp">
+		<put-attribute name="title" value="Admin" />
+      <put-attribute name="header" value="/pages/layout/header.jsp"/>
+      <put-attribute name="body"   value="/pages/layout/body.jsp"/>
+      <put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+      <put-attribute name="menu"   value=""/>
+	</definition>
+
+	<definition name="adminHomeLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/admin.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+	
+	<definition name="uploadCSVLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/uploadCSV.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+	
+	<definition name="projectEngagementLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/projectEngagement.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+	
+	<definition name="downloadPUMLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/downloadPUM.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+	
+	<definition name="definePUMYearLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/PUMYear.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+	
+	<definition name="defineHolidaysLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/Holidays.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+
+	<definition name="viewPUMYearLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/viewPUMYear.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition> 
+
+	<definition name="viewAllPUMYearLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/viewAllPUMYear.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition> 
+	
+	<definition name="searchEmployeeLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/searchEmployee.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition> 
+	
+	<definition name="searchHolidayLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/searchHoliday.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition> 
+	
+	<definition name="adminShowAllHolidaysLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/user/showAllHolidays.jsp" />
+		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition> 
+	
+	<definition name="adminCalendarLink" extends="baseLayout">
+		<put-attribute name="title" value="Enter My Hours" />
+		<put-attribute name="body" value="/pages/user/calendar.jsp" />
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+	
+	<definition name="adminGetCalendarLink" extends="baseLayout">
+		<put-attribute name="title" value="Enter My Hours" />
+		<put-attribute name="body" value="/pages/user/pum.jsp" />
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+
+</tiles-definitions>

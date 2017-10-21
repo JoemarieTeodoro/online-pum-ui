@@ -1,0 +1,103 @@
+@CHARSET "ISO-8859-1";
+
+
+
+	#lblTitle{
+		font-size: xx-large;  
+		text-transform: uppercase;  
+		text-align: center;  
+		color: #990000;
+		}
+	#labels{
+		font-family: sans-serif;
+		text-indent: 50px;
+		text-align: left;
+		font-weight: normal;
+	}
+	
+	#relabels{
+		font-family: sans-serif;
+		text-indent: 10px;
+		text-align: left;
+		font-weight: normal;
+	}
+	
+	.text-label {
+	color: #cdcdcd;
+	font-weight: bold;
+}
+
+	#selectId{
+		width: 148px;
+	}
+	#txtBox{
+		width: 250px;
+		height: 100px;
+		overflow:scroll;
+	}
+	#indention{
+		text-indent: 50px;
+		text-align: left;
+		width: 100%;
+		height: 10%;
+		
+		}
+	
+	#chkbox{
+		text-indent: 50px;
+		text-align: left;
+	}
+		
+	#chklabel{
+		text-indent: 20px;
+		text-align: left;
+	}
+		
+	#radio1{
+	text-indent: 35px;
+	text-align: left;
+		
+	}
+	#radio2{
+	text-indent: 40px;
+	text-align: left;
+		
+	}
+	
+	
+.divTable
+{
+    width: 50%;
+    height: 50%;
+    display: table;
+}
+
+.divTableRow
+{
+    width: 100%;
+    height: 100%;
+    display: table-row;
+}
+
+.divTableCell
+{
+    width: 25%;
+    height: 100%;
+    display: table-cell;
+}
+
+ #container {
+  
+    display: table;
+    }
+
+  #row  {
+   
+    display: table-row;
+    }
+
+  #left, #right, #middle {
+   
+    display: table-cell;
+    }
+    
