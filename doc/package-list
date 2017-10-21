@@ -1,0 +1,8 @@
+com.ph.ibm
+com.ph.ibm.bo
+com.ph.ibm.model
+com.ph.ibm.opum.exception
+com.ph.ibm.repository
+com.ph.ibm.repository.impl
+com.ph.ibm.resources
+com.ph.ibm.util
