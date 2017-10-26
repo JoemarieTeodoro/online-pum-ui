@@ -8,8 +8,6 @@
 <title>View Employee</title>
 <head>
 <script src="../resources/js/fileValidation.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 <!-- TODO: put this in an external file -->
 	function process() {
@@ -62,5 +60,4 @@
 
 		</table>
 	</div>
-<div id="valid_msg"/></div>
 </body>

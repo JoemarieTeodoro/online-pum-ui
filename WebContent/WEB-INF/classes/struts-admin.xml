@@ -31,11 +31,6 @@
             <result name="user" type="redirect">../user/userLink</result>
 		</global-results>
 
-		<action name="adminHomeLink" method="home"
-			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="adminHome" type="tiles">adminHomeLink</result>
-		</action>
-		
 		<action name="uploadSysAdminCSVLink" method="uploadSysAdminCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
@@ -65,7 +60,7 @@
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="downloadPUMLink" type="tiles">downloadPUMLink</result>
 		</action>
-
+		
 		<action name="searchEmployeeLink" method="searchEmployee"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="searchEmployeeLink" type="tiles">searchEmployeeLink</result>
