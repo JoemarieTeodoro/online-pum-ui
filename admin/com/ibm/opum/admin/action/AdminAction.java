@@ -47,7 +47,7 @@ public class AdminAction extends ActionSupport {
 		String jsonData = null;
 		
 		try {
-			URL url = new URL("http://localhost:8080/onlinePUM/webapi/opum/yearList");
+			URL url = new URL("http://localhost:9090/onlinePUM/webapi/opum/yearList");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
@@ -82,7 +82,7 @@ public class AdminAction extends ActionSupport {
 	
 	public String viewSpecificYearDate() {
 		try {
-			URL url = new URL("http://localhost:8080/onlinePUM/webapi/opum/yeardate/" + year);
+			URL url = new URL("http://localhost:9090/onlinePUM/webapi/opum/yeardate/" + year);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");

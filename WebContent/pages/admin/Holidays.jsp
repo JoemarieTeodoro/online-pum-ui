@@ -52,7 +52,7 @@
 	 }
 	 function sendJSON(){
 		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("POST", "http://localhost:8080/onlinePUM/webapi/opum/saveHolidays");
+		  xhttp.open("POST", "http://localhost:9090/onlinePUM/webapi/opum/saveHolidays");
 		  xhttp.setRequestHeader("Content-Type", "application/json");
 		  xhttp.send(formToJSON());  
 		 //alert('saving '+formToJSON());

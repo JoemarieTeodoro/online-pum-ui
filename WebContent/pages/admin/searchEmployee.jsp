@@ -50,7 +50,7 @@
     function getdetails() {
     	xmlhttp = new XMLHttpRequest();
         var empno = document.getElementById("searchEmployeeIdNumber").value;
-        var url = "http://localhost:8080/onlinePUM/webapi/opum/searchEmployee/" + empno;
+        var url = "http://localhost:9090/onlinePUM/webapi/opum/searchEmployee/" + empno;
         xmlhttp.open('GET',url, true);
         xmlhttp.send(null);
         xmlhttp.onreadystatechange = function() {
@@ -111,7 +111,7 @@
 	 }
 	 function sendJSON(){
 		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("PUT", "http://localhost:8080/onlinePUM/webapi/opum/updateEmployeeDetails");
+		  xhttp.open("PUT", "http://localhost:9090/onlinePUM/webapi/opum/updateEmployeeDetails");
 		  xhttp.setRequestHeader("Content-Type", "application/json");
 		  xhttp.send(formToJSON());  
 		  alert('Updated Employee Information! ');

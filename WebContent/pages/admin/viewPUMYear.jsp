@@ -38,7 +38,7 @@
     function getdetails() {
     	xmlhttp = new XMLHttpRequest();
         var year = document.getElementById("year").value;
-        var url = "http://localhost:8080/onlinePUM/webapi/opum/yeardate/"+year;
+        var url = "http://localhost:9090/onlinePUM/webapi/opum/yeardate/"+year;
         xmlhttp.open('GET',url, true);
         xmlhttp.send(null);
         xmlhttp.onreadystatechange = function() {
@@ -66,7 +66,7 @@
 	 }
 	 function sendJSON(){
 		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("PUT", "http://localhost:8080/onlinePUM/webapi/opum/editPUMYearDate");
+		  xhttp.open("PUT", "http://localhost:9090/onlinePUM/webapi/opum/editPUMYearDate");
 		  xhttp.setRequestHeader("Content-Type", "application/json");
 		  xhttp.send(formToJSON());  
 		  alert('Updated PUM Year Information! ');

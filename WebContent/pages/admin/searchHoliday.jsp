@@ -45,7 +45,7 @@
     function getdetails() {
     	xmlhttp = new XMLHttpRequest();
         var searchName = document.getElementById("searchName").value;
-        var url = "http://localhost:8080/onlinePUM/webapi/opum/checkHoliday/" + searchName;
+        var url = "http://localhost:9090/onlinePUM/webapi/opum/checkHoliday/" + searchName;
         xmlhttp.open('GET',url, true);
         xmlhttp.send(null);
         xmlhttp.onreadystatechange = function() {
@@ -74,14 +74,14 @@
 	 }
 	 function sendJSON(){
 		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("POST", "http://localhost:8080/onlinePUM/webapi/opum/updateHoliday");
+		  xhttp.open("POST", "http://localhost:9090/onlinePUM/webapi/opum/updateHoliday");
 		  xhttp.setRequestHeader("Content-Type", "application/json");
 		  xhttp.send(formToJSON());  
 		  alert('Updated Holiday Information! ');
 	} 
 	 function deleteJSON(){
 		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("POST", "http://localhost:8080/onlinePUM/webapi/opum/deleteHoliday");
+		  xhttp.open("POST", "http://localhost:9090/onlinePUM/webapi/opum/deleteHoliday");
 		  xhttp.setRequestHeader("Content-Type", "application/json");
 		  xhttp.send(formToJSON());  
 		  alert('Deleted Holiday Information! ');

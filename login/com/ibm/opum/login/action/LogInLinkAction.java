@@ -8,64 +8,59 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 public class LogInLinkAction extends ActionSupport {
-	private static final long serialVersionUID = 1L;
-	private String username;
-	private String password;
-	
-	public String login() {
-		ActionContext.getContext().getSession().clear();
-		return "login";
-	}
-	
-	public String authenticate() {
-		try{
-		Client client = Client.create();
+    private static final long serialVersionUID = 1L;
+    private String username;
+    private String password;
 
-		WebResource webResource = client.resource("http://localhost:8080/onlinePUM/webapi/opum/userLogin/"+username);
-		ClientResponse response = webResource.type("application/json").post(ClientResponse.class, password);
+    public String login() {
+        ActionContext.getContext().getSession().clear();
+        return "login";
+    }
 
-		if (response.getStatus() != 201) {
-			throw new RuntimeException("Failed : HTTP error code : "
-			     + response.getStatus());
-		}
-		
-		Employee employee = response.getEntity(Employee.class);
-		ActionContext.getContext().getSession().put("employeeID", employee.getEmployeeId());
-		ActionContext.getContext().getSession().put("email", employee.getEmail());
-		ActionContext.getContext().getSession().put("fullName", employee.getFullName());
-		ActionContext.getContext().getSession().put("employeeIdNumber", employee.getEmployeeIdNumber());
-		ActionContext.getContext().getSession().put("username", username);
-		ActionContext.getContext().getSession().put("password", password);
-		 if(employee.isAdmin()== true){
-			 return "admin";
-		 }
-		 if(employee.isAdmin()== false){
-			 return "user";
-		 }
-	
+    public String authenticate() {
+        try {
+            Client client = Client.create();
 
-	  } catch (Exception e) {
+            WebResource webResource = client
+                    .resource("http://localhost:9090/online-pum-rest/webapi/opum/userLogin/" + username);
+            ClientResponse response = webResource.type("application/json").post(ClientResponse.class, password);
 
-		e.printStackTrace();
+            if (response.getStatus() != 201) {
+                throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+            }
 
-	  }
-		
-		return "login";
-	}
+            Employee employee = response.getEntity(Employee.class);
+            ActionContext.getContext().getSession().put("employeeID", employee.getEmployeeId());
+            ActionContext.getContext().getSession().put("email", employee.getEmail());
+            ActionContext.getContext().getSession().put("fullName", employee.getFullName());
+            ActionContext.getContext().getSession().put("employeeIdNumber", employee.getEmployeeIdNumber());
+            ActionContext.getContext().getSession().put("username", username);
+            ActionContext.getContext().getSession().put("password", password);
 
-	public String getUsername() {
-		return username;
-	}
+            return employee.isAdmin() ? "admin" : "user";
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	public String getPassword() {
-		return password;
-	}
+        ActionContext.getContext().getSession().put("isLogin", true);
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+        return "login";
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

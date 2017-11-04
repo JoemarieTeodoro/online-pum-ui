@@ -3,27 +3,35 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="login" namespace="/login" extends="default">
-		<result-types>
-			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
-		</result-types>
+    <package name="login" namespace="/login" extends="default">
+        <result-types>
+            <result-type name="tiles"
+                class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
 
-		<interceptors>
-        	<interceptor name="interceptor" class="com.ibm.opum.login.action.Interceptor" />
-      	</interceptors>
-		
-		<action name="loginLink" method="login"
-		class="com.ibm.opum.login.action.LogInLinkAction">
-			<result name="login" type="tiles">loginLink</result>
-		</action>
-		
-		<action name="authenticateLink" method="authenticate"
-		class="com.ibm.opum.login.action.LogInLinkAction">
-			<result name="login" type="tiles">loginLink</result>
-			<result name="admin" type="redirectAction"><param name="actionName">adminHomeLink</param><param name="namespace">/admin</param></result>
-			<result name="user" type="redirectAction"><param name="actionName">userLink</param> <param name="namespace">/user</param></result>
-		</action>
+        <interceptors>
+            <interceptor name="interceptor"
+                class="com.ibm.opum.login.action.Interceptor" />
+        </interceptors>
 
-	
-	</package>
+        <action name="loginLink" method="login"
+            class="com.ibm.opum.login.action.LogInLinkAction">
+            <result name="login" type="tiles">loginLink</result>
+        </action>
+
+        <action name="authenticateLink" method="authenticate"
+            class="com.ibm.opum.login.action.LogInLinkAction">
+            <result name="login" type="tiles">loginLink</result>
+            <result name="admin" type="redirectAction">
+                <param name="actionName">adminHomeLink</param>
+                <param name="namespace">/admin</param>
+            </result>
+            <result name="user" type="redirectAction">
+                <param name="actionName">userLink</param>
+                <param name="namespace">/user</param>
+            </result>
+        </action>
+
+
+    </package>
 </struts>
