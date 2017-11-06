@@ -20,7 +20,7 @@
                 <interceptor-ref name="loginInterceptor" />
             </interceptor-stack>
         </interceptors>
-
+		
         <action name="loginLink" method="login"
             class="com.ibm.opum.login.action.LogInLinkAction">
             <interceptor-ref name="cacheloginStack" />
@@ -29,13 +29,12 @@
             <result name="user" type="redirect">../user/userLink</result>
         </action>
 
-        <action name="authenticateLink" method="authenticate"
-            class="com.ibm.opum.login.action.LogInLinkAction">
-            <result name="login" type="tiles">loginLink</result>
-            <result name="admin" type="tiles">adminHomeLink</result>
-            <result name="user" type="tiles">userLink</result>
-        </action>
-
-
+		<action name="authenticateLink" method="authenticate"
+			class="com.ibm.opum.login.action.LogInLinkAction">
+			<result name="login" type="tiles">loginLink</result>
+			<result name="admin" type="redirectAction"><param name="actionName">adminHomeLink</param><param name="namespace">/admin</param></result>
+			<result name="user" type="redirectAction"><param name="actionName">userLink</param> <param name="namespace">/user</param></result>
+		</action>
+		
     </package>
 </struts>

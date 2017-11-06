@@ -34,27 +34,28 @@
 
         <action name="projectEngagementLink" method="projectEngagement"
             class="com.ibm.opum.admin.action.AdminAction">
-            <result name="projectEngagementLink" type="tiles">projectEngagementLink
-            </result>
+            <result name="projectEngagementLink" type="tiles">projectEngagementLink</result>
         </action>
 
         <action name="downloadPUMLink" method="downloadPUM"
             class="com.ibm.opum.admin.action.AdminAction">
-            <result name="downloadPUMLink" type="tiles">downloadPUMLink
-            </result>
+            <result name="downloadPUMLink" type="tiles">downloadPUMLink</result>
         </action>
 
         <action name="searchEmployeeLink" method="searchEmployee"
             class="com.ibm.opum.admin.action.AdminAction">
-            <result name="searchEmployeeLink" type="tiles">searchEmployeeLink
-            </result>
+            <result name="searchEmployeeLink" type="tiles">searchEmployeeLink</result>
         </action>
 
         <action name="viewAllPUMYearLink" method="viewAllPUMYear"
             class="com.ibm.opum.admin.action.AdminAction">
-            <result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink
-            </result>
+            <result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink</result>
         </action>
 
+		<action name="resetPasswordLink" method="resetPassword"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="resetPasswordLink" type="tiles">resetPasswordLink</result>
+		</action>
+		
     </package>
 </struts>

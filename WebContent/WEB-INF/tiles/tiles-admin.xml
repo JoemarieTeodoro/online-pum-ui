@@ -6,7 +6,7 @@
 <tiles-definitions>
 
 	<definition name="baseLayout" template="/pages/layout/baseLayout.jsp">
-		<put-attribute name="title" value="Admin" />
+	  <put-attribute name="title" value="Admin" />
       <put-attribute name="header" value="/pages/layout/header.jsp"/>
       <put-attribute name="body"   value="/pages/layout/body.jsp"/>
       <put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
@@ -111,6 +111,11 @@
 		<put-attribute name="title" value="Enter My Hours" />
 		<put-attribute name="body" value="/pages/user/pum.jsp" />
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+
+	<definition name="resetPasswordLink" extends="baseLayout">
+		<put-attribute name="title" value="ResetPassword" />
+		<put-attribute name="body" value="/pages/admin/resetPassword.jsp" />
 	</definition>
 
 </tiles-definitions>
