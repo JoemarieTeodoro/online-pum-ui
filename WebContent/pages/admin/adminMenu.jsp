@@ -7,7 +7,7 @@
 			href="<s:url action="../admin/adminHomeLink"/>">Admin Home</a></li>
 		<li id="ibm-overview"><a>Menu</a></li>
 		<li>
-				<a href="<s:url action="uploadCSVLink"/>">Upload Employee List</a>
+				<a href="<s:url action="uploadCSVLink"/>">Upload Admin List</a>
 				<a href="<s:url action="searchEmployeeLink"/>">Search Employee</a>
 				<a href="<s:url action="projectEngagementLink"/>">Project Engagement Date</a> 
 				<a href="<s:url action="downloadPUMLink"/>">Download PUM</a>

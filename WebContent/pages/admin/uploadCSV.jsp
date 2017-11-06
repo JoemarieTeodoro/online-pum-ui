@@ -10,7 +10,7 @@
 	</s:if>
 
 	<div class="ibm-title">
-	<h2>Upload Employee List</h2>
+	<h2>Upload Admin List</h2>
 	<hr>
 	</div>
 	
