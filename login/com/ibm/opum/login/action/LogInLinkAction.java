@@ -36,14 +36,13 @@ public class LogInLinkAction extends ActionSupport {
             ActionContext.getContext().getSession().put("employeeIdNumber", employee.getEmployeeIdNumber());
             ActionContext.getContext().getSession().put("username", username);
             ActionContext.getContext().getSession().put("password", password);
+            ActionContext.getContext().getSession().put("isLogin", true);
 
             return employee.isAdmin() ? "admin" : "user";
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        ActionContext.getContext().getSession().put("isLogin", true);
 
         return "login";
     }
