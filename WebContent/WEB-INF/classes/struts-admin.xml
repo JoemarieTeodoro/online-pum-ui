@@ -48,7 +48,12 @@
 		
 		<action name="uploadEmployeeTeamCSVLink" method="uploadEmployeeTeamCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+			<result name="uploadCSVLink" type="tiles">uploadAdminCSVLink</result>
+		</action>
+		
+		<action name="uploadEmployeeTeamCSVLink" method="uploadCSV"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="uploadCSVLink" type="tiles">uploadEmployeeTeamCSVLink</result>
 		</action>
 		
 		<action name="projectEngagementLink" method="projectEngagement"
