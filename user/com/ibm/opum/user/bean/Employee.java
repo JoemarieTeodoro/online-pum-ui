@@ -1,98 +1,92 @@
 package com.ibm.opum.user.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Employee {
 
-	private int employeeId;
-	private String employeeIdNumber;
-	private String email;
-	private int projectEngagementId;
-	private String firstName;
-	private String lastName;
-	private String middleName;
-	private boolean isAdmin;
+	private String employeeSerial;
+
+	private String employeeId;
+
+	private String managerSerial;
+
+	private String intranetId;
+
 	private String fullName;
+
+	private String rollInDate;
+
+	private String rollOffDate;
+
+	private Long teamId;
+
+	private List<Role> assignedRoles;
+
+	private List<Project> assignedProjects;
+
+	private String primaryProject;
+
 	private String password;
-	private boolean isActive;
-	private String createDate;
-	private String createdBy;
-	private String updateDate;
-	private String updatedBy;
+
+	private Boolean isActive;
+
+	private Boolean isAdmin;
+
+	private Utilization utilization;
 
 	public Employee() {
-
+		super();
 	}
 
-	public Employee(String employeeIdNumber, String email, String password) {
-		this.employeeIdNumber = employeeIdNumber;
-		this.email = email;
+	public Employee(String employeeSerial, String managerSerial, String intranetId, String fullName, Long teamId,
+			List<Role> assignedRoles, List<Project> assignedProjects, String password, Boolean isActive,
+			Utilization utilization) {
+		super();
+		this.employeeSerial = employeeSerial;
+		this.managerSerial = managerSerial;
+		this.intranetId = intranetId;
+		this.fullName = fullName;
+		this.teamId = teamId;
+		this.assignedRoles = assignedRoles;
+		this.assignedProjects = assignedProjects;
+		this.password = password;
+		this.isActive = isActive;
+		this.utilization = utilization;
+	}
+
+	public Employee(String employeeSerial, String intranetId, String primaryProject, String password) {
+		this.employeeSerial = employeeSerial;
+		this.intranetId = intranetId;
+		this.primaryProject = primaryProject;
 		this.password = password;
 	}
 
-	public int getEmployeeId() {
-		return employeeId;
+	public String getEmployeeSerial() {
+		return employeeSerial;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployeeSerial(String employeeSerial) {
+		this.employeeSerial = employeeSerial;
 	}
 
-	public String getEmployeeIdNumber() {
-		return employeeIdNumber;
+	public String getManagerSerial() {
+		return managerSerial;
 	}
 
-	public void setEmployeeIdNumber(String employeeIdnumber) {
-		this.employeeIdNumber = employeeIdnumber;
+	public void setManagerSerial(String managerSerial) {
+		this.managerSerial = managerSerial;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getIntranetId() {
+		return intranetId;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getProjectEngagementId() {
-		return projectEngagementId;
-	}
-
-	public void setProjectEngagementId(int projectEngagementId) {
-		this.projectEngagementId = projectEngagementId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setIntranetId(String intranetId) {
+		this.intranetId = intranetId;
 	}
 
 	public String getFullName() {
@@ -103,6 +97,33 @@ public class Employee {
 		this.fullName = fullName;
 	}
 
+	public Long getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(Long teamId) {
+		this.teamId = teamId;
+	}
+
+	public List<Role> getAssignedRoles() {
+		if (assignedRoles == null) {
+			return new ArrayList<Role>();
+		}
+		return assignedRoles;
+	}
+
+	public void setAssignedRoles(List<Role> assignedRoles) {
+		this.assignedRoles = assignedRoles;
+	}
+
+	public List<Project> getAssignedProjects() {
+		return assignedProjects;
+	}
+
+	public void setAssignedProjects(List<Project> assignedProjects) {
+		this.assignedProjects = assignedProjects;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -111,44 +132,74 @@ public class Employee {
 		this.password = password;
 	}
 
-	public boolean isActive() {
+	public Utilization getUtilization() {
+		return utilization;
+	}
+
+	public void setUtilization(Utilization utilization) {
+		this.utilization = utilization;
+	}
+
+	public String getPrimaryProject() {
+		return primaryProject;
+	}
+
+	public void setPrimaryProject(String primaryProject) {
+		this.primaryProject = primaryProject;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public Boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public String getCreateDate() {
-		return createDate;
+	public String getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	public String getCreatedBy() {
-		return createdBy;
+	/**
+	 * @return the rollInDate
+	 */
+	public String getRollInDate() {
+		return rollInDate;
 	}
 
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
+	/**
+	 * @param rollInDate
+	 *            the rollInDate to set
+	 */
+	public void setRollInDate(String rollInDate) {
+		this.rollInDate = rollInDate;
 	}
 
-	public String getUpdateDate() {
-		return updateDate;
+	/**
+	 * @return the rollOffDate
+	 */
+	public String getRollOffDate() {
+		return rollOffDate;
 	}
 
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
+	/**
+	 * @param rollOffDate
+	 *            the rollOffDate to set
+	 */
+	public void setRollOffDate(String rollOffDate) {
+		this.rollOffDate = rollOffDate;
 	}
 
 }

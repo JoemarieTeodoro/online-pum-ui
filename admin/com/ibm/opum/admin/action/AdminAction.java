@@ -23,6 +23,7 @@ public class AdminAction extends ActionSupport {
 	
 	public String home(){
 		ActionContext.getContext().getSession().put("role", "admin");
+
 		return "adminHome";
 	}
 	
@@ -85,7 +86,7 @@ public class AdminAction extends ActionSupport {
 	
 	public String viewSpecificYearDate() {
 		try {
-			URL url = new URL("http://localhost:9090/onlinePUM/webapi/opum/yeardate/" + year);
+			URL url = new URL("http://localhost:8080/onlinePUM/webapi/opum/yeardate/" + year);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
