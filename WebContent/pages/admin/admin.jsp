@@ -13,10 +13,7 @@
 				<h2>Admin Home</h2>
 				<hr>
 			</div>
-
 		</div>
 	</div>
-
 </body>
 </html>
-			

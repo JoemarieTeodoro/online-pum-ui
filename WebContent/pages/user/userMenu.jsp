@@ -1,5 +1,5 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-
+<meta http-equiv="refresh" content="<%= session.getMaxInactiveInterval()%>">
 <!-- NAVIGATION_BEGIN-->
 
 <div id="ibm-navigation" class="ibm-parent">
@@ -21,4 +21,6 @@
 	</ul>
 
 </div>
+<script>var secondsBeforeExpire = ${pageContext.session.maxInactiveInterval};</script>
+<script src="../resources/js/session/sessionExpire.js" type="text/javascript"></script>
 <!-- NAVIGATION_END  -->
