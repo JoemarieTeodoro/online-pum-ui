@@ -6,18 +6,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
-import com.ibm.opum.admin.bean.JavaToJsonUtil;
 import com.ibm.opum.admin.bean.JsonToJavaUtil;
 import com.ibm.opum.admin.bean.PUMYear;
 import com.ibm.opum.admin.bean.PUMYearList;
-import com.ibm.opum.user.bean.ResetPassword;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 
 public class AdminAction extends ActionSupport {
 
@@ -29,7 +23,6 @@ public class AdminAction extends ActionSupport {
 	
 	public String home(){
 		ActionContext.getContext().getSession().put("role", "admin");
-		
 		return "adminHome";
 	}
 	
@@ -116,22 +109,6 @@ public class AdminAction extends ActionSupport {
 		return "searchHolidayLink";
 	}
 
-	public String resetPassword(){
-		ResetPassword resetPassword = new ResetPassword();
-		resetPassword.setEmail(ServletActionContext.getRequest().getParameter("email"));
-		resetPassword.setToken(ServletActionContext.getRequest().getParameter("token"));
-		
-		Client client = Client.create();
-		WebResource webResource = client.resource("http://localhost:8080/online-pum-rest/webapi/resetPassword/validateToken");
-		ClientResponse response = webResource.type("application/json").post(ClientResponse.class, JavaToJsonUtil.javaToJson(resetPassword));
-
-		if (response.getStatus() != 200) {
-			throw new RuntimeException("Failed : HTTP error code : "
-			     + response.getStatus());
-		}
-		return "resetPasswordLink";
-	}
-	
 	public PUMYearList getPumYearList() {
 		return pumYearList;
 	}

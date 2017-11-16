@@ -52,10 +52,5 @@
             <result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink</result>
         </action>
 
-		<action name="resetPasswordLink" method="resetPassword"
-			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="resetPasswordLink" type="tiles">resetPasswordLink</result>
-		</action>
-		
     </package>
 </struts>

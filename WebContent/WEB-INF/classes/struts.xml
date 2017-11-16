@@ -34,6 +34,8 @@
     <include file="struts-register.xml"></include>
     <include file="struts-user.xml"></include>
     <include file="struts-logout.xml"></include>
+    <include file="struts-resetPassword.xml"></include>
+    
     <!-- <include file="struts-leave.xml"></include> <include file="struts-asset.xml"></include> 
         <include file="struts-clinic.xml"></include> <include file="struts-employee.xml"></include> 
         <include file="struts-security.xml"></include> <include file="struts-applicant.xml"></include> 
