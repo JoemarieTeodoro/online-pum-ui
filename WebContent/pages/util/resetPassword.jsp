@@ -3,18 +3,17 @@
 
 <s:head/>
 <div class="formResetPasswordStyle">
-	<form action="resetPasswordLink" method="post" enctype="application/x-www-form-urlencoded">
+	<form action="validateResetPasswordLink" method="post" enctype="application/x-www-form-urlencoded">
 		<h1>Reset Password</h1>
 		<div class="inset">
 			<p>
 				<br>
-				<s:if test="hasActionErrors()">
-			<%-- 	<div style="margin-left: 10px;">
-						<s:actionerror cssStyle="list-style: none;"/>
-				</div> --%>
+				<s:if test="#session.showMismatch">
+				<div style="margin-left: 10px;">
+					<%-- <s:actionerror cssStyle="list-style: none;"/> --%>
+					<label for="resetMismatch">Input in New Password does not match with input in Confirm New Password!</label>
+				</div>
 				</s:if>
-				<label for="oldPassword">Old Password: </label>
-				<input type="password" name="oldPassword" required="required" width= "248px" />
 				<label for="newPassword">New Password: </label>
 				<input type="password" name="newPassword" required="required" width= "248px" />
 				<label for="confirmNewPassword">Confirm New Password: </label>

@@ -1,6 +1,6 @@
-package com.ibm.opum.user.bean;
+package com.ibm.opum.util.bean;
 
-public class ResetPassword {
+public class ResetPasswordToken {
 
 	private String email;
 	private String token;

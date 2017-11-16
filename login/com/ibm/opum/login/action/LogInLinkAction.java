@@ -27,7 +27,7 @@ public class LogInLinkAction extends ActionSupport {
 
             WebResource webResource = client
                     .resource("http://localhost:8080/online-pum-rest/webapi/opum/userLogin/" + username);
-			ClientResponse response = webResource.type("application/json").post(ClientResponse.class, password);
+            ClientResponse response = webResource.type("application/json").post(ClientResponse.class, password);
 
             if (response.getStatus() != 201) {
                 throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());

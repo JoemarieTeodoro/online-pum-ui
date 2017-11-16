@@ -113,9 +113,4 @@
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 
-	<definition name="resetPasswordLink" extends="baseLayout">
-		<put-attribute name="title" value="ResetPassword" />
-		<put-attribute name="body" value="/pages/admin/resetPassword.jsp" />
-	</definition>
-
 </tiles-definitions>
