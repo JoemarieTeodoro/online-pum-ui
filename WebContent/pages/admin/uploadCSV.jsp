@@ -16,9 +16,11 @@
 	
 <div>
 	<form action="http://localhost:9090/onlinePUM/webapi/opum/dataLoading"
-		method="POST" enctype="multipart/form-data">
-		<input type="file" name="file" accept=".xlsx, .xls, .csv"> <input
+		method="POST" enctype="multipart/form-data" onsubmit="return validation(this)">
+		<input type="file" name="file" accept=".csv"> <input
 			type="submit" value="Process">
 	</form>
 </div>
+<div id="valid_msg"/></div>
+<script src="../resources/js/fileValidation.js"></script>
 </body>
