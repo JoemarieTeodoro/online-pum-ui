@@ -22,8 +22,6 @@ public class AdminAction extends ActionSupport {
 	private String year;
 	
 	public String home(){
-		ActionContext.getContext().getSession().put("role", "admin");
-
 		return "adminHome";
 	}
 	

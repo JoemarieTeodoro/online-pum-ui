@@ -10,7 +10,15 @@
 	</s:if>
 
 	<div class="ibm-title">
-	<h2>Upload Admin List</h2>
+	
+		<s:if test="#session.role == 'SYS_ADMIN'">
+			<h2>Upload Admin List</h2>
+		</s:if>
+	
+		<s:if test="#session.role == 'ADMIN'">
+			<h2>Upload Employee List</h2>
+		</s:if>
+	
 	<hr>
 	</div>
 	
