@@ -4,7 +4,7 @@
 
 <div class="container">
 	<form class="ibm-column-form ibm-styled-form"
-		action="http://localhost:9090/onlinePUM/webapi/opum/registration"
+		action="http://localhost:8080/onlinePUM/webapi/opum/registration"
 		method="post" enctype="application/x-www-form-urlencoded">
 		<p>
 		<label for="employeeIdNumber">Employee ID:</label> 

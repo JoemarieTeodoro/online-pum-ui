@@ -1,34 +1,62 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="org.apache.catalina.filters.RestCsrfPreventionFilter"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page import="java.io.*,java.util.*, com.sun.jersey.api.client.*"%>
 <link href="./css/message.css" rel="stylesheet" type="text/css">
 <title>View Employee</title>
+<head>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	function process() {
+		var form = $('#file')[0];
+		var data = new FormData(form);
+
+		$
+				.ajax({
+					type : "POST",
+					url : "/online-pum-rest/webapi/opum/dataLoading",
+					/* dataType : "text", */
+					data : data,
+					contentType : 'multipart/form-data',
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						alert(data);
+						window.location.reload();
+					},
+					error : function(data, textStatus, xhr) {
+						alert(data.responseText);
+						window.location.reload();
+					}
+				});
+	}
+</script>
+</head>
 <body>
 	<s:if test="hasActionMessages()">
 		<div class="successMsg">
-			<s:actionmessage/>
+			<s:actionmessage />
 		</div>
 	</s:if>
 
 	<div class="ibm-title">
-	
-		<s:if test="#session.role == 'SYS_ADMIN'">
-			<h2>Upload Admin List</h2>
-		</s:if>
-	
-		<s:if test="#session.role == 'ADMIN'">
-			<h2>Upload Employee List</h2>
-		</s:if>
-	
-	<hr>
+		<h2>Upload Admin List</h2>
+		<hr>
 	</div>
-	
-<div>
-	<form action="http://localhost:9090/onlinePUM/webapi/opum/dataLoading"
-		method="POST" enctype="multipart/form-data" onsubmit="return validation(this)">
-		<input type="file" name="file" accept=".csv"> <input
-			type="submit" value="Process">
-	</form>
-</div>
-<div id="valid_msg"/></div>
-<script src="../resources/js/fileValidation.js"></script>
+
+	<div>
+		<table>
+			<form id="file" method="POST" enctype="multipart/form-data">
+				<td><input type="file" name="file" accept=".csv" /></td>
+			</form>
+
+			<td><input type="submit" value="Process" onclick="process()" />
+			</td>
+
+		</table>
+	</div>
+
 </body>

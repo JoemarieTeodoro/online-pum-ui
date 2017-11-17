@@ -3,54 +3,62 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <package name="admin" namespace="/admin" extends="default">
-        <result-types>
-            <result-type name="tiles"
-                class="org.apache.struts2.views.tiles.TilesResult" />
-        </result-types>
+	<package name="admin" namespace="/admin" extends="default">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
 
-        <interceptors>
-            <interceptor name="cacheInterceptor"
-                class="com.ibm.opum.cacheInterceptor.action.CacheInterceptor" />
-            <interceptor name="sessionInterceptor"
-                class="com.ibm.opum.sessionInterceptor.action.SessionInterceptor" />
-            <interceptor-stack name="cacheSessionStack">
-                <interceptor-ref name="defaultStack" />
-                <interceptor-ref name="cacheInterceptor" />
-                <interceptor-ref name="sessionInterceptor" />
-            </interceptor-stack>
-        </interceptors>
+		<interceptors>
+			<interceptor name="cacheInterceptor"
+				class="com.ibm.opum.cacheInterceptor.action.CacheInterceptor" />
+			<interceptor name="sessionInterceptor"
+				class="com.ibm.opum.sessionInterceptor.action.SessionInterceptor" />
+			<interceptor-stack name="cacheSessionStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="cacheInterceptor" />
+				<interceptor-ref name="sessionInterceptor" />
+			</interceptor-stack>
+		</interceptors>
 
-        <default-interceptor-ref name="cacheSessionStack"></default-interceptor-ref>
+		<default-interceptor-ref name="cacheSessionStack"></default-interceptor-ref>
 
-        <global-results>
-            <result name="login" type="redirect">../login/loginLink</result>
-        </global-results>
+		<global-results>
+			<result name="login" type="redirect">../login/loginLink</result>
+		</global-results>
 
-        <action name="adminHomeLink" method="home"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="adminHome" type="tiles">adminHomeLink</result>
-        </action>
+		<action name="adminHomeLink" method="home"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="adminHome" type="tiles">adminHomeLink</result>
+		</action>
 
-        <action name="projectEngagementLink" method="projectEngagement"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="projectEngagementLink" type="tiles">projectEngagementLink</result>
-        </action>
+		<action name="uploadCSVLink" method="uploadCSV"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+		</action>
+		<action name="projectEngagementLink" method="projectEngagement"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="projectEngagementLink" type="tiles">projectEngagementLink</result>
+		</action>
 
-        <action name="downloadPUMLink" method="downloadPUM"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="downloadPUMLink" type="tiles">downloadPUMLink</result>
-        </action>
+		<action name="downloadPUMLink" method="downloadPUM"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="downloadPUMLink" type="tiles">downloadPUMLink</result>
+		</action>
 
-        <action name="searchEmployeeLink" method="searchEmployee"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="searchEmployeeLink" type="tiles">searchEmployeeLink</result>
-        </action>
+		<action name="searchEmployeeLink" method="searchEmployee"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="searchEmployeeLink" type="tiles">searchEmployeeLink</result>
+		</action>
 
-        <action name="viewAllPUMYearLink" method="viewAllPUMYear"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink</result>
-        </action>
+		<action name="viewAllPUMYearLink" method="viewAllPUMYear"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink</result>
+		</action>
 
-    </package>
+		<action name="resetPasswordLink" method="resetPassword"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="resetPasswordLink" type="tiles">resetPasswordLink</result>
+		</action>
+	</package>
 </struts>
