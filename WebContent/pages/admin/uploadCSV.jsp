@@ -42,7 +42,6 @@
 			<s:actionmessage />
 		</div>
 	</s:if>
-
 	<div class="ibm-title">
 	<h2><s:property value="#session.subtitle"/></h2>
 	<hr>
