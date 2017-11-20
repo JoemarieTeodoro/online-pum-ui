@@ -51,6 +51,11 @@
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
 		
+		<action name="uploadEmployeeRoleCSVLink" method="uploadCSV"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="uploadCSVLink" type="tiles">uploadEmployeeRoleCSVLink</result>
+		</action>
+		
 		<action name="uploadPEMCSVLink" method="uploadPEMCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>

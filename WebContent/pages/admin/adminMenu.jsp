@@ -12,12 +12,12 @@
 		<s:if test="#session.role == 'SYS_ADMIN'">
 			<a href="<s:url action="uploadSysAdminCSVLink"/>">Upload Admin List</a>
 		</s:if>
-		
 		<s:if test="#session.role == 'ADMIN'">
 			<a href="<s:url action="uploadAdminCSVLink"/>">Upload Employee List</a>
 			<a href="<s:url action="uploadTeamListCSVLink"/>">Upload Team List</a>
 			<a href="<s:url action="uploadEmployeeTeamCSVLink"/>">Upload Employee Team List</a>
-			
+			<a href="<s:url action="uploadEmployeeRoleCSVLink"/>">Upload Employee Roles</a>		
+			<a href="<s:url action="uploadPEMCSVLink"/>">Upload PEM List</a>
 		</s:if>
 				<a href="<s:url action="searchEmployeeLink"/>">Search Employee</a>
 				<a href="<s:url action="projectEngagementLink"/>">Project Engagement Date</a> 
