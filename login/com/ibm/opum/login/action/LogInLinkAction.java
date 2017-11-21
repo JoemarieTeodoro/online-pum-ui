@@ -26,7 +26,7 @@ public class LogInLinkAction extends ActionSupport {
 			Client client = Client.create(clientConfig);
 
             WebResource webResource = client
-                    .resource("http://localhost:8080/online-pum-rest/webapi/opum/userLogin/" + username);
+                    .resource("http://localhost:8081/online-pum-rest/webapi/opum/userLogin/" + username);
             ClientResponse response = webResource.type("application/json").post(ClientResponse.class, password);
 
             if (response.getStatus() != 201) {
@@ -42,12 +42,8 @@ public class LogInLinkAction extends ActionSupport {
             ActionContext.getContext().getSession().put("password", password);
             ActionContext.getContext().getSession().put("isLogin", true);
 
-			if (employee.getAssignedRoles().contains(Role.SYS_ADMIN)
-					|| employee.getAssignedRoles().contains(Role.ADMIN)) {
-				return "admin";
-			} else {
-				return "user";
-			}
+            return employee.getAssignedRoles().contains(Role.SYS_ADMIN)
+                    || employee.getAssignedRoles().contains(Role.ADMIN) ? "admin" : "user";
 
         } catch (Exception e) {
             e.printStackTrace();

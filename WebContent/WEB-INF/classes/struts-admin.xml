@@ -14,8 +14,11 @@
 				class="com.ibm.opum.cacheInterceptor.action.CacheInterceptor" />
 			<interceptor name="sessionInterceptor"
 				class="com.ibm.opum.sessionInterceptor.action.SessionInterceptor" />
+                <interceptor name="adminInterceptor"
+                class="com.ibm.opum.admin.action.AdminInterceptor" />
 			<interceptor-stack name="cacheSessionStack">
 				<interceptor-ref name="defaultStack" />
+                <interceptor-ref name="adminInterceptor" />
 				<interceptor-ref name="cacheInterceptor" />
 				<interceptor-ref name="sessionInterceptor" />
 			</interceptor-stack>
@@ -25,6 +28,7 @@
 
 		<global-results>
 			<result name="login" type="redirect">../login/loginLink</result>
+            <result name="user" type="redirect">../user/userLink</result>
 		</global-results>
 
 		<action name="adminHomeLink" method="home"

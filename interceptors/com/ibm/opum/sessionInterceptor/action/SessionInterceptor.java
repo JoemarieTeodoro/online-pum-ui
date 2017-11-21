@@ -10,6 +10,6 @@ public class SessionInterceptor extends AbstractInterceptor {
 
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
-        return ActionContext.getContext().getSession().isEmpty() ? "login" : invocation.invoke();
+    	return ActionContext.getContext().getSession().isEmpty() ? "login" : invocation.invoke();
     }
 }

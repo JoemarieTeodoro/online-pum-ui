@@ -22,7 +22,6 @@ public class UserAction extends ActionSupport {
 	}
 
 	public String home() {
-		ActionContext.getContext().getSession().put("role", "user");
 		return "userLink";
 	}
 
