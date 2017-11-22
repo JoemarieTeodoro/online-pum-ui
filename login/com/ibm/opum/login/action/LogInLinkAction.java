@@ -24,9 +24,10 @@ public class LogInLinkAction extends ActionSupport {
         try {
 			ClientConfig clientConfig = ClientConfiguration.getInstance();
 			Client client = Client.create(clientConfig);
+			ClientConfiguration.initProperties();
 
             WebResource webResource = client
-                    .resource("http://localhost:8081/online-pum-rest/webapi/opum/userLogin/" + username);
+					.resource(ClientConfiguration.serverURL + "/online-pum-rest/webapi/opum/userLogin/" + username);
             ClientResponse response = webResource.type("application/json").post(ClientResponse.class, password);
 
             if (response.getStatus() != 201) {

@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import com.ibm.opum.admin.bean.JsonToJavaUtil;
 import com.ibm.opum.admin.bean.PUMYear;
 import com.ibm.opum.admin.bean.PUMYearList;
+import com.ibm.opum.resourceutils.ClientConfiguration;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -50,7 +51,7 @@ public class AdminAction extends ActionSupport {
 		String jsonData = null;
 		
 		try {
-			URL url = new URL("http://localhost:8080/online-pum-rest/webapi/opum/yearList");
+			URL url = new URL(ClientConfiguration.serverURL + "/online-pum-rest/webapi/opum/yearList");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
@@ -84,7 +85,7 @@ public class AdminAction extends ActionSupport {
 	
 	public String viewSpecificYearDate() {
 		try {
-			URL url = new URL("http://localhost:8080/onlinePUM/webapi/opum/yeardate/" + year);
+			URL url = new URL(ClientConfiguration.serverURL + "/onlinePUM/webapi/opum/yeardate/" + year);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");

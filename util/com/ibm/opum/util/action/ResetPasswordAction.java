@@ -1,11 +1,10 @@
 package com.ibm.opum.util.action;
 
-import java.util.ArrayList;
-
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import com.ibm.opum.admin.bean.JavaToJsonUtil;
+import com.ibm.opum.resourceutils.ClientConfiguration;
 import com.ibm.opum.util.bean.ResetPassword;
 import com.ibm.opum.util.bean.ResetPasswordToken;
 import com.opensymphony.xwork2.ActionContext;
@@ -35,7 +34,7 @@ public class ResetPasswordAction extends ActionSupport {
         
         Client client = Client.create();
         WebResource webResource = client
-                .resource("http://localhost:8080/online-pum-rest/webapi/resetPassword/validateToken");
+				.resource(ClientConfiguration.serverURL + "/online-pum-rest/webapi/resetPassword/validateToken");
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class,
                 JavaToJsonUtil.javaToJson(resetPasswordToken));
 
@@ -61,7 +60,7 @@ public class ResetPasswordAction extends ActionSupport {
         resetPassword.setEmail(ActionContext.getContext().getSession().get("email").toString());
 
         Client client = Client.create();
-        WebResource webResource = client.resource("http://localhost:8080/online-pum-rest/webapi/resetPassword/reset");
+        WebResource webResource = client.resource(ClientConfiguration.serverURL + "/online-pum-rest/webapi/resetPassword/reset");
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class,
                 JavaToJsonUtil.javaToJson(resetPassword));
 

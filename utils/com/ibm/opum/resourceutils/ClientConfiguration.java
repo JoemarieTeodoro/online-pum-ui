@@ -1,5 +1,9 @@
 package com.ibm.opum.resourceutils;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.apache.log4j.Logger;
 
 import com.sun.jersey.api.client.config.ClientConfig;
@@ -12,6 +16,10 @@ public class ClientConfiguration {
 
 	private static ClientConfig clientConfig;
 
+	public static Properties props;
+
+	public static String serverURL;
+
 	private ClientConfiguration() {
 	}
 
@@ -22,6 +30,21 @@ public class ClientConfiguration {
 		}
 
 		return clientConfig;
+	}
+
+	public static void initProperties() {
+		if (props == null) {
+			props = new Properties();
+			ClassLoader classLoader = ClientConfiguration.class.getClassLoader();
+			InputStream in = classLoader.getResourceAsStream("config.properties");
+			try {
+				props.load(in);
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			serverURL = props.getProperty("SERVER_URL");
+		}
 	}
 
 }
