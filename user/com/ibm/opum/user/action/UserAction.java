@@ -46,7 +46,8 @@ public class UserAction extends ActionSupport {
 		
 		try{
 			System.out.println("Employee ID: " + employeeID);
-			URL url = new URL(ClientConfiguration.serverURL + "/onlinePUM/webapi/opum/getComputation/" + employeeID + "/" + year);
+			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+					+ "/onlinePUM/webapi/opum/getComputation/" + employeeID + "/" + year);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
@@ -74,7 +75,8 @@ public class UserAction extends ActionSupport {
 		//YTD computation
 		try{
 			System.out.println("Employee ID: " + employeeID);
-			URL url = new URL(ClientConfiguration.serverURL + "/onlinePUM/webapi/opum/getYTDComputation/"+employeeID+"/"+year);
+			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+					+ "/onlinePUM/webapi/opum/getYTDComputation/" + employeeID + "/" + year);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
@@ -116,7 +118,8 @@ public class UserAction extends ActionSupport {
 		
 		String jsonData = null;
 		try {
-			URL url = new URL(ClientConfiguration.serverURL + "/onlinePUM/webapi/opum/holidayList");
+			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+					+ "/onlinePUM/webapi/opum/holidayList");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");

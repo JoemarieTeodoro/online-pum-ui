@@ -136,7 +136,8 @@ public class GenerateCalendarAction extends ActionSupport {
 		UtilizationYear utilYear = new UtilizationYear();
 		int employeeID = (int) ActionContext.getContext().getSession().get("employeeID");
 		try {
-			URL url = new URL(ClientConfiguration.serverURL + "/onlinePUM/webapi/opum/utilization/" + employeeID + "/" + year);
+			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+					+ "/onlinePUM/webapi/opum/utilization/" + employeeID + "/" + year);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
@@ -183,7 +184,8 @@ public class GenerateCalendarAction extends ActionSupport {
 			int employeeID = (int) ActionContext.getContext().getSession().get("employeeID");
 			String email = (String) ActionContext.getContext().getSession().get("email");
 
-			URL url = new URL(ClientConfiguration.serverURL + "/onlinePUM/webapi/opum/utilization/" + employeeID + "/2017");
+			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+					+ "/onlinePUM/webapi/opum/utilization/" + employeeID + "/2017");
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Content-Type", "application/json");
@@ -211,7 +213,8 @@ public class GenerateCalendarAction extends ActionSupport {
 		String jsonData = null;
 		EmployeeUpdate employee = new EmployeeUpdate();
 		try {
-			URL url = new URL(ClientConfiguration.serverURL + "/onlinePUM/webapi/opum/searchEmployee/" + employeeIdNumber);
+			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+					+ "/onlinePUM/webapi/opum/searchEmployee/" + employeeIdNumber);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");

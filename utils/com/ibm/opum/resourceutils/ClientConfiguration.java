@@ -16,9 +16,7 @@ public class ClientConfiguration {
 
 	private static ClientConfig clientConfig;
 
-	public static Properties props;
-
-	public static String serverURL;
+	private static Properties props = null;
 
 	private ClientConfiguration() {
 	}
@@ -43,8 +41,11 @@ public class ClientConfiguration {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			serverURL = props.getProperty("SERVER_URL");
 		}
+	}
+
+	public static Properties getConfigProperties() {
+		return props;
 	}
 
 }

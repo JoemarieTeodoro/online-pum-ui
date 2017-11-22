@@ -34,7 +34,8 @@ public class ResetPasswordAction extends ActionSupport {
         
         Client client = Client.create();
         WebResource webResource = client
-				.resource(ClientConfiguration.serverURL + "/online-pum-rest/webapi/resetPassword/validateToken");
+				.resource(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+						+ "/online-pum-rest/webapi/resetPassword/validateToken");
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class,
                 JavaToJsonUtil.javaToJson(resetPasswordToken));
 
@@ -60,7 +61,8 @@ public class ResetPasswordAction extends ActionSupport {
         resetPassword.setEmail(ActionContext.getContext().getSession().get("email").toString());
 
         Client client = Client.create();
-        WebResource webResource = client.resource(ClientConfiguration.serverURL + "/online-pum-rest/webapi/resetPassword/reset");
+		WebResource webResource = client.resource(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+				+ "/online-pum-rest/webapi/resetPassword/reset");
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class,
                 JavaToJsonUtil.javaToJson(resetPassword));
 
