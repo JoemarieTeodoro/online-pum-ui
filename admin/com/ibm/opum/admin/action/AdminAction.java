@@ -13,51 +13,82 @@ import com.ibm.opum.admin.bean.PUMYearList;
 import com.ibm.opum.resourceutils.ClientConfiguration;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.config.ClientConfig;
 
 public class AdminAction extends ActionSupport {
 
+	private static final String REST_BASE_URL = ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
+			+ "/online-pum-rest/webapi/opum/";
 	private Logger logger = Logger.getLogger(AdminAction.class);
-
 	private static final long serialVersionUID = 1L;
 	private PUMYearList pumYearList;
 	private String year;
-	
-	public String home(){
+
+	public AdminAction() {
+		super();
+		ClientConfig clientConfig = ClientConfiguration.getInstance();
+		Client.create(clientConfig);
+	}
+
+	public String home() {
 		return "adminHome";
 	}
-	
-	public String uploadCSV(){
+
+	public String uploadSysAdminCSVLink() {
+		String tempEmpLink = REST_BASE_URL + "adminDataLoading";
+
+		assignValuesToSession(tempEmpLink, "Upload Admin List");
 		return "uploadCSVLink";
 	}
-	
-	public String projectEngagement(){
+
+	public String uploadAdminCSVLink() {
+		String tempEmpLink = REST_BASE_URL + "dataLoading";
+
+		assignValuesToSession(tempEmpLink, "Upload Employee List");
+		return "uploadCSVLink";
+	}
+
+	public String uploadEmployeeTeamCSVLink() {
+		String tempEmpLink = REST_BASE_URL + "dataLoadingTeamEmpList";
+
+		assignValuesToSession(tempEmpLink, "Upload Employee Team List");
+		return "uploadCSVLink";
+	}
+
+	private void assignValuesToSession(String tempEmpLink, String subtitle) {
+		ActionContext.getContext().getSession().put("form_action", tempEmpLink);
+		ActionContext.getContext().getSession().put("subtitle", subtitle);
+	}
+
+	public String projectEngagement() {
 		return "projectEngagementLink";
 	}
-	
-	public String downloadPUM(){
+
+	public String downloadPUM() {
 		return "downloadPUMLink";
 	}
-	
-	public String definePUMYear(){
+
+	public String definePUMYear() {
 		return "definePUMYearLink";
 	}
-	
-	public String viewPUMYear(){
+
+	public String viewPUMYear() {
 		return "viewPUMYearLink";
 	}
-	
-	public String viewAllPUMYear(){
-		
+
+	public String viewAllPUMYear() {
+
 		String jsonData = null;
-		
+
 		try {
 			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
 					+ "/online-pum-rest/webapi/opum/yearList");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
-			connection.setRequestProperty("username", ActionContext.getContext().getSession().get("username") +"");
-			connection.setRequestProperty("password", ActionContext.getContext().getSession().get("password") +"");
+			connection.setRequestProperty("username", ActionContext.getContext().getSession().get("username") + "");
+			connection.setRequestProperty("password", ActionContext.getContext().getSession().get("password") + "");
 			if (connection.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
 			}
@@ -68,10 +99,10 @@ public class AdminAction extends ActionSupport {
 				pumYearList = JsonToJavaUtil.JsonToJava(jsonData, PUMYearList.class);
 
 			}
-			for(PUMYear pumyear: pumYearList.getPumYearList()){
-				logger.info("PUMYear:"+pumyear.getPumYear());
-				logger.info("Start Date: "+pumyear.getStart());
-				logger.info("End Date:"+pumyear.getEnd());
+			for (PUMYear pumyear : pumYearList.getPumYearList()) {
+				logger.info("PUMYear:" + pumyear.getPumYear());
+				logger.info("Start Date: " + pumyear.getStart());
+				logger.info("End Date:" + pumyear.getEnd());
 			}
 
 			logger.info("\nCrunchify REST Service Invoked Successfully..");
@@ -80,10 +111,10 @@ public class AdminAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "viewAllPUMYearLink";
 	}
-	
+
 	public String viewSpecificYearDate() {
 		try {
 			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
@@ -91,8 +122,8 @@ public class AdminAction extends ActionSupport {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
-			connection.setRequestProperty("username", ActionContext.getContext().getSession().get("username") +"");
-			connection.setRequestProperty("password", ActionContext.getContext().getSession().get("password") +"");
+			connection.setRequestProperty("username", ActionContext.getContext().getSession().get("username") + "");
+			connection.setRequestProperty("password", ActionContext.getContext().getSession().get("password") + "");
 			return "";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,11 +138,12 @@ public class AdminAction extends ActionSupport {
 	public String defineHolidays(){
 		return "defineHolidaysLink";
 	}
-	
-	public String searchEmployee(){
+
+	public String searchEmployee() {
 		return "searchEmployeeLink";
 	}
-	public String searchHoliday(){
+
+	public String searchHoliday() {
 		return "searchHolidayLink";
 	}
 	

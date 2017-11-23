@@ -17,7 +17,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/admin.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 	
@@ -25,7 +25,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/uploadCSV.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 	
@@ -33,7 +33,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/projectEngagement.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 	
@@ -41,7 +41,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/downloadPUM.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 	
@@ -49,7 +49,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/PUMYear.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 	
@@ -57,7 +57,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/Holidays.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 
@@ -65,7 +65,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/viewPUMYear.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition> 
 
@@ -73,7 +73,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/viewAllPUMYear.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition> 
 	
@@ -81,7 +81,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/searchEmployee.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition> 
 	
@@ -89,7 +89,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/admin/searchHoliday.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition> 
 	
@@ -97,7 +97,7 @@
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>
 		<put-attribute name="body" value="/pages/user/showAllHolidays.jsp" />
-		<put-attribute name="footer"   value="/pages/layout/footer.jsp"/>
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition> 
 	
