@@ -30,7 +30,7 @@ public class ClientConfiguration {
 		return clientConfig;
 	}
 
-	public static void initProperties() {
+	static {
 		if (props == null) {
 			props = new Properties();
 			ClassLoader classLoader = ClientConfiguration.class.getClassLoader();

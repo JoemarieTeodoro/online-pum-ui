@@ -14,6 +14,9 @@
 					<label for="resetMismatch">Input in New Password does not match with input in Confirm New Password!</label>
 				</div>
 				</s:if>
+				
+				<label for>Username: </label>
+				<span><s:property value="#session.email" /></span><br/>
 				<label for="newPassword">New Password: </label>
 				<input type="password" name="newPassword" required="required" width= "248px" />
 				<label for="confirmNewPassword">Confirm New Password: </label>

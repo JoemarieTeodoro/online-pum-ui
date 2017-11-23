@@ -25,6 +25,8 @@ public class ResetPasswordAction extends ActionSupport {
     private String token;
 
     public String validateToken() {
+        ActionContext.getContext().getSession().clear();
+    	
     	ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
         resetPasswordToken.setEmail(ServletActionContext.getRequest().getParameter("email"));
         resetPasswordToken.setToken(ServletActionContext.getRequest().getParameter("token"));

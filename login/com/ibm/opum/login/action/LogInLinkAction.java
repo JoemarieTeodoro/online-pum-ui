@@ -24,7 +24,6 @@ public class LogInLinkAction extends ActionSupport {
         try {
 			ClientConfig clientConfig = ClientConfiguration.getInstance();
 			Client client = Client.create(clientConfig);
-			ClientConfiguration.initProperties();
 
             WebResource webResource = client
 					.resource(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
