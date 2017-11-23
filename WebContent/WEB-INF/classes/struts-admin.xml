@@ -64,5 +64,35 @@
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="resetPasswordLink" type="tiles">resetPasswordLink</result>
 		</action>
+        
+        <action name="definePUMYearLink" method="definePUMYear"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="definePUMYearLink" type="tiles">definePUMYearLink</result>
+        </action>
+        
+        <action name="viewPUMYearLink" method="viewPUMYear"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="viewPUMYearLink" type="tiles">viewPUMYearLink</result>
+        </action>
+        
+        <action name="defineHolidaysLink" method="defineHolidays"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="defineHolidaysLink" type="tiles">defineHolidaysLink</result>
+        </action>
+        
+        <action name="showAllHolidaysLink" method="showAllHolidays"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="showAllHolidaysLink" type="tiles">adminShowAllHolidaysLink</result>
+        </action>
+        
+        <action name="searchHolidayLink" method="searchHoliday"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="searchHolidayLink" type="tiles">searchHolidayLink</result>
+        </action>
+        
+        <action name="adminCalendarLink" method="adminCalendar"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="adminCalendarLink" type="tiles">adminCalendarLink</result>
+        </action>
 	</package>
 </struts>

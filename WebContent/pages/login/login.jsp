@@ -20,7 +20,6 @@
 				<input type="password" name="password" required="required" width= "248px" />
 				<s:submit name="submit" key="Log In" onclick="getName()" /> 
 				
-				<a href="<s:url action="../register/registerLink"/>">Register user</a>
 				<br>
 				<br>
 				

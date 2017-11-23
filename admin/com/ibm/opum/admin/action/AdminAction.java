@@ -100,6 +100,10 @@ public class AdminAction extends ActionSupport {
 		return "";
 	}
 	
+	public String adminCalendar() {
+	    return "adminCalendarLink";
+	}
+	
 	public String defineHolidays(){
 		return "defineHolidaysLink";
 	}
@@ -109,6 +113,10 @@ public class AdminAction extends ActionSupport {
 	}
 	public String searchHoliday(){
 		return "searchHolidayLink";
+	}
+	
+	public String showAllHolidays() {
+	    return "showAllHolidaysLink";
 	}
 
 	public PUMYearList getPumYearList() {

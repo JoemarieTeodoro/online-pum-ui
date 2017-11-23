@@ -52,5 +52,17 @@
             <result name="success" type="tiles">saveUtilizationLink
             </result>
         </action>
+        
+        <action name="inputYearLink" method="inputYear"
+            class="com.ibm.opum.user.action.UserAction">
+            <result name="inputYearLink" type="tiles">inputYearLink
+            </result>
+        </action>
+        
+        <action name="showAllHolidaysLink" method="showAllHolidays"
+            class="com.ibm.opum.user.action.UserAction">
+            <result name="showAllHolidaysLink" type="tiles">showAllHolidaysLink
+            </result>
+        </action>
     </package>
 </struts>
