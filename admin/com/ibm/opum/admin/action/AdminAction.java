@@ -71,7 +71,7 @@ public class AdminAction extends ActionSupport {
 	}
 
 	public String uploadEmployeeRolesCSVLink() {
-		String tempEmpLink = REST_BASE_URL + "dataLoadingEmpRoles";
+		String tempEmpLink = REST_BASE_URL + "emprole";
 
 		assignValuesToSession(tempEmpLink, "Upload Employee Roles");
 		return "uploadCSVLink";
@@ -151,11 +151,11 @@ public class AdminAction extends ActionSupport {
 		}
 		return "";
 	}
-	
+
 	public String adminCalendar() {
 	    return "adminCalendarLink";
 	}
-	
+
 	public String defineHolidays(){
 		return "defineHolidaysLink";
 	}
@@ -167,7 +167,7 @@ public class AdminAction extends ActionSupport {
 	public String searchHoliday() {
 		return "searchHolidayLink";
 	}
-	
+
 	public String showAllHolidays() {
 	    return "showAllHolidaysLink";
 	}
