@@ -31,6 +31,11 @@
             <result name="user" type="redirect">../user/userLink</result>
 		</global-results>
 
+		<action name="adminHomeLink" method="home"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="adminHome" type="tiles">adminHomeLink</result>
+		</action>
+    
 		<action name="uploadSysAdminCSVLink" method="uploadSysAdminCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
@@ -50,17 +55,17 @@
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
-		
-		<action name="uploadEmployeeRoleCSVLink" method="uploadCSV"
+
+		<action name="uploadEmployeeRolesCSVLink" method="uploadEmployeeRolesCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="uploadCSVLink" type="tiles">uploadEmployeeRoleCSVLink</result>
+			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
 		
 		<action name="uploadPEMCSVLink" method="uploadPEMCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
-		
+    
 		<action name="projectEngagementLink" method="projectEngagement"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="projectEngagementLink" type="tiles">projectEngagementLink</result>
@@ -70,7 +75,7 @@
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="downloadPUMLink" type="tiles">downloadPUMLink</result>
 		</action>
-		
+
 		<action name="searchEmployeeLink" method="searchEmployee"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="searchEmployeeLink" type="tiles">searchEmployeeLink</result>

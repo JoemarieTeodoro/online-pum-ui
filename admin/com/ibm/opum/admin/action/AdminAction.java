@@ -70,6 +70,13 @@ public class AdminAction extends ActionSupport {
 		return "uploadCSVLink";
 	}
 
+	public String uploadEmployeeRolesCSVLink() {
+		String tempEmpLink = REST_BASE_URL + "dataLoadingEmpRoles";
+
+		assignValuesToSession(tempEmpLink, "Upload Employee Roles");
+		return "uploadCSVLink";
+	}
+
 	private void assignValuesToSession(String tempEmpLink, String subtitle) {
 		ActionContext.getContext().getSession().put("form_action", tempEmpLink);
 		ActionContext.getContext().getSession().put("subtitle", subtitle);

@@ -1,7 +1,5 @@
 package com.ibm.opum.resetPasswordInterceptor.action;
 
-import org.apache.log4j.Logger;
-
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -10,14 +8,12 @@ public class ResetPasswordInterceptor extends AbstractInterceptor {
 
     private static final long serialVersionUID = 1L;
 
-	private Logger logger = Logger.getLogger(ResetPasswordInterceptor.class);
-
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
 
     	// invoke first intercepted action (ResetPasswordAction.resetPassword())
     	String result = invocation.invoke();
-
+    	
     	// Do post processing after action
     	if ("passwordMismatch".equals(result)) {
     		ActionSupport action = (ActionSupport) invocation.getAction();
@@ -26,5 +22,5 @@ public class ResetPasswordInterceptor extends AbstractInterceptor {
     	}
     	return result;
     }
-
+    
 }
