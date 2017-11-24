@@ -62,6 +62,13 @@ public class AdminAction extends ActionSupport {
 		assignValuesToSession(tempEmpLink, "Upload Employee Team List");
 		return "uploadCSVLink";
 	}
+	
+	public String uploadPEMCSVLink() {
+		String tempEmpLink = REST_BASE_URL + "pem";
+
+		assignValuesToSession(tempEmpLink, "Upload PEM List");
+		return "uploadCSVLink";
+	}
 
 	private void assignValuesToSession(String tempEmpLink, String subtitle) {
 		ActionContext.getContext().getSession().put("form_action", tempEmpLink);
