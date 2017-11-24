@@ -41,7 +41,6 @@
 		<div class="successMsg">
 			<s:actionmessage />
 		</div>
-	<div class="ibm-title">
 	</s:if>
 	<div class="ibm-title">
 	<h2><s:property value="#session.subtitle"/></h2>
