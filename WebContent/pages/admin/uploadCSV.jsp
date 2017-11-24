@@ -4,6 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import="java.io.*,java.util.*, com.sun.jersey.api.client.*"%>
 <link href="./css/message.css" rel="stylesheet" type="text/css">
+
 <title>View Employee</title>
 <head>
 <script src="../resources/js/fileValidation.js"></script>
@@ -34,7 +35,7 @@
 					window.location.reload();
 				}
 			});
-	}
+			}
 </script>
 </head>
 <body>

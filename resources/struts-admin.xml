@@ -14,10 +14,25 @@
 			<result name="adminHome" type="tiles">adminHomeLink</result>
 		</action>
 		
-		<action name="uploadCSVLink" method="uploadCSV"
-			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
-		</action>
+		<action name="uploadSysAdminCSVLink" method="uploadSysAdminCSVLink"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+        </action>
+        
+        <action name="uploadAdminCSVLink" method="uploadAdminCSVLink"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+        </action>
+        
+        <action name="uploadTeamListCSVLink" method="uploadTeamListCSVLink"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+        </action>
+        
+        <action name="uploadEmployeeTeamCSVLink" method="uploadEmployeeTeamCSVLink"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+        </action>
 		
 		<action name="projectEngagementLink" method="projectEngagement"
 			class="com.ibm.opum.admin.action.AdminAction">

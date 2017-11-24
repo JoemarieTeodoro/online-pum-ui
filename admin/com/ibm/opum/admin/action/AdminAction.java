@@ -49,6 +49,13 @@ public class AdminAction extends ActionSupport {
 		return "uploadCSVLink";
 	}
 
+    public String uploadTeamListCSVLink() {
+        String tempEmpLink = REST_BASE_URL + "teamListdataLoading";
+
+        assignValuesToSession( tempEmpLink, "Upload Team List" );
+        return "uploadCSVLink";
+    }
+
 	public String uploadEmployeeTeamCSVLink() {
 		String tempEmpLink = REST_BASE_URL + "dataLoadingTeamEmpList";
 
