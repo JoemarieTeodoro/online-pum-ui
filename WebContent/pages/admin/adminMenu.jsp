@@ -16,7 +16,7 @@
 			<a href="<s:url action="uploadAdminCSVLink"/>">Upload Employee List</a>
 			<a href="<s:url action="uploadTeamListCSVLink"/>">Upload Team List</a>
 			<a href="<s:url action="uploadEmployeeTeamCSVLink"/>">Upload Employee Team List</a>
-			<a href="<s:url action="uploadEmployeeRoleCSVLink"/>">Upload Employee Roles</a>		
+			<a href="<s:url action="uploadEmployeeRolesCSVLink"/>">Upload Employee Roles</a>
 			<a href="<s:url action="uploadPEMCSVLink"/>">Upload PEM List</a>
 		</s:if>
 				<a href="<s:url action="searchEmployeeLink"/>">Search Employee</a>
