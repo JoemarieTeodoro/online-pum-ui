@@ -15,6 +15,7 @@
 		var data = new FormData(form);
 		var link = $(form).attr("action");
 		if (!validation(form)) {
+			alert("CSV file type is only allowed!");
 			return;
 		}
 		$.ajax({

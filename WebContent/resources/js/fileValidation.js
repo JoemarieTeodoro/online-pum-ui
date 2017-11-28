@@ -1,14 +1,12 @@
 var validFileTypes = [ "csv" ];
-var validationErrorMessage = "CSV file type is only allowed!";
 
 function validation(thisform) {
 	with (thisform) {
-		return validateFileExtension(file, "valid_msg", validationErrorMessage,
-				validFileTypes);
+		return validateFileExtension(file, validFileTypes);
 	}
 }
 
-function validateFileExtension(component, msg_id, msg, extns) {
+function validateFileExtension(component, extns) {
 	var flag = 0;
 	with (component) {
 		var ext = value.substring(value.lastIndexOf('.') + 1);
@@ -21,7 +19,6 @@ function validateFileExtension(component, msg_id, msg, extns) {
 			}
 		}
 		if (flag != 0) {
-			document.getElementById(msg_id).innerHTML = msg;
 			component.value = "";
 			component.style.backgroundColor = "#eab1b1";
 			component.style.border = "thin solid #000000";
