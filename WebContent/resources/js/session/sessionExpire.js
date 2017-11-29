@@ -1,9 +1,9 @@
-var idleSeconds = secondsBeforeExpire / 6;
+var promptSeconds = secondsBeforeExpire - (secondsBeforeExpire * .15);
 attachEvent(window, 'load', function() {
 	var idleTimer;
 	function resetTimer() {
 		clearTimeout(idleTimer);
-		idleTimer = setTimeout(whenUserIdle, idleSeconds * 1000);
+		idleTimer = setTimeout(whenUserIdle, promptSeconds * 1000);
 	}
 	attachEvent(document.body, 'mousemove', resetTimer);
 	attachEvent(document.body, 'keydown', resetTimer);
@@ -13,7 +13,7 @@ attachEvent(window, 'load', function() {
 });
 
 function whenUserIdle() {
-	var minutesBeforeExpiration = idleSeconds / 60;
+	var minutesBeforeExpiration = Math.ceil((secondsBeforeExpire - promptSeconds)  / 60);
 	alert("Session will expire after " + minutesBeforeExpiration + " minutes");
 }
 
