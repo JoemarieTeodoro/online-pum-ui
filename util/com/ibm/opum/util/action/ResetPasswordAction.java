@@ -1,5 +1,7 @@
 package com.ibm.opum.util.action;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
@@ -25,8 +27,8 @@ public class ResetPasswordAction extends ActionSupport {
     private String token;
 
     public String validateToken() {
-        ActionContext.getContext().getSession().clear();
-    	
+    	ActionContext.getContext().getSession().clear();
+        
     	ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
         resetPasswordToken.setEmail(ServletActionContext.getRequest().getParameter("email"));
         resetPasswordToken.setToken(ServletActionContext.getRequest().getParameter("token"));
@@ -52,9 +54,10 @@ public class ResetPasswordAction extends ActionSupport {
         setToken(ActionContext.getContext().getSession().get("token").toString());
         
     	if (!newPassword.equals(confirmNewPassword)) {
-        	logger.info("isValidPassword!");
+        	logger.info("passwords do not match!");
         	ActionContext.getContext().getSession().clear();
         	ActionContext.getContext().getSession().put("showMismatch", true);
+
             return "passwordMismatch";
         }
     	
