@@ -91,6 +91,9 @@ public class AdminAction extends ActionSupport {
 	}
 
 	public String definePUMYear() {
+		String tempEmpLink = REST_BASE_URL + "savePUMYearDate";
+
+		assignValuesToSession(tempEmpLink, "PUM Year Start and End Date");
 		return "definePUMYearLink";
 	}
 

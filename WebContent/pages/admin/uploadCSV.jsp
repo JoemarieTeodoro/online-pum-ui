@@ -8,6 +8,8 @@
 <title>View Employee</title>
 <head>
 <script src="../resources/js/fileValidation.js"></script>
+<script
+	src="../resources/js/jquery-2.2.4.js"></script>
 <script type="text/javascript">
 <!-- TODO: put this in an external file -->
 	function process() {
