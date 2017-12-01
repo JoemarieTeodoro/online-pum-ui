@@ -160,6 +160,9 @@ public class AdminAction extends ActionSupport {
 	}
 
 	public String defineHolidays(){
+		String tempEmpLink = REST_BASE_URL + "saveHolidays";
+
+		assignValuesToSession(tempEmpLink, "Enter Holidays");
 		return "defineHolidaysLink";
 	}
 

@@ -1,11 +1,11 @@
-
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="ibm-title">
-	<h2>Enter Holidays</h2>
+	<h2><s:property value="#session.subtitle" /></h2>
 </div>
 <hr>
 
 <div>
-	<form action="" name="myForm" id="myForm" method="post" >
+	<form action=<s:property value="#session.form_action" /> name="myForm" id="myForm" method="post" >
 		<!-- <p>
 			<label for="pumYear" style="margin: 0px">Year:<span class="ibm-required">*</span>
 			</label> <span><input id="pumYear" required="required"
@@ -29,10 +29,12 @@
 				class="ibm-date-picker" required="required" name="date"
 				type="text" /></span>
 		</p>
-
-		<button id="submit" type="submit" onclick="sendJSON()" >Submit</button>
 	</form>
+		<button id="submit" type="submit" onclick="sendJSON()" >Submit</button>
+	
 </div>
+
+<script src="../resources/js/jquery-2.2.4.js"></script>
 
 <script>
 	 function formToJSON() {
@@ -41,9 +43,7 @@
 		var date = st.split("/");
 
 		var json = {
-			//"pumYear" : document.getElementById('pumYear').value,
 			"name" : document.getElementById('holidayName').value,
-			//"holidayDescription" : document.getElementById('holidayDescription').value,
 			"date" : date[2]+"-"+date[0]+"-"+date[1]
 			
 		};
@@ -51,12 +51,29 @@
 		 return jsonString;
 	 }
 	 function sendJSON(){
-		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("POST", "http://localhost:8080/onlinePUM/webapi/opum/saveHolidays");
-		  xhttp.setRequestHeader("Content-Type", "application/json");
-		  xhttp.send(formToJSON());  
-		 //alert('saving '+formToJSON());
-		  alert('Successfully Saved ');
+		 var link = $(myForm).attr("action");
+		  var data = formToJSON();
+		  
+		  $.ajax({
+				type : "POST",
+				url : link,
+				data : data,
+				datatype : "json",
+				contentType : 'application/json',
+				processData : false,
+				success : function(data) {
+					alert(data);
+				},
+				error : function(data, jqXHR) {
+					if (jqXHR.status == 500) {
+						alert("Invalid Input: Please fill Holiday!");
+					} else if (data.status == 500) {
+						alert("Invalid Input: Please fill all fields correctly!");
+					} else {
+						alert(data.responseText);
+					}
+				}
+			});
 	} 
 	 
 </script>
