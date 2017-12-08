@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.ibm.opum.admin.bean.JsonToJavaUtil;
 import com.ibm.opum.admin.bean.PUMYear;
 import com.ibm.opum.admin.bean.PUMYearList;
+import com.ibm.opum.calendar.EventsCreator;
 import com.ibm.opum.resourceutils.ClientConfiguration;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -24,11 +26,17 @@ public class AdminAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private PUMYearList pumYearList;
 	private String year;
-
+	private List<String> events;
+	private Client client;
+	/** determine whether user can edit his calendar **/
+	private boolean selectable;
+	private String startDate = "null";
+	private String endDate = "null";
+	
 	public AdminAction() {
 		super();
 		ClientConfig clientConfig = ClientConfiguration.getInstance();
-		Client.create(clientConfig);
+		client = Client.create(clientConfig);
 	}
 
 	public String home() {
@@ -156,7 +164,14 @@ public class AdminAction extends ActionSupport {
 	}
 
 	public String adminCalendar() {
-	    return "adminCalendarLink";
+		EventsCreator eventsCreator = new EventsCreator();
+		events = eventsCreator.createEvents(client);
+		// this can be null when fy is not yet set
+		if (eventsCreator.getStartDate() != null && eventsCreator.getEndDate() != null) {
+			startDate = eventsCreator.getStartDate();
+			endDate = eventsCreator.getEndDate();
+		}
+		return "adminCalendarLink";
 	}
 
 	public String defineHolidays(){
@@ -194,4 +209,35 @@ public class AdminAction extends ActionSupport {
 		this.year = year;
 	}
 
+	public List<String> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<String> events) {
+		this.events = events;
+	}
+	
+	public boolean isSelectable() {
+		return selectable;
+	}
+
+	public void setSelectable(boolean isSelectable) {
+		this.selectable = isSelectable;
+	}
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 }

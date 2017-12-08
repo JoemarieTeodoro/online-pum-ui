@@ -1,3 +1,4 @@
+<%@ page contentType="charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 	<div class="ibm-title">
 	<h2>Enter My Hours</h2>
@@ -9,22 +10,52 @@
 		</div>
 	</s:if>
 <br>
-<form action="getCalendarLink" class="ibm-column-form ibm-styled-form" enctype="multipart/form-data" method="post">
+<head>
+<link href='../resources/js/calendar/fullcalendar.min.css' rel='stylesheet' />
+<link href='../resources/js/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='../resources/js/lib/moment.min.js'></script>
+<script src='../resources/js/lib/jquery.min.js'></script>
+<script src='../resources/js/calendar/fullcalendar.min.js'></script>
+</head>
+<body>
+<div id='calendar'></div>
+<script>
 
-	<p style="padding: 3px">
-		<label for="startDate" style="margin: 0px">From<span class="ibm-required">*</span></label>
-		<span><input id="startDate" class="ibm-date-picker" required="required" name="year.startDate" type="text" width="137px"/></span>
-	</p>
-	
-	<p style="padding: 3px">
-		<label for="endDate" style="margin: 0px">To<span class="ibm-required">*</span></label>
-		<span><input id="endDate" class="ibm-date-picker"  required="required"  name="year.endDate" type="text"/></span>
-	</p>		
-	
-	<div class="ibm-buttons-row" align="right" style="width: 343px;">
-		<p>
-			<input value="Submit" type="submit"
-				name="submit" class="ibm-btn-small" /> 
-		</p>
-	</div>
-</form>
+	$(document).ready(function() {
+		if (<s:property value="startDate"/> == null || <s:property value="endDate"/> == null) {
+			alert("Fiscal year is not defined!");
+			return;
+		};
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title'
+			},
+			defaultDate: <s:property value="startDate"/>,
+			navLinks: false, // can click day/week names to navigate views
+			selectable: <s:property value="selectable"/>,
+			selectHelper: true,
+			validRange: {
+		        start: <s:property value="startDate"/>,
+		        end: <s:property value="endDate"/>
+		    },
+			select: function(start, end) {
+				var title = prompt('Event Title:');
+				var eventData;
+				if (title) {
+					eventData = {
+						title: title,
+						start: start,
+						end: end
+					};
+					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+				}
+				$('#calendar').fullCalendar('unselect');
+			},
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: <s:property value="events" escape="false"/>
+		});
+	});
+</script>
+</body>

@@ -34,7 +34,7 @@ public class LogInLinkAction extends ActionSupport {
                 throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
             }
 			Employee employee = response.getEntity(Employee.class);
-            ActionContext.getContext().getSession().put("employeeID", employee.getEmployeeId());
+            ActionContext.getContext().getSession().put("employeeID", employee.getEmployeeSerial());
 			ActionContext.getContext().getSession().put("role", employee.getAssignedRoles().get(0).toString());
 			ActionContext.getContext().getSession().put("email", employee.getIntranetId());
             ActionContext.getContext().getSession().put("fullName", employee.getFullName());

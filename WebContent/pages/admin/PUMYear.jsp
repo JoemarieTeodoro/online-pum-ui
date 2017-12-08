@@ -40,6 +40,17 @@
 		var start = st.split("/");
 		var en= document.getElementById('end').value
 		var end= en.split("/");
+
+		for (var i = 0; i < start.length; i++) {
+			if (start[i].length < 2) {
+				start[i] = "0" + start[i];
+			}
+		}
+		for (var i = 0; i < end.length; i++) {
+			if (end[i].length < 2) {
+				end[i] = "0" + end[i];
+			}
+		}
 		var json = {
 			"pumYear" : document.getElementById('pumYear').value,
 			"start" : start[2]+"-"+start[0]+"-"+start[1],

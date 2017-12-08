@@ -4,37 +4,56 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
+import com.ibm.opum.calendar.EventsCreator;
 import com.ibm.opum.resourceutils.ClientConfiguration;
 import com.ibm.opum.user.bean.Holiday;
 import com.ibm.opum.user.bean.HolidayList;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.config.ClientConfig;
 
 
 public class UserAction extends ActionSupport {
-
 
 	private static final long serialVersionUID = 1L;
 	private HolidayList holidayList;
 	private YearCalculation yearCalculation;
 	private String year;
+	private Client client;
+	private List<String> events;
+	/** determine whether user can edit his calendar **/
+	private boolean isSelectable;
+	private String startDate = "";
+	private String endDate = "";
+	
+	public UserAction() {
+		super();
+		ClientConfig clientConfig = ClientConfiguration.getInstance();
+		client = Client.create(clientConfig);
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
 	public String home() {
 		return "userLink";
 	}
 
 	public String utilization() {
+		EventsCreator eventsCreator = new EventsCreator();
+		events = eventsCreator.createEvents(client);
+		// this can be null when fy is not yet set
+		if (eventsCreator.getStartDate() != null && eventsCreator.getEndDate() != null) {
+			startDate = eventsCreator.getStartDate();
+			endDate = eventsCreator.getEndDate();
+		}
 		return "calendarLink";
 	}
 
-	public String viewMyHours() {
-		return "viewMyHoursLink";
-	}
-	
 	public String inputYear(){
 		return "inputYearLink";
 	}
@@ -45,7 +64,6 @@ public class UserAction extends ActionSupport {
 		int employeeID = (int) ActionContext.getContext().getSession().get("employeeID");
 		
 		try{
-			System.out.println("Employee ID: " + employeeID);
 			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
 					+ "/onlinePUM/webapi/opum/getComputation/" + employeeID + "/" + year);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -179,5 +197,35 @@ public class UserAction extends ActionSupport {
 		this.year = year;
 	}
 
+	public List<String> getEvents() {
+		return events;
+	}
 
+	public void setEvents(List<String> events) {
+		this.events = events;
+	}
+	
+	public boolean isSelectable() {
+		return isSelectable;
+	}
+
+	public void setSelectable(boolean isSelectable) {
+		this.isSelectable = isSelectable;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 }
