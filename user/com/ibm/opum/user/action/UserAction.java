@@ -24,8 +24,6 @@ public class UserAction extends ActionSupport {
 	private String year;
 	private Client client;
 	private List<String> events;
-	/** determine whether user can edit his calendar **/
-	private boolean isSelectable;
 	private String startDate = "";
 	private String endDate = "";
 	
@@ -53,7 +51,7 @@ public class UserAction extends ActionSupport {
 		}
 		return "calendarLink";
 	}
-
+	
 	public String inputYear(){
 		return "inputYearLink";
 	}
@@ -205,14 +203,6 @@ public class UserAction extends ActionSupport {
 		this.events = events;
 	}
 	
-	public boolean isSelectable() {
-		return isSelectable;
-	}
-
-	public void setSelectable(boolean isSelectable) {
-		this.isSelectable = isSelectable;
-	}
-
 	public String getStartDate() {
 		return startDate;
 	}

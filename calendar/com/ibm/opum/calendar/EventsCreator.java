@@ -47,13 +47,13 @@ public class EventsCreator {
 			// check if type is a number so that it will be colored as gray
 			if (employeeLeave.getLeaveName().matches("\\d+")) {
 				if (Integer.parseInt(employeeLeave.getLeaveName()) > 8) {
-					eventMapper.setColor("OrangeRed");
+					eventMapper.setColor("DarkCyan");
 				} else {
 					eventMapper.setColor("Gray");
 				}
 			}
 			if (employeeLeave.isHoliday()) {
-				eventMapper.setColor("DarkCyan");
+				eventMapper.setColor("OrangeRed");
 			}
 			try {
 				events.add(mapper.writeValueAsString(eventMapper));

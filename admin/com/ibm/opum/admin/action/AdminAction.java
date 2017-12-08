@@ -28,8 +28,6 @@ public class AdminAction extends ActionSupport {
 	private String year;
 	private List<String> events;
 	private Client client;
-	/** determine whether user can edit his calendar **/
-	private boolean selectable;
 	private String startDate = "null";
 	private String endDate = "null";
 	
@@ -215,14 +213,6 @@ public class AdminAction extends ActionSupport {
 
 	public void setEvents(List<String> events) {
 		this.events = events;
-	}
-	
-	public boolean isSelectable() {
-		return selectable;
-	}
-
-	public void setSelectable(boolean isSelectable) {
-		this.selectable = isSelectable;
 	}
 	
 	public String getStartDate() {

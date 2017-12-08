@@ -33,7 +33,6 @@
 			},
 			defaultDate: <s:property value="startDate"/>,
 			navLinks: false, // can click day/week names to navigate views
-			selectable: <s:property value="selectable"/>,
 			selectHelper: true,
 			validRange: {
 		        start: <s:property value="startDate"/>,
@@ -52,7 +51,6 @@
 				}
 				$('#calendar').fullCalendar('unselect');
 			},
-			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			events: <s:property value="events" escape="false"/>
 		});
