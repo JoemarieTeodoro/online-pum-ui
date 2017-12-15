@@ -1,6 +1,7 @@
 package com.ibm.opum.admin.action;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -13,6 +14,8 @@ import com.ibm.opum.admin.bean.PUMYear;
 import com.ibm.opum.admin.bean.PUMYearList;
 import com.ibm.opum.calendar.EventsCreator;
 import com.ibm.opum.resourceutils.ClientConfiguration;
+import com.ibm.opum.user.bean.Holiday;
+import com.ibm.opum.user.bean.HolidayList;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sun.jersey.api.client.Client;
@@ -23,6 +26,7 @@ public class AdminAction extends ActionSupport {
 	private static final String REST_BASE_URL = ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
 			+ "/online-pum-rest/webapi/opum/";
 	private Logger logger = Logger.getLogger(AdminAction.class);
+	private HolidayList holidayList;
 	private static final long serialVersionUID = 1L;
 	private PUMYearList pumYearList;
 	private String year;
@@ -187,8 +191,39 @@ public class AdminAction extends ActionSupport {
 		return "searchHolidayLink";
 	}
 
-	public String showAllHolidays() {
-	    return "showAllHolidaysLink";
+	public String showAllHolidays() throws IOException {
+		BufferedReader in = null;
+		HttpURLConnection connection = null;
+		String jsonData = null;
+		try {
+			URL url = new URL(REST_BASE_URL + "holidayList");
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			connection.setRequestProperty("Accept", "application/json");
+			connection.setRequestProperty("username", ActionContext.getContext().getSession().get("username").toString());
+			connection.setRequestProperty("password", ActionContext.getContext().getSession().get("password").toString());
+
+			if (connection.getResponseCode() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
+			}
+			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+			while ((jsonData = in.readLine()) != null) {
+				holidayList = JsonToJavaUtil.JsonToJava(jsonData, HolidayList.class);
+			}
+			for (Holiday holidays : holidayList.getHolidayList()) {
+				logger.info("Holiday Name: " + holidays.getName());
+				logger.info(" , Holiday Date: " + holidays.getDate());
+			}
+			logger.info("\nCrunchify REST Service Invoked Successfully..");
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		} finally {
+			in.close();
+			connection.disconnect();
+		}
+		return "adminShowAllHolidaysLink";
 	}
 
 	public PUMYearList getPumYearList() {
@@ -229,5 +264,13 @@ public class AdminAction extends ActionSupport {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+	public HolidayList getHolidayList() {
+		return holidayList;
+	}
+
+	public void setHolidayList(HolidayList holidayList) {
+		this.holidayList = holidayList;
 	}
 }

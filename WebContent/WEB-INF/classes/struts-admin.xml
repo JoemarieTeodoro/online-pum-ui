@@ -106,9 +106,9 @@
             <result name="defineHolidaysLink" type="tiles">defineHolidaysLink</result>
         </action>
         
-        <action name="showAllHolidaysLink" method="showAllHolidays"
+        <action name="adminShowAllHolidaysLink" method="showAllHolidays"
             class="com.ibm.opum.admin.action.AdminAction">
-            <result name="showAllHolidaysLink" type="tiles">adminShowAllHolidaysLink</result>
+            <result name="adminShowAllHolidaysLink" type="tiles">adminShowAllHolidaysLink</result>
         </action>
         
         <action name="searchHolidayLink" method="searchHoliday"
