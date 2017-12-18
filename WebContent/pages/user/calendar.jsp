@@ -98,10 +98,18 @@
 		return splittedDate[0] + delimeter + splittedDate[1] + delimeter
 				+ splittedDate[2];
 	}
+	
+	function warnUser() {
+		var warn = prompt("Please be informed that once you submit your PUM Entry, Editing or Updating will be limited to the current quarter unless proper Authorization has been granted by the Responsible Person. Continue? (Y/N)");
+		if (warn && warn.toUpperCase() == 'Y') {
+			return true;
+		}
+		return false;
+	}
 </script>
 <br>
 <s:form action="leaveDraftLink" method="post" name="leaveForm">
 	<s:hidden name="leaveEntry"/>
-	<s:submit name="submit" id="submit" key="Submit"/>
+	<s:submit name="submit" id="submit" key="Submit" onClick="return warnUser()"/>
 </s:form>
 </body>
