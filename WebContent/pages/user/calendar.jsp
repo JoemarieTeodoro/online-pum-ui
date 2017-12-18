@@ -20,10 +20,11 @@
 <body>
 <div id='calendar'></div>
 <script>
-
+	var leaveData = [];
 	$(document).ready(function() {
-		if (<s:property value="startDate"/> == null || <s:property value="endDate"/> == null) {
+		if (<s:property value="startFYDate"/> == '' || <s:property value="endFYDate"/> == '') {
 			alert("Fiscal year is not defined!");
+			document.getElementById('submit').style.display = "none";
 			return;
 		};
 		$('#calendar').fullCalendar({
@@ -31,29 +32,76 @@
 				left: 'prev,next today',
 				center: 'title'
 			},
-			defaultDate: <s:property value="startDate"/>,
+			defaultDate: <s:property value="startFYDate"/>,
 			navLinks: false, // can click day/week names to navigate views
 			selectHelper: true,
 			validRange: {
-		        start: <s:property value="startDate"/>,
-		        end: <s:property value="endDate"/>
+		        start: <s:property value="startFYDate"/>,
+		        end: <s:property value="endFYDate"/>
 		    },
-			select: function(start, end) {
-				var title = prompt('Event Title:');
-				var eventData;
-				if (title) {
-					eventData = {
-						title: title,
-						start: start,
-						end: end
-					};
-					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-				}
-				$('#calendar').fullCalendar('unselect');
-			},
+		    eventClick: createLeave,
 			eventLimit: true, // allow "more" link when too many events
 			events: <s:property value="events" escape="false"/>
 		});
 	});
+	
+	function createLeave(event) {
+		if (<s:property value="locked"/> == true) {
+			return;
+		}
+		var leaveName = prompt('Request for:');
+		leaveName = leaveName ? leaveName.toUpperCase() : leaveName;
+		
+		var isValidEntry = leaveName
+				&& Number(leaveName)
+				|| (leaveName == 'VL' || leaveName == 'OL' || 
+					leaveName == 'CDO');
+
+		if (leaveName && !isValidEntry) {
+			alert("Invalid leave entry.");
+			return;
+		}
+
+		if (leaveName) {
+			event.title = leaveName;
+			event.color = "DarkOliveGreen";
+			var date = new Date(event.start).toLocaleDateString();
+			var splittedDate = date.split('/');
+			var splittedCurrDate = new Date().toLocaleDateString().split('/');
+			var leaveStatus = Number(leaveName) ? "approved" : "pending";
+			
+			leaveData.push(JSON.stringify({
+				"leaveName" : Number(leaveName) ? "RC" : leaveName,
+				"date" : getFixedDate(splittedDate),
+				"employeeID" : <s:property value="employeeID"/>,
+				"employeeLeaveID": event.employeeLeaveID,
+				"yearID" : <s:property value="yearID"/>,
+				"value": Number(leaveName) ? leaveName : 0,
+				"status" : leaveStatus,
+				"createDate" : getFixedDate(splittedCurrDate),
+				"updateDate" : getFixedDate(splittedCurrDate)
+			}));
+
+			document.leaveForm.elements['leaveEntry'].value = leaveData;
+			$('#calendar').fullCalendar('updateEvent', event);
+		}
+	}
+
+	function getFixedDate(splittedDate) {
+		var delimeter = "/";
+		splittedDate = splittedDate.map(function(dateEntry) {
+			if (dateEntry.length < 2) {
+				dateEntry = "0" + dateEntry;
+			}
+			return dateEntry;
+		});
+		return splittedDate[0] + delimeter + splittedDate[1] + delimeter
+				+ splittedDate[2];
+	}
 </script>
+<br>
+<s:form action="leaveDraftLink" method="post" name="leaveForm">
+	<s:hidden name="leaveEntry"/>
+	<s:submit name="submit" id="submit" key="Submit"/>
+</s:form>
 </body>

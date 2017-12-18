@@ -1,10 +1,19 @@
 package com.ibm.opum.calendar;
 
 public class EventsMapper {
+	private int employeeLeaveID;
 	private String title;
 	private String date;
 	private String color;
-	private boolean editable;
+	private boolean lock;
+
+	public int getEmployeeLeaveID() {
+		return employeeLeaveID;
+	}
+
+	public void setEmployeeLeaveID(int employeeLeaveID) {
+		this.employeeLeaveID = employeeLeaveID;
+	}
 
 	public String getTitle() {
 		return title;
@@ -30,11 +39,11 @@ public class EventsMapper {
 		this.color = color;
 	}
 
-	public boolean isEditable() {
-		return editable;
+	public boolean isLock() {
+		return lock;
 	}
 
-	public void setEditable(boolean editable) {
-		this.editable = editable;
+	public void setLock(boolean lock) {
+		this.lock = lock;
 	}
 }

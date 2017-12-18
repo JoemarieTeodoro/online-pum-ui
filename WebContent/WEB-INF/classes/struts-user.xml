@@ -42,6 +42,12 @@
             </result>
         </action>
 
+		<action name="leaveDraftLink" method="requestLeave"
+            class="com.ibm.opum.user.action.UserAction">
+            <result name="leaveDraftLink" type="tiles">calendarLink
+            </result>
+        </action>
+        
         <action name="getCalendarLink" method="getCalendar"
             class="com.ibm.opum.calendar.GenerateCalendarAction">
             <result name="success" type="tiles">getCalendarLink</result>

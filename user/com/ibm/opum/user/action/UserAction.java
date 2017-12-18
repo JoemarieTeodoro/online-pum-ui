@@ -7,15 +7,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
+
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import com.ibm.opum.calendar.EventsCreator;
 import com.ibm.opum.resourceutils.ClientConfiguration;
+import com.ibm.opum.user.bean.EmployeeEvent;
+import com.ibm.opum.user.bean.EmployeeLeave;
 import com.ibm.opum.user.bean.Holiday;
 import com.ibm.opum.user.bean.HolidayList;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 
 
@@ -30,8 +36,13 @@ public class UserAction extends ActionSupport {
 	private String year;
 	private Client client;
 	private List<String> events;
-	private String startDate = "";
-	private String endDate = "";
+	/** Default is "''" so that js will treat it as empty string */
+	private String startFYDate = "''";
+	private String endFYDate = "''";
+	private String yearID = "''";
+	private String employeeID = "''";
+	private String leaveEntry;
+	private boolean locked;
 	
 	public UserAction() {
 		super();
@@ -50,12 +61,36 @@ public class UserAction extends ActionSupport {
 	public String utilization() {
 		EventsCreator eventsCreator = new EventsCreator();
 		events = eventsCreator.createEvents(client);
-		// this can be null when fy is not yet set
 		if (eventsCreator.getStartDate() != null && eventsCreator.getEndDate() != null) {
-			startDate = eventsCreator.getStartDate();
-			endDate = eventsCreator.getEndDate();
+			startFYDate = eventsCreator.getStartDate();
+			endFYDate = eventsCreator.getEndDate();
+			employeeID = eventsCreator.getEmployeeID();
+			yearID = eventsCreator.getYearID();
+			locked = eventsCreator.isLocked();
 		}
 		return "calendarLink";
+	}
+	
+	public String requestLeave(){
+		ObjectMapper objectMapper = new ObjectMapper();
+
+	    try {
+			List<EmployeeLeave> leaveRequests = objectMapper.readValue(
+					"[" + leaveEntry + "]",
+			        objectMapper.getTypeFactory().constructCollectionType(
+			                List.class, EmployeeLeave.class));
+			EmployeeEvent leaveRequestContainer = new EmployeeEvent();
+			leaveRequestContainer.setEmpLeaveList(leaveRequests);
+			WebResource webResource = client.resource(REST_BASE_URL + "employeeLeave/");
+			String empEvent = webResource.type(MediaType.APPLICATION_JSON).post(String.class, leaveRequestContainer);
+			
+			if (empEvent != null && empEvent.equals("true")) {
+				utilization();
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return "leaveDraftLink";
 	}
 	
 	public String inputYear(){
@@ -204,19 +239,51 @@ public class UserAction extends ActionSupport {
 		this.events = events;
 	}
 	
-	public String getStartDate() {
-		return startDate;
+	public String getStartFYDate() {
+		return startFYDate;
 	}
 
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+	public void setStartFYDate(String startFYDate) {
+		this.startFYDate = startFYDate;
 	}
 
-	public String getEndDate() {
-		return endDate;
+	public String getEndFYDate() {
+		return endFYDate;
 	}
 
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setEndFYDate(String endFYDate) {
+		this.endFYDate = endFYDate;
+	}
+
+	public String getLeaveEntry() {
+		return leaveEntry;
+	}
+
+	public void setLeaveEntry(String leaveEntry) {
+		this.leaveEntry = leaveEntry;
+	}
+
+	public String getYearID() {
+		return yearID;
+	}
+
+	public void setYearID(String yearID) {
+		this.yearID = yearID;
+	}
+
+	public String getEmployeeID() {
+		return employeeID;
+	}
+
+	public void setEmployeeID(String employeeID) {
+		this.employeeID = employeeID;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
 	}
 }

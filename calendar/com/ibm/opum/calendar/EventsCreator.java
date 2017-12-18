@@ -17,8 +17,11 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
 public class EventsCreator {
+	private static final String PENDING_STATUS = "pending";
+	private static final String ENCLOSED_QUOTATION = "'";
 	private Logger logger = Logger.getLogger(EventsCreator.class);
-	private String startDate, endDate;
+	private String startDate, endDate, empID, yearID, employeeLeaveID;
+	private boolean locked;
 	
 	public List<String> createEvents(Client client) {
 		String employeeID = (String) ActionContext.getContext().getSession().get("employeeID");
@@ -39,22 +42,19 @@ public class EventsCreator {
 			eventMapper.setTitle(employeeLeave.getLeaveName());
 			eventMapper.setDate(employeeLeave.getDate());
 			if (startDate == null) {
-				startDate = "'" + empEvent.getCurrFYStartDate() + "'";
+				startDate = ENCLOSED_QUOTATION + empEvent.getCurrFYStartDate() + ENCLOSED_QUOTATION;
 			}
 			if (endDate == null) {
-				endDate = "'" + empEvent.getCurrFYEndDate() + "'";
+				endDate = ENCLOSED_QUOTATION + empEvent.getCurrFYEndDate() + ENCLOSED_QUOTATION;
 			}
-			// check if type is a number so that it will be colored as gray
-			if (employeeLeave.getLeaveName().matches("\\d+")) {
-				if (Integer.parseInt(employeeLeave.getLeaveName()) > 8) {
-					eventMapper.setColor("DarkCyan");
-				} else {
-					eventMapper.setColor("Gray");
-				}
+			if (empID == null) {
+				empID = ENCLOSED_QUOTATION + employeeLeave.getEmployeeID() + ENCLOSED_QUOTATION;
 			}
-			if (employeeLeave.isHoliday()) {
-				eventMapper.setColor("OrangeRed");
+			if (yearID == null) {
+				yearID = ENCLOSED_QUOTATION + employeeLeave.getYearID() + ENCLOSED_QUOTATION;
 			}
+			changeEmployeeLeaveStatusColor(employeeLeave, eventMapper);
+			eventMapper.setEmployeeLeaveID(Integer.valueOf(employeeLeave.getEmployeeLeaveID()));
 			try {
 				events.add(mapper.writeValueAsString(eventMapper));
 			} catch (IOException e) {
@@ -64,11 +64,72 @@ public class EventsCreator {
 		return events;
 	}
 
+	private void changeEmployeeLeaveStatusColor(EmployeeLeave employeeLeave, EventsMapper eventMapper) {
+		if (employeeLeave.getLeaveName().matches("\\d+")) {
+			// recoverable hours color should be different with pre-plotted 8
+			if (Integer.parseInt(employeeLeave.getLeaveName()) > 8) {
+				eventMapper.setColor(CalendarColors.DarkCyan.toString());
+			} else {
+				eventMapper.setColor(CalendarColors.GRAY.toString());
+			}
+		}
+		if (employeeLeave.isHoliday()) {
+			eventMapper.setColor(CalendarColors.OrangeRed.toString());
+		}
+		if (employeeLeave.getStatus() != null && employeeLeave.getStatus().equalsIgnoreCase(PENDING_STATUS)) {
+			eventMapper.setColor(CalendarColors.DarkSlateBlue.toString());
+			locked = true;
+		}
+	}
+
 	public String getStartDate() {
 		return startDate;
 	}
 
 	public String getEndDate() {
 		return endDate;
+	}
+
+	public String getEmployeeID() {
+		return empID;
+	}
+
+	public void setEmployeeID(String employeeID) {
+		this.empID = employeeID;
+	}
+
+	public String getYearID() {
+		return yearID;
+	}
+
+	public void setYearID(String yearID) {
+		this.yearID = yearID;
+	}
+
+	public String getEmployeeLeaveID() {
+		return employeeLeaveID;
+	}
+
+	public void setEmployeeLeaveID(String employeeLeaveID) {
+		this.employeeLeaveID = employeeLeaveID;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+	
+	private enum CalendarColors {
+
+		DarkCyan("DarkCyan"), GRAY("Gray"), OrangeRed("OrangeRed"), DarkSlateBlue("DarkSlateBlue");
+
+		private String colors;
+
+		private CalendarColors(String colors) {
+			this.colors = colors;
+		}
 	}
 }
