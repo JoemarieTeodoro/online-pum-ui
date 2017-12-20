@@ -62,4 +62,10 @@
 		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
 	</definition>
 	
+	<definition name="showForApprovalLink" extends="baseLayout">
+		<put-attribute name="title" value="Show For Approval" />
+		<put-attribute name="body" value="/pages/teamlead/forApproval.jsp" />
+		<put-attribute name="menu" value="/pages/user/userMenu.jsp" />
+	</definition>
+	
 </tiles-definitions>

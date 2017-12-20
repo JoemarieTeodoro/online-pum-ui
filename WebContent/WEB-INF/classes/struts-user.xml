@@ -70,5 +70,10 @@
             <result name="showAllHolidaysLink" type="tiles">showAllHolidaysLink
             </result>
         </action>
+        
+        <action name="showForApprovalLink" method="showForApproval"
+			class="com.ibm.opum.user.action.UserAction">
+			<result name="showForApprovalLink" type="tiles">showForApprovalLink</result>
+		</action>
     </package>
 </struts>

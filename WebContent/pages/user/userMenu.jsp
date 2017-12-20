@@ -12,10 +12,10 @@
 				<a href="<s:url action="calendarLink"/>">My Hours</a> 
 				<a href="<s:url action="inputYearLink"/>">Utilization Summary</a>
 				<a href="<s:url action="showAllHolidaysLink"/>">Show Holidays</a>  
-				
-				<%-- <s:if test="#session.role == 'HR Manager'"> --%>
-				
-				<%-- </s:if> --%>
+				<s:if test="#session.isTeamLead == true">
+					<a href="<s:url action="showForApprovalLink"/>">For Approval</a>
+				</s:if>				
+
 			
 		</li>
 	</ul>

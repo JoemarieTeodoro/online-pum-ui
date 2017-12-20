@@ -10,6 +10,7 @@
 	<link href="../resources/common/v17/css/www.css" rel="stylesheet" title="www" type="text/css" />
 	<script src="../resources/common/js/dojo/w3.js" type="text/javascript"></script> 
 	<link href="../resources/system/css/style.css" rel="stylesheet" type="text/css" />
+	<script src="../resources/common/js/dojo/w3.js" type="text/javascript"></script>
 
 </head>
 <body id="ibm-com" class="bodyStyle">

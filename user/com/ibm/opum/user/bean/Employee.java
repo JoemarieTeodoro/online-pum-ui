@@ -37,11 +37,13 @@ public class Employee {
 	private Boolean isAdmin;
 
 	private Utilization utilization;
+	
+	private Boolean isTeamLead;
 
 	public Employee() {
 		super();
 	}
-
+	
 	public Employee(String employeeSerial, String managerSerial, String intranetId, String fullName, Long teamId,
 			List<Role> assignedRoles, List<Project> assignedProjects, String password, Boolean isActive,
 			Utilization utilization) {
@@ -200,6 +202,14 @@ public class Employee {
 	 */
 	public void setRollOffDate(String rollOffDate) {
 		this.rollOffDate = rollOffDate;
+	}
+	
+	public Boolean getIsTeamLead() {
+		return isTeamLead;
+	}
+
+	public void setIsTeamLead(Boolean isTeamLead) {
+		this.isTeamLead = isTeamLead;
 	}
 
 }

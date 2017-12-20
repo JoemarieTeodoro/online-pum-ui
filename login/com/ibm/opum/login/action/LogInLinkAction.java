@@ -42,7 +42,8 @@ public class LogInLinkAction extends ActionSupport {
             ActionContext.getContext().getSession().put("username", username);
             ActionContext.getContext().getSession().put("password", password);
             ActionContext.getContext().getSession().put("isLogin", true);
-
+            ActionContext.getContext().getSession().put("isTeamLead", employee.getIsTeamLead());
+            
             return employee.getAssignedRoles().contains(Role.SYS_ADMIN)
                     || employee.getAssignedRoles().contains(Role.ADMIN) ? "admin" : "user";
 
