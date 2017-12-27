@@ -6,6 +6,7 @@ public class EventsMapper {
 	private String date;
 	private String color;
 	private boolean lock;
+	private boolean holiday;
 
 	public int getEmployeeLeaveID() {
 		return employeeLeaveID;
@@ -45,5 +46,13 @@ public class EventsMapper {
 
 	public void setLock(boolean lock) {
 		this.lock = lock;
+	}
+
+	public boolean isHoliday() {
+		return holiday;
+	}
+
+	public void setHoliday(boolean holiday) {
+		this.holiday = holiday;
 	}
 }

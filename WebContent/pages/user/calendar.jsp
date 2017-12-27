@@ -20,7 +20,13 @@
 <body>
 <div id='calendar'></div>
 <script>
+	// raw data that will be passed to backend part
 	var leaveData = [];
+	// this will act as mapper to leaveData so that when entries are back to default 
+	// we can remove it
+	var leaveEntries = [];
+	var holidayVault = [];
+	var defaultEventVault = [];	
 	$(document).ready(function() {
 		if (<s:property value="startFYDate"/> == '' || <s:property value="endFYDate"/> == '') {
 			alert("Fiscal year is not defined!");
@@ -40,7 +46,6 @@
 		        end: <s:property value="endFYDate"/>
 		    },
 		    eventClick: createLeave,
-			eventLimit: true, // allow "more" link when too many events
 			events: <s:property value="events" escape="false"/>
 		});
 	});
@@ -52,41 +57,96 @@
 		var leaveName = prompt('Request for:');
 		leaveName = leaveName ? leaveName.toUpperCase() : leaveName;
 		
-		var isValidEntry = leaveName
-				&& Number(leaveName)
-				|| (leaveName == 'VL' || leaveName == 'OL' || 
-					leaveName == 'CDO');
-
-		if (leaveName && !isValidEntry) {
+		if (leaveName && event.holiday && !isValidHolidayEntry(leaveName)) {
+			alert("Invalid holiday entry.");
+			return;
+		}
+		
+		if (leaveName && !event.holiday && !isValidEntry(leaveName)) {
 			alert("Invalid leave entry.");
 			return;
 		}
 
-		if (leaveName) {
-			event.title = leaveName;
-			event.color = "DarkOliveGreen";
-			var date = new Date(event.start).toLocaleDateString();
-			var splittedDate = date.split('/');
-			var splittedCurrDate = new Date().toLocaleDateString().split('/');
-			var leaveStatus = Number(leaveName) ? "approved" : "pending";
-			
-			leaveData.push(JSON.stringify({
-				"leaveName" : Number(leaveName) ? "RC" : leaveName,
-				"date" : getFixedDate(splittedDate),
-				"employeeID" : <s:property value="employeeID"/>,
-				"employeeLeaveID": event.employeeLeaveID,
-				"yearID" : <s:property value="yearID"/>,
-				"value": Number(leaveName) ? leaveName : 0,
-				"status" : leaveStatus,
-				"createDate" : getFixedDate(splittedCurrDate),
-				"updateDate" : getFixedDate(splittedCurrDate)
-			}));
-
-			document.leaveForm.elements['leaveEntry'].value = leaveData;
-			$('#calendar').fullCalendar('updateEvent', event);
-		}
+		$('#calendar').fullCalendar('updateEvent', createLeaveEvent(event, leaveName));
+		document.leaveForm.elements['leaveEntry'].value = leaveData;
+		enableSubmitButton();
 	}
 
+	function enableSubmitButton() {
+		var isHidden = leaveEntries.length > 0 ? false : true;
+		$(':input[type="submit"]').prop('disabled', isHidden);
+	}
+	
+	function createLeaveEvent(event, leaveName) {
+		var holidays = holidayVault.filter(function(eventEntry) {
+			return eventEntry.date == event.date;
+		});
+		
+		var defaults = defaultEventVault.filter(function(eventEntry) {
+			return eventEntry.title == leaveName && eventEntry.date == event.date;
+		});
+		
+		if (leaveName == 'HO' && holidays.length) {
+			event = updateEvent(holidays, event);
+		} else if (defaults.length) {
+			event = updateEvent(defaults, event);
+		} else {
+			backupEvents(event, leaveName);
+			event.title = leaveName;
+			event.color = "DarkOliveGreen";
+			
+			leaveData.push(createLeaveDataEntry(event, leaveName));
+			leaveEntries.push(event.date);
+		}
+		return event;
+	}
+	
+	function updateEvent(updatedEvent, event) {
+		var index = leaveEntries.indexOf(event.date);
+		leaveData.splice(index, 1);
+		leaveEntries.splice(index, 1);
+		return updatedEvent[0];
+	}
+	
+	function backupEvents(event, leaveName) {
+		if (leaveName != 'HO' && event.holiday) {
+			holidayVault.push(Object.assign({}, event));
+		} else {
+			defaultEventVault.push(Object.assign({}, event));
+		}
+	}
+	
+	function createLeaveDataEntry(event, leaveName) {
+		var splittedCurrDate = new Date().toLocaleDateString().split('/');
+		var leaveStatus = Number(leaveName) ? "approved" : "pending";
+		
+		return JSON.stringify({
+			"leaveName" : Number(leaveName) ? "RC" : leaveName,
+			"date" : event.date,
+			"employeeID" : <s:property value="employeeID"/>,
+			"employeeLeaveID": event.employeeLeaveID,
+			"yearID" : <s:property value="yearID"/>,
+			"value": Number(leaveName) ? leaveName : 0,
+			"status" : leaveStatus,
+			"createDate" : getFixedDate(splittedCurrDate),
+			"updateDate" : getFixedDate(splittedCurrDate)
+		});
+	}
+	
+	function isValidHolidayEntry(leaveEntry) {
+		return leaveEntry == 'HO' || isValidNumberRange(leaveEntry);
+	}
+	
+	function isValidNumberRange(leaveEntry) {
+		return Number(leaveEntry) && leaveEntry >= 8 && leaveEntry <= 24;
+	}
+	
+	function isValidEntry(leaveEntry) {
+		var isValidLeave = leaveEntry == 'VL' || leaveEntry == 'OL' || 
+			leaveEntry == 'CDO' || leaveEntry == 'EL';
+		return isValidNumberRange(leaveEntry) || isValidLeave;
+	}
+	
 	function getFixedDate(splittedDate) {
 		var delimeter = "/";
 		splittedDate = splittedDate.map(function(dateEntry) {
@@ -107,9 +167,10 @@
 		return false;
 	}
 </script>
+<p>*To revert holiday entry, type 'HO' on that entry.</p>
 <br>
 <s:form action="leaveDraftLink" method="post" name="leaveForm">
 	<s:hidden name="leaveEntry"/>
-	<s:submit name="submit" id="submit" key="Submit" onClick="return warnUser()"/>
+	<s:submit name="submit" id="submit" key="Submit" disabled="true" accesskey="S" onClick="return warnUser()"/>
 </s:form>
 </body>
