@@ -97,6 +97,8 @@ public class UserAction extends ActionSupport {
 	}
 	
 	public String inputYear(){
+        String tempEmpLink = REST_BASE_URL + "myUtilization/";
+        assignValuesToSession( tempEmpLink, "My Utilization Summary" );
 		return "inputYearLink";
 	}
 

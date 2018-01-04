@@ -10,14 +10,73 @@
 				<h2>Utilization Summary</h2>
 				<hr>
 			</div>
-			
-<form action="utilizationSummaryLink" method="get"  style="padding-left:10px" enctype="application/x-www-form-urlencoded">
 	<label>Enter PUM year:</label>
-	<s:textfield name="year" required="true"/>
+	<s:textfield name="year" required="true" id = "year" />
 	<p>
-			<input value="View Utilization Summary" type="submit"
-				name="submit" class="ibm-btn-small" /> 
+			<input value="View Utilization Summary" type="submit" id = "submit"
+				name=<s:property value="#session.employeeID"/> class="ibm-btn-small" onclick= "getdetails()" /> 
 		</p>
-</form>
+		
+	<table style="width: 400px" cellspacing="0" cellpadding="0" border="0" summary="Data table with alternating rows example" class="ibm-data-table ibm-sortable-table ibm-alternating-col">
+        <caption>
+        <em><center><s:property value="#session.subtitle"/></center></em>
+        </caption>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 1: </center></a></th>
+                <td><input type="text" id="quarter1" name="quarter1"/></td>
+            </tr>   
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 2: </center></a></th>
+                <td><input type="text" id="quarter2" name="quarter2"/></td>
+            </tr>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 3: </center></a></th>
+                <td><input type="text" id="quarter3" name="quarter3"/></td>
+            </tr>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 4: </center></a></th>
+                <td><input type="text" id="quarter4" name="quarter4"/></td>
+            </tr>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Year-to-date: </center></a></th>
+                <td><input type="text" id="ytd" name="ytd"/></td>
+            </tr>
+    </table>	
+		
 </body>
+
+ <script>
+    function getdetails() {
+      var xmlhttp = new XMLHttpRequest();
+      var empno = document.getElementById("submit").name;
+      var utilYear = document.getElementById("year").value;
+      var URI =  "<%=session.getAttribute("form_action")%>"
+      var url = URI + empno + "/" + utilYear;
+      xmlhttp.open('GET',url, true);
+      xmlhttp.send(null);
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4) {
+              if (xmlhttp.status == 200) {
+                       var det = JSON.parse(xmlhttp.responseText);
+                        document.getElementById("quarter1").value = det.quarter1;
+                        document.getElementById("quarter2").value = det.quarter2;
+                        document.getElementById("quarter3").value = det.quarter3;
+                        document.getElementById("quarter4").value = det.quarter4;
+                        document.getElementById("ytd").value = det.ytd;
+                        document.getElementById("quarter1").disabled = true;
+                        document.getElementById("quarter2").disabled = true;
+                        document.getElementById("quarter3").disabled = true;
+                        document.getElementById("quarter4").disabled = true;
+                        document.getElementById("ytd").disabled = true;
+                 }  
+               else {
+                       alert("ERROR: Fiscal year does not exist!");
+                       window.location.reload();
+                 }
+              }
+        };
+    }   
+  </script>
+
+
 </html>
