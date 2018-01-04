@@ -184,7 +184,12 @@ public class AdminAction extends ActionSupport {
 	}
 
 	public String searchEmployee() {
-		return "searchEmployeeLink";
+        String tempEmpLink = REST_BASE_URL + "searchEmployee/";
+        String updateDetailsLink = REST_BASE_URL + "updateEmployeeDetails";
+
+        ActionContext.getContext().getSession().put( "update_action", updateDetailsLink );
+        assignValuesToSession( tempEmpLink, "Search Employee" );
+        return "searchEmployeeLink";
 	}
 
 	public String searchHoliday() {

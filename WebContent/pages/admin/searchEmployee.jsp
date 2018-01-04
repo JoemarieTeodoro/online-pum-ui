@@ -6,7 +6,9 @@
 	<hr>
 	
 	<s:textfield size="50" id="searchEmployeeIdNumber" name="searchEmployeeIdNumber" required="true" label="Employee ID "/> 
-	<input value="Search" name="submit" class="ibm-btn-pri" type="submit"  onclick="getdetails()">
+	<input value="Search"
+	class="ibm-btn-pri" type="submit" onclick="getdetails()"
+	id="submitButton">
 
 
 	<table style="width: 400px" cellspacing="0" cellpadding="0" border="0" summary="Data table with alternating rows example" class="ibm-data-table ibm-sortable-table ibm-alternating-col">
@@ -39,8 +41,9 @@
 			</tr>
 	</table>
 	
-	<input value="Update" name="submit" class="ibm-btn-pri" type="submit"  onclick="sendJSON()">
-	
+<input value="Update" name=<s:property value="#session.update_action"/>
+	class="ibm-btn-pri" type="submit" onclick="sendJSON()"
+	id="updateButton">	
  <script>
     var xmlhttp;
     function init() {
@@ -50,7 +53,8 @@
     function getdetails() {
     	xmlhttp = new XMLHttpRequest();
         var empno = document.getElementById("searchEmployeeIdNumber").value;
-        var url = "http://localhost:8080/online-pum-rest/webapi/opum/searchEmployee/" + empno;
+        var link = "<%=session.getAttribute("form_action")%>"
+		var url = link + empno
         xmlhttp.open('GET',url, true);
         xmlhttp.send(null);
         xmlhttp.onreadystatechange = function() {
@@ -80,41 +84,43 @@
     }
     
     function formToJSON() {
-/* 	alert("Success");
-	alert("EmpIDNo:" + document.getElementById('employeeIdNumber').value);
-	alert("fullName:" + document.getElementById('fullName').value);
-	alert("email:" + document.getElementById('email').value);
-	alert("Proj:" + document.getElementById('projectName').value);
-	alert("Status:" + document.getElementById('isActive').value);
-	alert("Start:" + document.getElementById('startDate').value);
-	alert("End:" + document.getElementById('endDate').value); */
-	var active;
-	
-	if (document.getElementById('isActive').value === "Active")
-	{
-		active = true;
-	} else {
-		active = false;
-	}
-	
-	var json = {			
-			"employeeIdNumber" : document.getElementById('employeeIdNumber').value,
-			"fullName" : document.getElementById('fullName').value,
-			"email" : document.getElementById('email').value,
-			"projectName" : document.getElementById('projectName').value,
-			"active" : active,
-			"startDate" : document.getElementById('startDate').value,
-			"endDate" : document.getElementById('endDate').value
-		};
-		var jsonString = JSON.stringify(json);
-		//alert("JSON: "+jsonString);
-		 return jsonString;
+    	//for input validation
+		var employeeIdNumber = document.getElementById('employeeIdNumber').value;
+		var fullName = document.getElementById('fullName').value;
+		var empEmail = document.getElementById('email').value; 
+		var projectName = document.getElementById('projectName').value;
+		var startDate = document.getElementById('startDate').value;
+		var endDate = document.getElementById('endDate').value;
+		
+		var isValidInput = (isValidText(employeeIdNumber) && isValidText(fullName) && isValidText(startDate) && isValidText(endDate))
+			
+		if (isValidInput == true){
+			var json = {			
+					"employeeIdNumber" : employeeIdNumber,
+					"fullName" : fullName,
+					"email" : empEmail,
+					"projectName" : projectName,
+					"startDate" : startDate,
+					"endDate" : endDate
+				};
+			var jsonString = JSON.stringify(json);
+			return jsonString;
+		}else{
+			alert("PLS REMOVE SPECIAL CHARACTERS IN SOME FIELDS");
+			return null;
+		}
 	 }
 	 function sendJSON(){
-		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("PUT", "http://localhost:8080/online-pum-ui/webapi/opum/updateEmployeeDetails");
-		  xhttp.setRequestHeader("Content-Type", "application/json");
-		  xhttp.send(formToJSON());  
-		  alert('Updated Employee Information! ');
-	} 	 
+		var xhttp = new XMLHttpRequest();
+		var link = document.getElementById("updateButton").name;
+		xhttp.open("PUT", link);
+		xhttp.setRequestHeader("Content-Type", "application/json");
+		  if (formToJSON() != null){
+			  xhttp.send(formToJSON());  
+			  alert('Updated Employee Information! ');
+		  }
+	}
+	function isValidText(str){
+		 return !/[\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]/g.test(str);
+	}
   </script>
