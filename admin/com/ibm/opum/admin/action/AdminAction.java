@@ -34,7 +34,7 @@ public class AdminAction extends ActionSupport {
 	private Client client;
 	private String startDate = "null";
 	private String endDate = "null";
-	
+
 	public AdminAction() {
 		super();
 		ClientConfig clientConfig = ClientConfiguration.getInstance();
@@ -72,7 +72,7 @@ public class AdminAction extends ActionSupport {
 		assignValuesToSession(tempEmpLink, "Upload Employee Team List");
 		return "uploadCSVLink";
 	}
-	
+
 	public String uploadPEMCSVLink() {
 		String tempEmpLink = REST_BASE_URL + "pem";
 
@@ -97,6 +97,10 @@ public class AdminAction extends ActionSupport {
 	}
 
 	public String downloadPUM() {
+		String tempEmpLink = REST_BASE_URL + "downloadUtilization";
+
+		assignValuesToSession(tempEmpLink, "Download PUM");
+
 		return "downloadPUMLink";
 	}
 
@@ -249,7 +253,7 @@ public class AdminAction extends ActionSupport {
 	public void setEvents(List<String> events) {
 		this.events = events;
 	}
-	
+
 	public String getStartDate() {
 		return startDate;
 	}

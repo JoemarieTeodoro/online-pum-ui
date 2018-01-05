@@ -1,30 +1,27 @@
+<%@page import="org.apache.catalina.filters.RestCsrfPreventionFilter"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page import="java.io.*,java.util.*, com.sun.jersey.api.client.*"%>
+<link href="../resources/system/css/style.css" rel="stylesheet" type="text/css">
+<s:head/>
+<script type="text/javascript" src="../resources/js/jquery-2.2.4.js"></script>
+<script type="text/javascript" src="../resources/js/admin/downloadPUM.js"></script>
+
+<body>
 <div class="ibm-container-body">
 	<div class="ibm-container ibm-show-hide">
 		<h2>Download PUM</h2>
-
 	</div>
 </div>
-<form
-	action="http://localhost:8080/onlinePUM/webapi/opum/downloadUtilization/${year}"
-	method="get" style="padding-left: 10px"
-	enctype="application/x-www-form-urlencoded">
-	<label>Input PUM Year to download:</label> <input id="year" name="year" />
-	<br>
-	<button>Download PUM File</button>
+<form action=<s:property value="#session.form_action" /> >
+	<div class="formatDownloadPumDiv">
+		<label>Period:</label> 
+		<select id="period" class="periodLength"></select>
+		<label>Period Value:</label>
+		<select id="periodValue" class="periodLength">
+		</select>
+		<input type="button" id="dowloadPumBtn" value="Download PUM"/>
+	</div>
 </form>
-<script>
-	/* function getYear(){
-	 alert(document.getElementById('year').value);
-	 } */
-	var start = 2000;
-	var min = new Date().getFullYear(), max = min + 9, select = document
-			.getElementById('year');
-
-	for (var i = start; i <= max; i++) {
-		var opt = document.createElement('option');
-		opt.value = i;
-		opt.innerHTML = i;
-		select.appendChild(opt);
-	}
-</script>
-<!-- "http://localhost:8080/onlinePUM/webapi/opum/downloadUtilization" (http://localhost:8080/onlinePUM/webapi/opum/downloadUtilization')  -->
+</body>
