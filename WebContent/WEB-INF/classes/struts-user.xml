@@ -36,7 +36,7 @@
             <result name="userLink" type="tiles">userLink</result>
         </action>
 
-        <action name="calendarLink" method="utilization"
+        <action name="calendarLink" method="showCalendar"
             class="com.ibm.opum.user.action.UserAction">
             <result name="calendarLink" type="tiles">calendarLink
             </result>

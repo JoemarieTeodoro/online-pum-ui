@@ -21,7 +21,7 @@ public class EventsCreator {
 	private static final String ENCLOSED_QUOTATION = "'";
 	private Logger logger = Logger.getLogger(EventsCreator.class);
 	private String startDate, endDate, empID, yearID, employeeLeaveID;
-	private boolean locked;
+	private boolean locked, recoverable;
 	
 	public List<String> createEvents(Client client) {
 		String employeeID = (String) ActionContext.getContext().getSession().get("employeeID");
@@ -54,6 +54,7 @@ public class EventsCreator {
 			if (yearID == null) {
 				yearID = ENCLOSED_QUOTATION + employeeLeave.getYearID() + ENCLOSED_QUOTATION;
 			}
+			recoverable = empEvent.isRecoverable();
 			changeEmployeeLeaveStatusColor(employeeLeave, eventMapper);
 			eventMapper.setEmployeeLeaveID(Integer.valueOf(employeeLeave.getEmployeeLeaveID()));
 			try {
@@ -123,6 +124,14 @@ public class EventsCreator {
 		this.locked = locked;
 	}
 	
+	public boolean isRecoverable() {
+		return recoverable;
+	}
+
+	public void setRecoverable(boolean recoverable) {
+		this.recoverable = recoverable;
+	}
+
 	private enum CalendarColors {
 
 		DarkCyan("DarkCyan"), GRAY("Gray"), OrangeRed("OrangeRed"), DarkSlateBlue("DarkSlateBlue");

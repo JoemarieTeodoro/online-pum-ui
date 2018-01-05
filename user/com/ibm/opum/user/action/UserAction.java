@@ -45,7 +45,7 @@ public class UserAction extends ActionSupport {
 	private String yearID = "''";
 	private String employeeID = "''";
 	private String leaveEntry;
-	private boolean locked;
+	private boolean locked, recoverable;
 	
 	public UserAction() {
 		super();
@@ -61,7 +61,7 @@ public class UserAction extends ActionSupport {
 		return "userLink";
 	}
 
-	public String utilization() {
+	public String showCalendar() {
 		EventsCreator eventsCreator = new EventsCreator();
 		events = eventsCreator.createEvents(client);
 		if (eventsCreator.getStartDate() != null && eventsCreator.getEndDate() != null) {
@@ -70,6 +70,7 @@ public class UserAction extends ActionSupport {
 			employeeID = eventsCreator.getEmployeeID();
 			yearID = eventsCreator.getYearID();
 			locked = eventsCreator.isLocked();
+			recoverable = eventsCreator.isRecoverable();
 		}
 		return "calendarLink";
 	}
@@ -88,7 +89,7 @@ public class UserAction extends ActionSupport {
 			String empEvent = webResource.type(MediaType.APPLICATION_JSON).post(String.class, leaveRequestContainer);
 			
 			if (empEvent != null && empEvent.equals("true")) {
-				utilization();
+				showCalendar();
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -336,5 +337,13 @@ public class UserAction extends ActionSupport {
 
 	public void setLocked(boolean locked) {
 		this.locked = locked;
+	}
+
+	public boolean isRecoverable() {
+		return recoverable;
+	}
+
+	public void setRecoverable(boolean recoverable) {
+		this.recoverable = recoverable;
 	}
 }

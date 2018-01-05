@@ -38,13 +38,12 @@
 				left: 'prev,next today',
 				center: 'title'
 			},
-			defaultDate: <s:property value="startFYDate"/>,
 			navLinks: false, // can click day/week names to navigate views
 			selectHelper: true,
-			validRange: {
-		        start: <s:property value="startFYDate"/>,
-		        end: <s:property value="endFYDate"/>
-		    },
+// 			validRange: {
+// 		        start: <s:property value="startFYDate"/>,
+// 		        end: <s:property value="endFYDate"/>
+// 		    },
 		    eventClick: createLeave,
 			events: <s:property value="events" escape="false"/>
 		});
@@ -56,14 +55,7 @@
 		}
 		var leaveName = prompt('Request for:');
 		leaveName = leaveName ? leaveName.toUpperCase() : leaveName;
-		
-		if (leaveName && event.holiday && !isValidHolidayEntry(leaveName)) {
-			alert("Invalid holiday entry.");
-			return;
-		}
-		
-		if (leaveName && !event.holiday && !isValidEntry(leaveName)) {
-			alert("Invalid leave entry.");
+		if (!isLeaveEntryValid(event, leaveName)) {
 			return;
 		}
 
@@ -72,6 +64,26 @@
 		enableSubmitButton();
 	}
 
+	function isLeaveEntryValid(event, leaveName) {
+		if (!leaveName || (leaveName == event.title)) {
+			return false;
+		}
+		if (<s:property value="recoverable"/> == false && Number(leaveName) && leaveName > 8) {
+			alert("You are not allowed to update your PUM as you are not part of a Recoverable Team.");
+			return false;
+		}
+		if (event.holiday && !isValidHolidayEntry(leaveName, event)) {
+			alert("Invalid holiday entry.");
+			return false;
+		}
+		
+		if (!event.holiday && !isValidEntry(leaveName)) {
+			alert("Invalid leave entry.");
+			return false;
+		}
+		return true;
+	}
+	
 	function enableSubmitButton() {
 		var isHidden = leaveEntries.length > 0 ? false : true;
 		$(':input[type="submit"]').prop('disabled', isHidden);
@@ -91,7 +103,7 @@
 		} else if (defaults.length) {
 			event = updateEvent(defaults, event);
 		} else {
-			backupEvents(event, leaveName);
+			backupEvents(event);
 			event.title = leaveName;
 			event.color = "DarkOliveGreen";
 			
@@ -108,8 +120,8 @@
 		return updatedEvent[0];
 	}
 	
-	function backupEvents(event, leaveName) {
-		if (leaveName != 'HO' && event.holiday) {
+	function backupEvents(event) {
+		if (event.holiday) {
 			holidayVault.push(Object.assign({}, event));
 		} else {
 			defaultEventVault.push(Object.assign({}, event));
@@ -133,8 +145,8 @@
 		});
 	}
 	
-	function isValidHolidayEntry(leaveEntry) {
-		return leaveEntry == 'HO' || isValidNumberRange(leaveEntry);
+	function isValidHolidayEntry(leaveEntry, event) {
+		return (leaveEntry == 'HO' && Number(event.title)) || isValidNumberRange(leaveEntry);
 	}
 	
 	function isValidNumberRange(leaveEntry) {

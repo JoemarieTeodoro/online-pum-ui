@@ -9,6 +9,7 @@ public class EmployeeEvent implements Serializable {
 	private List<EmployeeLeave> empLeaveList;
 	private String currFYStartDate;
 	private String curreFYEndDate;
+	private boolean recoverable;
 	
 	public String getStart() {
 		return currFYStartDate;
@@ -40,7 +41,10 @@ public class EmployeeEvent implements Serializable {
 	public void setCurrFYEndDate(String curreFYEndDate) {
 		this.curreFYEndDate = curreFYEndDate;
 	}
-
-	
-	
+	public boolean isRecoverable() {
+		return recoverable;
+	}
+	public void setRecoverable(boolean recoverable) {
+		this.recoverable = recoverable;
+	}
 }
