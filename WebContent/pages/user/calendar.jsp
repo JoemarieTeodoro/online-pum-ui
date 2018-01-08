@@ -130,16 +130,15 @@
 	
 	function createLeaveDataEntry(event, leaveName) {
 		var splittedCurrDate = new Date().toLocaleDateString().split('/');
-		var leaveStatus = Number(leaveName) ? "approved" : "pending";
 		
 		return JSON.stringify({
-			"leaveName" : Number(leaveName) ? "RC" : leaveName,
+			"leaveName" : Number(leaveName) > 8 ? "RC" : leaveName,
 			"date" : event.date,
 			"employeeID" : <s:property value="employeeID"/>,
 			"employeeLeaveID": event.employeeLeaveID,
 			"yearID" : <s:property value="yearID"/>,
 			"value": Number(leaveName) ? leaveName : 0,
-			"status" : leaveStatus,
+			"status" : "approved",
 			"createDate" : getFixedDate(splittedCurrDate),
 			"updateDate" : getFixedDate(splittedCurrDate)
 		});
