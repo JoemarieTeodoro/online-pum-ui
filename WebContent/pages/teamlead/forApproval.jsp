@@ -13,6 +13,7 @@
 	<form id="file" action=<s:property value="#session.form_action" /> 
 						method="POST" >
 	<div>
+			<span id="usernameEmail" hidden = "hidden" value="<s:property value="#session.fullName" />"></span>
 			<table style="width:750px" summary="Data table with alternating rows example" 
 			class="ibm-data-table ibm-sortable-table ibm-alternating-col">
 			<caption>
@@ -29,27 +30,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<s:iterator value="forApprovalList.forApprovalList" var="forApproval">
+				<s:iterator value="forApprovalList.forApprovalList" var="forApproval" status="incr">
+					
 					<tr>
-						<td>
-							<input type="checkbox" id="<s:property value="employee_Id"/>" name="YourCheckBoxes" value="employee_Leave_Id" data-test ="employee_Id" /> 
-							<span style='visibility:hidden' id="<s:property value="employee_Id"/>leaveId" ><s:property value="employee_Leave_Id"/></span>
-						</td>
-						<td id="<s:property value="employee_Id"/>Id">
-							<span id="<s:property value="employee_Id"/>Id" ><s:property value="employee_Id"/></span>
-						</td>
-						<td id="<s:property value="employee_Id"/>fullName">
-							<s:property value="fullName"/>
-						</td>
-						<td id="<s:property value="employee_Id"/>leaveDate">
-							<s:property value="leave_Date"/>
-						</td>
-						<td id="<s:property value="employee_Id"/>leaveType">
-							<s:property value="leave_Type"/>
-						</td>
-						<td id="<s:property value="employee_Id"/>createDate">
-							<s:property value="create_Date"/>
-						</td>
+						<td><input type="checkbox" id="<s:property value="employee_Id"/>" name="YourCheckBoxes" value="employee_Leave_Id" data-test ="employee_Id" /><span style='visibility:hidden' id="leaveId<s:property value="%{#incr.index}"/>"><s:property value="employee_Leave_Id"/></span></td>
+						<td id="Id<s:property value="%{#incr.index}"/>"><s:property value="employee_Id"/></td>
+						<td id="fullName<s:property value="%{#incr.index}"/>"><s:property value="fullName"/></td>
+						<td id="leaveDate<s:property value="%{#incr.index}"/>"><s:property value="leave_Date"/></td>
+						<td id="leaveType<s:property value="%{#incr.index}"/>"><s:property value="leave_Type"/></td>
+						<td id="createDate<s:property value="%{#incr.index}"/>"><s:property value="create_Date"/></td>
 					</tr>
 				</s:iterator>
 			</tbody>

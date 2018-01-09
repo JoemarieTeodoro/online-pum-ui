@@ -46,7 +46,7 @@ public class UserAction extends ActionSupport {
 	private String employeeID = "''";
 	private String leaveEntry;
 	private boolean locked, recoverable;
-	
+
 	public UserAction() {
 		super();
 		ClientConfig clientConfig = ClientConfiguration.getInstance();
@@ -56,7 +56,7 @@ public class UserAction extends ActionSupport {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	public String home() {
 		return "userLink";
 	}
@@ -70,11 +70,10 @@ public class UserAction extends ActionSupport {
 			employeeID = eventsCreator.getEmployeeID();
 			yearID = eventsCreator.getYearID();
 			locked = eventsCreator.isLocked();
-			recoverable = eventsCreator.isRecoverable();
 		}
 		return "calendarLink";
 	}
-	
+
 	public String requestLeave(){
 		ObjectMapper objectMapper = new ObjectMapper();
 
@@ -87,7 +86,7 @@ public class UserAction extends ActionSupport {
 			leaveRequestContainer.setEmpLeaveList(leaveRequests);
 			WebResource webResource = client.resource(REST_BASE_URL + "employeeLeave/");
 			String empEvent = webResource.type(MediaType.APPLICATION_JSON).post(String.class, leaveRequestContainer);
-			
+
 			if (empEvent != null && empEvent.equals("true")) {
 				showCalendar();
 			}
@@ -96,7 +95,7 @@ public class UserAction extends ActionSupport {
 		}
 		return "leaveDraftLink";
 	}
-	
+
 	public String inputYear(){
         String tempEmpLink = REST_BASE_URL + "myUtilization/";
         assignValuesToSession( tempEmpLink, "My Utilization Summary" );
@@ -105,9 +104,9 @@ public class UserAction extends ActionSupport {
 
 	public String utilizationSummary(){
 		String jsonData = null;
-		
+
 		int employeeID = (int) ActionContext.getContext().getSession().get("employeeID");
-		
+
 		try{
 			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
 					+ "/onlinePUM/webapi/opum/getComputation/" + employeeID + "/" + year);
@@ -119,7 +118,7 @@ public class UserAction extends ActionSupport {
 			if(connection.getResponseCode() != 200){
 				throw new RuntimeException("Failed: HTTP error code: " + connection.getResponseCode());
 			}
-		
+
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			jsonData = in.readLine();
 			if(jsonData != null){
@@ -134,7 +133,7 @@ public class UserAction extends ActionSupport {
 				} catch(Exception e){
 					e.printStackTrace();
 				}
-		
+
 		//YTD computation
 		try{
 			System.out.println("Employee ID: " + employeeID);
@@ -148,7 +147,7 @@ public class UserAction extends ActionSupport {
 			if(connection.getResponseCode() != 200){
 				throw new RuntimeException("Failed: HTTP error code: " + connection.getResponseCode());
 			}
-		
+
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			jsonData = in.readLine();
 			if(jsonData != null){
@@ -176,19 +175,19 @@ public class UserAction extends ActionSupport {
 				}
 		return "utilizationSummaryLink";
 	}
-	
+
 	public String showForApproval() {
-		
+
 		String jsonData = null;
 		try {
 			URL url = new URL(ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
 					+ "/online-pum-rest/webapi/opum/forApprovalList");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			String tempEmpLink = ClientConfiguration.getConfigProperties().getProperty("SERVER_URL") 
+			String tempEmpLink = ClientConfiguration.getConfigProperties().getProperty("SERVER_URL")
 					+ "/online-pum-rest/webapi/leaveToBeApproved";
 
 			assignValuesToSession(tempEmpLink, "Approve or Reject Leaves");
-			
+
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Accept", "application/json");
 			connection.setRequestProperty("username", ActionContext.getContext().getSession().get("username") +"");
@@ -266,7 +265,15 @@ public class UserAction extends ActionSupport {
 	public void setHolidayList(HolidayList holidayList) {
 		this.holidayList = holidayList;
 	}
-	
+
+  public ForApprovalList getForApprovalList() {
+		return forApprovalList;
+	}
+
+	public void setForApprovalList(ForApprovalList forApprovalList) {
+		this.forApprovalList = forApprovalList;
+	}
+
 	public YearCalculation getYearCalculation() {
 		return yearCalculation;
 	}
@@ -290,7 +297,7 @@ public class UserAction extends ActionSupport {
 	public void setEvents(List<String> events) {
 		this.events = events;
 	}
-	
+
 	public String getStartFYDate() {
 		return startFYDate;
 	}
@@ -338,8 +345,8 @@ public class UserAction extends ActionSupport {
 	public void setLocked(boolean locked) {
 		this.locked = locked;
 	}
-
-	public boolean isRecoverable() {
+  
+  public boolean isRecoverable() {
 		return recoverable;
 	}
 
