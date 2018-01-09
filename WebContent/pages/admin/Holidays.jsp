@@ -51,8 +51,13 @@
 		 return jsonString;
 	 }
 	 function sendJSON(){
+		 var holidayName = document.getElementById('holidayName').value;
+		 if (!isNameValid(holidayName)) {
+			 alert("Holiday name should not contain special characters.");
+			 return;
+		 }
 		 var link = $(myForm).attr("action");
-		  var data = formToJSON();
+		 var data = formToJSON();
 		  
 		  $.ajax({
 				type : "POST",
@@ -75,5 +80,8 @@
 				}
 			});
 	} 
-	 
+	function isNameValid(holiday) {
+		var illegalChars = /\W/;
+		return !illegalChars.test(holiday);
+	}
 </script>
