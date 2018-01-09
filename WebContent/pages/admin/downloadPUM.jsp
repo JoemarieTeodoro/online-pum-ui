@@ -14,7 +14,7 @@
 		<h2>Download PUM</h2>
 	</div>
 </div>
-<form action=<s:property value="#session.form_action" /> >
+<form id="file" action=<s:property value="#session.form_action" /> >
 	<div class="formatDownloadPumDiv">
 		<label>Period:</label> 
 		<select id="period" class="periodLength"></select>

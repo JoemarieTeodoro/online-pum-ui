@@ -58,7 +58,7 @@ function downloadPumAjax() {
 	var backslash = "/";
 	
 	if (periodKey || periodValue) {
-		window.location.href = url + backslash + periodKey + backslash +  periodValue;
+		window.location.href = url + "?" + "periodKey=" + periodKey + "&periodValue=" +  periodValue;
 	} else {
 		alert("The Period Key/Value must have a valid input");
 	}

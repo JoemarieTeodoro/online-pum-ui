@@ -44,7 +44,7 @@ function approveReject(url) {
            success: function (result) {
                //Post was successful!
         	   alert("The leaves were approved");
-           }
+           },
        }); 
 }
 
