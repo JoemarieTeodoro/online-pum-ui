@@ -31,6 +31,7 @@
 		if (<s:property value="startFYDate"/> == '' || <s:property value="endFYDate"/> == '') {
 			alert("Fiscal year is not defined!");
 			document.getElementById('submit').style.display = "none";
+			document.getElementById('holiday').style.display = "none";
 			return;
 		};
 		$('#calendar').fullCalendar({
@@ -178,7 +179,7 @@
 		return false;
 	}
 </script>
-<p>*To revert holiday entry, type 'HO' on that entry.</p>
+<p id="holiday">*To revert holiday entry, type 'HO' on that entry.</p>
 <br>
 <s:form action="leaveDraftLink" method="post" name="leaveForm">
 	<s:hidden name="leaveEntry"/>
