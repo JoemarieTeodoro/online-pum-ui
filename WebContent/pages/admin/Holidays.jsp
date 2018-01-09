@@ -81,7 +81,7 @@
 			});
 	} 
 	function isNameValid(holiday) {
-		var illegalChars = /\W/;
+		var illegalChars = /[^a-zA-Z ]/;
 		return !illegalChars.test(holiday);
 	}
 </script>
