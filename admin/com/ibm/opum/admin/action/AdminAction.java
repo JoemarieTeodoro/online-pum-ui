@@ -87,6 +87,13 @@ public class AdminAction extends ActionSupport {
 		return "uploadCSVLink";
 	}
 
+	public String uploadILCSheet() {
+		String tempEmpLink = REST_BASE_URL + "ilcDataLoading";
+
+		assignValuesToSession(tempEmpLink, "Upload ILC Sheet");
+		return "uploadILCSheet";
+	}
+
 	private void assignValuesToSession(String tempEmpLink, String subtitle) {
 		ActionContext.getContext().getSession().put("form_action", tempEmpLink);
 		ActionContext.getContext().getSession().put("subtitle", subtitle);
