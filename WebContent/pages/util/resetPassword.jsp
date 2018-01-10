@@ -1,8 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<link rel="stylesheet" type="text/css" href="../resources/system/css/resetPasswordStyle.css" />
+<link rel="stylesheet" type="text/css" href="../resources/system/css/password.css" />
 
 <s:head/>
-<div class="formResetPasswordStyle">
+<div class="formPasswordStyle">
 
 	<form action="validateResetPasswordLink" method="post" enctype="application/x-www-form-urlencoded">
 		<h1>Reset Password</h1>

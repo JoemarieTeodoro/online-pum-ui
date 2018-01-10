@@ -19,7 +19,6 @@
       <put-attribute name="body"   value="/pages/login/login.jsp"/>      
   </definition>
   
-
   <definition name="unauthorized" template="/pages/error/403ErrorPage.jsp">
       <put-attribute name="title"  value="Unauthorized"/>
       <put-attribute name="body"   value="/pages/error/403ErrorPage.jsp"/>

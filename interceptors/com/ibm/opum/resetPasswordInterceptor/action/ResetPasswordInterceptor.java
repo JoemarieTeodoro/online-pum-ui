@@ -32,5 +32,5 @@ public class ResetPasswordInterceptor extends AbstractInterceptor {
     	}
     	return result;
     }
-    
+
 }

@@ -90,6 +90,11 @@
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="resetPasswordLink" type="tiles">resetPasswordLink</result>
 		</action>
+		
+        <action name="forgotPasswordLink" method="forgotPassword"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="forgotPasswordLink" type="tiles">forgotPasswordLink</result>
+        </action>
         
         <action name="definePUMYearLink" method="definePUMYear"
             class="com.ibm.opum.admin.action.AdminAction">
