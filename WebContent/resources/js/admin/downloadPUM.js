@@ -1,11 +1,10 @@
 var PERIOD_KEY_SELECT_VALUES = { "": "", "Weekly": "Weekly", "Quarterly": "Quarterly", "Yearly": "Yearly",  };
 var QUARTERS = { "1" : "First Quarter", "2" : "Second Quarter", "3" : "Third Quarter", "4" : "Fourth Quarter"};
-var FISCAL_YEARS = { "" : "" };;
-var FISCAL_YEAR = "";
+var FISCAL_YEARS = {};
 
 $(document).ready(function() {
-	setDefaultValuePeriodSelectBox();
 	setFiscalYearList();
+	setDefaultValuePeriodSelectBox();
 	$('#dowloadPumBtn').click(function(){
 		downloadPumAjax();
 	});
@@ -25,8 +24,8 @@ function setFiscalYearList() {
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
-        	FISCAL_YEAR = "" + generateFiscalYear(result.pumYearList);
-        	FISCAL_YEARS = { FISCAL_YEAR : FISCAL_YEAR };
+        	var fiscalYear = "" + generateFiscalYear(result.pumYearList);
+        	FISCAL_YEARS[fiscalYear] = fiscalYear;
         },
         error: function (xhr, ajaxOptions, thrownError) {
           FISCAL_YEARS = { "" : "" };
