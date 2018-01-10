@@ -1,10 +1,11 @@
-var PERIOD_KEY_SELECT_VALUES = { "": "", "Monthly": "Monthly", "Weekly": "Weekly", "Quarterly": "Quarterly" };
-var MONTHS = { "1" : "January", "2" : "February", "3" : "March", "4" : "April", "5" : "May", "6" : "June", "7" : "July",
-			   "8" : "August", "9" : "September", "10" : "October",  "11" : "November", "12" : "December" };
+var PERIOD_KEY_SELECT_VALUES = { "": "", "Weekly": "Weekly", "Quarterly": "Quarterly", "Yearly": "Yearly",  };
 var QUARTERS = { "1" : "First Quarter", "2" : "Second Quarter", "3" : "Third Quarter", "4" : "Fourth Quarter"};
+var FISCAL_YEARS = { "" : "" };;
+var FISCAL_YEAR = "";
 
 $(document).ready(function() {
 	setDefaultValuePeriodSelectBox();
+	setFiscalYearList();
 	$('#dowloadPumBtn').click(function(){
 		downloadPumAjax();
 	});
@@ -13,6 +14,36 @@ $(document).ready(function() {
 	});
 	
 });
+
+function setFiscalYearList() {
+	var url = $('#file').attr('action');
+	url = url.replace("downloadUtilization", "yearList");
+	$.ajax({
+        url: url,
+        type: 'GET',
+        traditional: true,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+        	FISCAL_YEAR = "" + generateFiscalYear(result.pumYearList);
+        	FISCAL_YEARS = { FISCAL_YEAR : FISCAL_YEAR };
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          FISCAL_YEARS = { "" : "" };
+        }
+    }); 
+}
+
+function generateFiscalYear(fiscalYears) {
+	var resultFiscalYear = 0;
+	for (fiscalYearKey in fiscalYears) {
+		var fiscalYear = fiscalYears[fiscalYearKey];
+		if (resultFiscalYear < fiscalYear.pumYear) {
+			resultFiscalYear = fiscalYear.pumYear;
+		}
+	}
+	return resultFiscalYear;
+}
 
 function setDefaultValuePeriodSelectBox() {
 	$.each(PERIOD_KEY_SELECT_VALUES, function(key, value) {
@@ -32,8 +63,8 @@ function changePeriodValueSelectBox() {
 
 function selectPeriodValuesJson(periodKey) {
 	var periodValueResult = { };
-	if (periodKey == "Monthly") {
-		periodValueResult = MONTHS;
+	if (periodKey == "Yearly") {
+		periodValueResult = FISCAL_YEARS;
 	} else if (periodKey == "Weekly") {
 		periodValueResult = generateWeeksJson();
 	} else if (periodKey == "Quarterly") {
