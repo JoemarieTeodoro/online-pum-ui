@@ -75,8 +75,7 @@ function selectPeriodValuesJson(periodKey) {
 function generateWeeksJson() {
 	var resultJson = { "" : "" };
 	for (i = 1; i <= 52; i++) {
-	  var indexStr = i.toString();
-	  resultJson[indexStr] = "Week " + indexStr;
+	  resultJson[indexStr] = "Week " + i;
 	}
 	return resultJson;
 }
@@ -85,7 +84,6 @@ function downloadPumAjax() {
 	var url = $('#file').attr('action');
 	var periodKey = $('#period').val();
 	var periodValue = $('#periodValue').val();
-	var backslash = "/";
 	
 	if (periodKey || periodValue) {
 		window.location.href = url + "?" + "periodKey=" + periodKey + "&periodValue=" +  periodValue;
