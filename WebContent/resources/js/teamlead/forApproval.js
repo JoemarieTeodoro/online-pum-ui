@@ -49,12 +49,12 @@ function approveReject(url, leaveStatus) {
 
 function approve(){
 	var url = $('#file').attr('action');
-	approveReject(url+ '/approve', 'approved');
+	approveReject(url+ '/approve', 'Approved');
 }
 
 function reject(){
 	var url = $('#file').attr('action');
-	approveReject(url+ '/reject', 'rejected');
+	approveReject(url+ '/reject', 'Rejected');
 }
 
 function trimStringInput(strInput)  {

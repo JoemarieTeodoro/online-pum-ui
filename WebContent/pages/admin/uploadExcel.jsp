@@ -21,6 +21,8 @@
 		</div>
 		
 		<div>
+		<table>
+		<tr> <td> 
 			<form 
 				id="file" 
 				action='<s:property value="#session.form_action" />' 
@@ -29,8 +31,13 @@
 				accept-charset="utf-8"
 			>
 				<input type="file" name="file" accept=".xlsx" />
-				<input type="submit" value="Upload" id="upload-btn" />
 			</form>
+		</td>
+		<td>
+				<input type="submit" value="Upload" id="upload-btn" />
+		</td>
+		</tr>
+		</table>
 		</div>
 		<script type="text/javascript" src="../resources/js/jquery-2.2.4.js"></script>
 		<script type="text/javascript" src="../resources/js/fileValidation.js"></script>

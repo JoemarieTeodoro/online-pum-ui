@@ -6,6 +6,7 @@ function isValid(form){
 
 $("#upload-btn").click(function(e){
 	e.preventDefault();
+	document.getElementById("upload-btn").disabled = true;
 	var form = $("#file")[0];
 	var data = new FormData(form);
 	var link = $(form).attr("action");

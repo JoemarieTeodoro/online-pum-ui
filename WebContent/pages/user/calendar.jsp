@@ -139,7 +139,7 @@
 			"employeeLeaveID": event.employeeLeaveID,
 			"yearID" : <s:property value="yearID"/>,
 			"value": Number(leaveName) ? leaveName : 0,
-			"status" : "approved",
+			"status" : "Approved",
 			"createDate" : getFixedDate(splittedCurrDate),
 			"updateDate" : getFixedDate(splittedCurrDate)
 		});
