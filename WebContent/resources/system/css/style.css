@@ -220,6 +220,10 @@ ul.actionMessage li {
     color:green;
     padding-bottom: 0px;
 }
+ul.errorMessage li {
+    color:whitesmoke;
+    padding-bottom: 0px;
+}
 .workstationId{
 	text-decoration:none;
 	font-weight: bold;

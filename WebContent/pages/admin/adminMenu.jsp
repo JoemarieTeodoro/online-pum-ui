@@ -24,21 +24,19 @@
             <a href="<s:url action="uploadTeamListCSVLink"/>">Upload Team List</a>
             <a href="<s:url action="uploadEmployeeTeamCSVLink"/>">Upload Employee Team List</a>
             <a href="<s:url action="uploadEmployeeRolesCSVLink"/>">Upload Employee Roles</a>
-<%--            <a href="<s:url action="uploadPEMCSVLink"/>">Upload PEM List</a> --%>
+            <a href="<s:url action="uploadILCSheetLink"/>">Upload ILC Spreadsheet</a>
+				<%-- <a href="<s:url action="uploadPEMCSVLink"/>">Upload PEM List</a> --%>
         </s:if>
-<%--                <a href="<s:url action="searchEmployeeLink"/>">Search Employee</a> --%>
+               <a href="<s:url action="searchEmployeeLink"/>">Search Employee</a>
 <%--                <a href="<s:url action="projectEngagementLink"/>">Project Engagement Date</a>  --%>
                 <a href="<s:url action="downloadPUMLink"/>">Download PUM</a>
                 <a href="<s:url action="definePUMYearLink"/>">Define Fiscal Year</a>
-<%--                <a href="<s:url action="viewPUMYearLink"/>">View Fiscal Year</a> --%>
+				<%-- <a href="<s:url action="viewPUMYearLink"/>">View Fiscal Year</a> --%>
                 <a href="<s:url action="viewAllPUMYearLink"/>">View All Fiscal Year</a>
                 <a href="<s:url action="defineHolidaysLink"/>">Define Holidays</a>
                 <a href="<s:url action="adminShowAllHolidaysLink"/>">Show All Holidays</a>
                 <a href="<s:url action="searchHolidayLink"/>">Search Holiday</a>
-                <a href="">Upload ILC Extract</a>
-
                 <%-- <s:if test="#session.role == 'HR Manager'"> --%>
-                
                 <%-- <a href="<s:url action="adminCalendarLink"/>">My Hours</a> --%>
         </li>
     </ul>

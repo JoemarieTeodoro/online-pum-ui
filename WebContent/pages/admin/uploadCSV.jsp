@@ -52,6 +52,7 @@
 	
 	<div>
 		<table>
+		<tr>
 			<form id="file" action=<s:property value="#session.form_action" /> 
 				method="POST" enctype="multipart/form-data">
 				<td><input type="file" name="file" accept=".csv" /></td>
@@ -59,7 +60,7 @@
 
 			<td><input type="submit" value="Process" onclick="process()" />
 			</td>
-
+		</tr>
 		</table>
 	</div>
 </body>

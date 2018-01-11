@@ -92,6 +92,11 @@
 			class="com.ibm.opum.calendar.GenerateCalendarAction">
 			<result name="success" type="tiles">adminGetCalendarLink</result>
 		</action>
+        
+        <action name="uploadILCSheetLink" method="uploadILCSheet"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="uploadILCSheet" type="tiles">uploadILCSheet</result>
+        </action>
 		
 	</package>
 </struts>

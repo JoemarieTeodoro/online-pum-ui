@@ -18,8 +18,9 @@
 				<s:textfield name="username" required="true" width= "248px" />
 				<label for="password">Password: </label>
 				<input type="password" name="password" required="required" width= "248px" />
-				<s:submit name="submit" key="Log In" onclick="getName()" /> 
-				
+				<s:submit name="submit" key="Log In" onclick="getName()" />
+
+				<a href="<s:url action="../forgotPassword/forgotPasswordLink"/>">Forgot Password</a>
 				<br>
 				<br>
 				

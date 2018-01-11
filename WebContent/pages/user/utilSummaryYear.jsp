@@ -16,33 +16,64 @@
 			<input value="View Utilization Summary" type="submit" id = "submit"
 				name=<s:property value="#session.employeeID"/> class="ibm-btn-small" onclick= "getdetails()" /> 
 		</p>
-		
-	<table style="width: 400px" cellspacing="0" cellpadding="0" border="0" summary="Data table with alternating rows example" class="ibm-data-table ibm-sortable-table ibm-alternating-col">
+<table>
+<tr> 
+<td>
+	<table style="width: 400px" cellspacing="0" cellpadding="5" border="0" summary="Data table with alternating rows example" class="ibm-data-table ibm-sortable-table ibm-alternating-col">
         <caption>
-        <em><center><s:property value="#session.subtitle"/></center></em>
+        <em><center>Forecasted Utilization Summary</center></em>
         </caption>
             <tr>
                 <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 1: </center></a></th>
-                <td><input type="text" id="quarter1" name="quarter1"/></td>
+                <td><input type="text" id="forecastQuarter1" name="quarter1"/></td>
             </tr>   
             <tr>
                 <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 2: </center></a></th>
-                <td><input type="text" id="quarter2" name="quarter2"/></td>
+                <td><input type="text" id="forecastQuarter2" name="quarter2"/></td>
             </tr>
             <tr>
                 <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 3: </center></a></th>
-                <td><input type="text" id="quarter3" name="quarter3"/></td>
+                <td><input type="text" id="forecastQuarter3" name="quarter3"/></td>
             </tr>
             <tr>
                 <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 4: </center></a></th>
-                <td><input type="text" id="quarter4" name="quarter4"/></td>
+                <td><input type="text" id="forecastQuarter4" name="quarter4"/></td>
             </tr>
             <tr>
                 <th scope="col" class="ibm-sort"><a href="#sort"><center>Year-to-date: </center></a></th>
-                <td><input type="text" id="ytd" name="ytd"/></td>
+                <td><input type="text" id="forecastYtd" name="ytd"/></td>
             </tr>
     </table>	
-		
+</td>
+<td>
+    <table style="width: 400px" cellspacing="0" cellpadding="0" border="0" summary="Data table with alternating rows example" class="ibm-data-table ibm-sortable-table ibm-alternating-col">
+        <caption>
+        <em><center>Actual Utilization Summary</center></em>
+        </caption>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 1: </center></a></th>
+                <td><input type="text" id="actualQuarter1" name="quarter1"/></td>
+            </tr>   
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 2: </center></a></th>
+                <td><input type="text" id="actualQuarter2" name="quarter2"/></td>
+            </tr>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 3: </center></a></th>
+                <td><input type="text" id="actualQuarter3" name="quarter3"/></td>
+            </tr>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Quarter 4: </center></a></th>
+                <td><input type="text" id="actualQuarter4" name="quarter4"/></td>
+            </tr>
+            <tr>
+                <th scope="col" class="ibm-sort"><a href="#sort"><center>Year-to-date: </center></a></th>
+                <td><input type="text" id="actualYtd" name="ytd"/></td>
+            </tr>
+    </table>    
+    </td>
+    </tr>
+</table>		
 </body>
 
  <script>
@@ -58,16 +89,26 @@
           if (xmlhttp.readyState == 4) {
               if (xmlhttp.status == 200) {
                        var det = JSON.parse(xmlhttp.responseText);
-                        document.getElementById("quarter1").value = det.quarter1;
-                        document.getElementById("quarter2").value = det.quarter2;
-                        document.getElementById("quarter3").value = det.quarter3;
-                        document.getElementById("quarter4").value = det.quarter4;
-                        document.getElementById("ytd").value = det.ytd;
-                        document.getElementById("quarter1").disabled = true;
-                        document.getElementById("quarter2").disabled = true;
-                        document.getElementById("quarter3").disabled = true;
-                        document.getElementById("quarter4").disabled = true;
-                        document.getElementById("ytd").disabled = true;
+                        document.getElementById("forecastQuarter1").value = det.forecastedQuarter1;
+                        document.getElementById("forecastQuarter2").value = det.forecastedQuarter2;
+                        document.getElementById("forecastQuarter3").value = det.forecastedQuarter3;
+                        document.getElementById("forecastQuarter4").value = det.forecastedQuarter4;
+                        document.getElementById("forecastYtd").value = det.forecastedYtd;
+                        document.getElementById("actualQuarter1").value = det.actualQuarter1;
+                        document.getElementById("actualQuarter2").value = det.actualQuarter2;
+                        document.getElementById("actualQuarter3").value = det.actualQuarter3;
+                        document.getElementById("actualQuarter4").value = det.actualQuarter4;
+                        document.getElementById("actualYtd").value = det.actualYtd;
+                        document.getElementById("forecastQuarter1").disabled = true;
+                        document.getElementById("forecastQuarter2").disabled = true;
+                        document.getElementById("forecastQuarter3").disabled = true;
+                        document.getElementById("forecastQuarter4").disabled = true;
+                        document.getElementById("forecastYtd").disabled = true;
+                        document.getElementById("actualQuarter1").disabled = true;
+                        document.getElementById("actualQuarter2").disabled = true;
+                        document.getElementById("actualQuarter3").disabled = true;
+                        document.getElementById("actualQuarter4").disabled = true;
+                        document.getElementById("actualYtd").disabled = true;
                  }  
                else {
                        alert("ERROR: Fiscal year does not exist!");

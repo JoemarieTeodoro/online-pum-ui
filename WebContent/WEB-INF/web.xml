@@ -3,7 +3,7 @@
   <display-name>StrutsExcer</display-name>
   <context-param>
     <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
-    <param-value>/WEB-INF/tiles/tiles-admin.xml,/WEB-INF/tiles/tiles-login.xml,/WEB-INF/tiles/tiles-register.xml,/WEB-INF/tiles/tiles-user.xml,/WEB-INF/tiles/tiles-resetPassword.xml
+    <param-value>/WEB-INF/tiles/tiles-admin.xml,/WEB-INF/tiles/tiles-login.xml,/WEB-INF/tiles/tiles-register.xml,/WEB-INF/tiles/tiles-user.xml,/WEB-INF/tiles/tiles-resetPassword.xml,/WEB-INF/tiles/tiles-forgotPassword.xml
 		</param-value>
   </context-param>
   <listener>

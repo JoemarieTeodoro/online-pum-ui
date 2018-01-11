@@ -1,24 +1,21 @@
-function approveReject(url) {
-       //Build a collection of your objects
-       var YourObjects = [];
+function approveReject(url, leaveStatus) {
+       var employeesArray = [];
+       var index = 0;
 
-       //Populate each of your checked values into the collection
-       $('[name="YourCheckBoxes"]:checked').each(function () {
-           //Push this object into your YourObjects collection
-    	   
-    	   var checkboxId = $(this).attr('id');
-    	   var employeeId = trimStringInput($('#' + checkboxId + 'Id').text());
-    	   var fullname = trimStringInput($('#' + checkboxId + 'fullname').text());
-    	   var status = "";
-    	   var leaveDate = trimStringInput($('#' + checkboxId + 'leaveDate').text());
-    	   var leaveType = trimStringInput($('#' + checkboxId + 'leaveType').text());
-    	   var createDate = trimStringInput($('#' + checkboxId + 'createDate').text());
+       $('[name="YourCheckBoxes"]').each(function () {
     	   var updateDate = "";
     	   var teamLeadEmployeeId = "";
-    	   var leaveId = trimStringInput($('#' + checkboxId + 'leaveId').text());
-    	   leaveId = parseInt(leaveId);
+    	   var status = "";
+    	   var leaveId = $('#leaveId'+index).text();
+    	   var employeeId = $('#Id'+index).text();
+    	   var fullname = $('#fullName'+index).text();
+    	   var leaveDate = $('#leaveDate'+index).text();
+    	   var leaveType = $('#leaveType'+index).text();
+    	   var createDate = $('#createDate'+index).text();
+    	   var usernameEmail = $('#usernameEmail').attr('value');
     	   
     	   var employee = {
+    		   "usernameForEmail": usernameEmail,
     		   "employee_Leave_Id": leaveId,
 			   "employee_Id": employeeId,
 			   "fullName": fullname,
@@ -29,37 +26,39 @@ function approveReject(url) {
 			   "update_Date": updateDate,
 			   "team_Lead_Employee_Id": teamLeadEmployeeId
     	   }
-    	   
-    	   YourObjects.push(employee);
+    	   if (this.checked) {
+    		   employeesArray.push(employee);
+    	   }
+    	   index++;
        });
 
-       //Submit through jQuery
        $.ajax({
            url: url,
            type: 'POST',
            traditional: true,
            dataType: 'json',
-           data: JSON.stringify(YourObjects),
+           data: JSON.stringify(employeesArray),
            contentType: 'application/json; charset=utf-8',
            success: function (result) {
-               //Post was successful!
-        	   alert("The leaves were approved");
-           },
+        	   employeesArray = [];
+        	   window.location.reload(true);
+        	   alert("The leaves were " + leaveStatus);
+           }
        }); 
 }
 
 function approve(){
 	var url = $('#file').attr('action');
-	approveReject(url+ '/approve');
+	approveReject(url+ '/approve', 'Approved');
 }
 
 function reject(){
 	var url = $('#file').attr('action');
-	approveReject(url+ '/reject');
+	approveReject(url+ '/reject', 'Rejected');
 }
 
 function trimStringInput(strInput)  {
 	strInput = strInput.trim();
 	strInput = strInput.replace(/\r?\n|\r/,"");
-	return strInput.replace(/\r?\n|\r/,"");
+	return strInput;
 }

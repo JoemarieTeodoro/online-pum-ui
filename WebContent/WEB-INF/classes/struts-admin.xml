@@ -90,6 +90,11 @@
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="resetPasswordLink" type="tiles">resetPasswordLink</result>
 		</action>
+		
+        <action name="forgotPasswordLink" method="forgotPassword"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="forgotPasswordLink" type="tiles">forgotPasswordLink</result>
+        </action>
         
         <action name="definePUMYearLink" method="definePUMYear"
             class="com.ibm.opum.admin.action.AdminAction">
@@ -119,6 +124,11 @@
         <action name="adminCalendarLink" method="adminCalendar"
             class="com.ibm.opum.admin.action.AdminAction">
             <result name="adminCalendarLink" type="tiles">adminCalendarLink</result>
+        </action>
+        
+        <action name="uploadILCSheetLink" method="uploadILCSheet"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="uploadILCSheet" type="tiles">uploadILCSheet</result>
         </action>
 	</package>
 </struts>
