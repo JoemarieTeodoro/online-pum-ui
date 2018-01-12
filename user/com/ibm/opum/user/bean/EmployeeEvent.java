@@ -44,12 +44,7 @@ public class EmployeeEvent implements Serializable {
 	public void setCurrFYEndDate(String curreFYEndDate) {
 		this.curreFYEndDate = curreFYEndDate;
 	}
-	public boolean isDraft() {
-		return isDraft;
-	}
-	public void setDraft(boolean isDraft) {
-		this.isDraft = isDraft;
-	}
+	
 	public String getEmpID() {
 		return empID;
 	}
@@ -62,10 +57,17 @@ public class EmployeeEvent implements Serializable {
 	public void setFyID(String fyID) {
 		this.fyID = fyID;
 	}
+
 	public boolean isRecoverable() {
 		return recoverable;
 	}
 	public void setRecoverable(boolean recoverable) {
 		this.recoverable = recoverable;
+	}
+	public boolean isDraft() {
+		return isDraft;
+	}
+	public void setDraft(boolean isDraft) {
+		this.isDraft = isDraft;
 	}
 }

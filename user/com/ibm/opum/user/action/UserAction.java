@@ -46,6 +46,7 @@ public class UserAction extends ActionSupport {
 	private String employeeID = "''";
 	private String leaveEntry;
 	private boolean locked, recoverable;
+	private boolean isDraft;
 
 	public UserAction() {
 		super();
@@ -76,17 +77,25 @@ public class UserAction extends ActionSupport {
 
 	public String requestLeave(){
 		ObjectMapper objectMapper = new ObjectMapper();
-
+		
 	    try {
+	    	EventsCreator eventsCreator = new EventsCreator();
+	    	events = eventsCreator.createEvents(client);
+	    	employeeID = eventsCreator.getEmployeeID();
+			yearID = eventsCreator.getYearID();
+			
 			List<EmployeeLeave> leaveRequests = objectMapper.readValue(
 					"[" + leaveEntry + "]",
 			        objectMapper.getTypeFactory().constructCollectionType(
 			                List.class, EmployeeLeave.class));
 			EmployeeEvent leaveRequestContainer = new EmployeeEvent();
+			leaveRequestContainer.setEmpID(employeeID);
+			leaveRequestContainer.setFyID(yearID);
+			leaveRequestContainer.setDraft(isDraft());
 			leaveRequestContainer.setEmpLeaveList(leaveRequests);
 			WebResource webResource = client.resource(REST_BASE_URL + "employeeLeave/");
 			String empEvent = webResource.type(MediaType.APPLICATION_JSON).post(String.class, leaveRequestContainer);
-
+			
 			if (empEvent != null && empEvent.equals("true")) {
 				showCalendar();
 			}
@@ -346,11 +355,19 @@ public class UserAction extends ActionSupport {
 		this.locked = locked;
 	}
   
-  public boolean isRecoverable() {
+	public boolean isRecoverable() {
 		return recoverable;
 	}
 
 	public void setRecoverable(boolean recoverable) {
 		this.recoverable = recoverable;
+	}
+
+	public boolean isDraft() {
+		return isDraft;
+	}
+
+	public void setDraft(boolean isDraft) {
+		this.isDraft = isDraft;
 	}
 }

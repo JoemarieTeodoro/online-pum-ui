@@ -1,23 +1,26 @@
 <%@ page contentType="charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-	<div class="ibm-title">
+<div class="ibm-title">
 	<h2>Enter My Hours</h2>
+</div>
+<hr>
+<s:if test="hasActionErrors()">
+	<div class="isa_error" style="width: 598px;">
+		<s:actionerror />
 	</div>
-	<hr>
-	<s:if test="hasActionErrors()">
-		<div class="isa_error" style="width: 598px;">
-			<s:actionerror/>
-		</div>
-	</s:if>
+</s:if>
 <br>
 <head>
-<link href='../resources/js/calendar/fullcalendar.min.css' rel='stylesheet' />
-<link href='../resources/js/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link href='../resources/js/calendar/fullcalendar.min.css'
+	rel='stylesheet' />
+<link href='../resources/js/calendar/fullcalendar.print.min.css'
+	rel='stylesheet' media='print' />
 <script src='../resources/js/lib/moment.min.js'></script>
 <script src='../resources/js/lib/jquery.min.js'></script>
 <script src='../resources/js/calendar/fullcalendar.min.js'></script>
 </head>
 <body>
+
 <div id='calendar'></div>
 <script>
 	// raw data that will be passed to backend part
@@ -27,11 +30,15 @@
 	var leaveEntries = [];
 	var holidayVault = [];
 	var defaultEventVault = [];	
+	var locked = <s:property value="locked"/>;
+	
 	$(document).ready(function() {
+		document.leaveForm.elements['draft'].value = false;
 		if (<s:property value="startFYDate"/> == '' || <s:property value="endFYDate"/> == '') {
 			alert("Fiscal year is not defined!");
 			document.getElementById('submit').style.display = "none";
-			document.getElementById('holiday').style.display = "none";
+			document.getElementById('save').style.display = "none";
+			document.getElementById('info').style.display = "none";
 			return;
 		};
 		$('#calendar').fullCalendar({
@@ -48,18 +55,39 @@
 		    eventClick: createLeave,
 			events: <s:property value="events" escape="false"/>
 		});
+		populateInitialLeaveData();
 	});
 	
-	function createLeave(event) {
-		if (<s:property value="locked"/> == true) {
-			return;
+	function populateInitialLeaveData() {
+		var events = $('#calendar').fullCalendar('clientEvents');
+		events.map(function(event) {
+			if (event.status && event.status.toLowerCase() === "draft") {
+				leaveData.push(createLeaveDataEntry(event, event.title));
+				leaveEntries.push(event.date);
+			}	
+		});
+		document.leaveForm.elements['leaveEntry'].value = leaveData;
+		enableSubmitButton();
+	}
+	
+	function unlockCalendar() {
+		if(confirm("You are about to unlock your PUM entry, please note that all changes will require your TL's approval. Click Ok to proceed otherwise, Cancel.")) {
+			locked = false;
 		}
+	}
+
+	function saveChanges() {
+		//alert("Entries saved.");
+		document.leaveForm.elements['draft'].value = true;
+	}
+		
+	function createLeave(event) {
 		var leaveName = prompt('Request for:');
 		leaveName = leaveName ? leaveName.toUpperCase() : leaveName;
 		if (!isLeaveEntryValid(event, leaveName)) {
 			return;
 		}
-
+		
 		$('#calendar').fullCalendar('updateEvent', createLeaveEvent(event, leaveName));
 		document.leaveForm.elements['leaveEntry'].value = leaveData;
 		enableSubmitButton();
@@ -86,8 +114,9 @@
 	}
 	
 	function enableSubmitButton() {
-		var isHidden = leaveEntries.length > 0 ? false : true;
-		$(':input[type="submit"]').prop('disabled', isHidden);
+		var isDisabled = leaveEntries.length > 0 ? false : true;
+		$('#submit').prop('disabled', isDisabled);
+// 		$('#save').prop('disabled', isDisabled);
 	}
 	
 	function createLeaveEvent(event, leaveName) {
@@ -155,7 +184,7 @@
 	
 	function isValidEntry(leaveEntry) {
 		var isValidLeave = leaveEntry == 'VL' || leaveEntry == 'OL' || 
-			leaveEntry == 'CDO' || leaveEntry == 'EL';
+			leaveEntry == 'CDO';
 		return isValidNumberRange(leaveEntry) || isValidLeave;
 	}
 	
@@ -165,24 +194,38 @@
 			if (dateEntry.length < 2) {
 				dateEntry = "0" + dateEntry;
 			}
-			return dateEntry;
+			return false;
 		});
-		return splittedDate[0] + delimeter + splittedDate[1] + delimeter
-				+ splittedDate[2];
+		return false;
 	}
 	
 	function warnUser() {
-		var warn = prompt("Please be informed that once you submit your PUM Entry, Editing or Updating will be limited to the current quarter unless proper Authorization has been granted by the Responsible Person. Continue? (Y/N)");
-		if (warn && warn.toUpperCase() == 'Y') {
+		var warn = confirm("Please be informed that once you submit your PUM Entry, Editing or Updating will be limited to the current quarter unless proper Authorization has been granted by the Responsible Person.");
+		if (warn && warn.toUpperCase() == 'OK') {
 			return true;
 		}
 		return false;
 	}
 </script>
-<p id="holiday">*To revert holiday entry, type 'HO' on that entry.</p>
-<br>
-<s:form action="leaveDraftLink" method="post" name="leaveForm">
-	<s:hidden name="leaveEntry"/>
-	<s:submit name="submit" id="submit" key="Submit" disabled="true" accesskey="S" onClick="return warnUser()"/>
-</s:form>
+<p id="info">
+	*To revert holiday entry, type 'HO' on that entry.<br />
+	*To file a VL, Enter "VL"<br />
+	*To file an OL, Enter "OL"<br />
+	*To file a CDO, Enter "CDO"
+</p>
+	<s:form action="leaveDraftLink" method="post" name="leaveForm">
+		<s:hidden name="leaveEntry" />
+		<s:hidden name="draft" />
+		<br>
+
+		<div class="fc-left">
+			<button type="submit"
+				id="submit"
+				onclick="return warnUser()">Submit</button>
+			<br> <br>
+<!-- 			<button type="submit" -->
+<!-- 				id="save" -->
+<!-- 				onclick="saveChanges()">Save Changes</button> -->
+		</div>
+	</s:form>
 </body>
