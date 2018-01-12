@@ -1,3 +1,5 @@
+var url = $('#file').attr('action');
+
 function approveReject(url, leaveStatus) {
        var employeesArray = [];
        var index = 0;
@@ -48,12 +50,10 @@ function approveReject(url, leaveStatus) {
 }
 
 function approve(){
-	var url = $('#file').attr('action');
 	approveReject(url+ '/approve', 'Approved');
 }
 
 function reject(){
-	var url = $('#file').attr('action');
 	approveReject(url+ '/reject', 'Rejected');
 }
 

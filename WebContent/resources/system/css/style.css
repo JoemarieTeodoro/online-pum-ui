@@ -266,3 +266,11 @@ table.assetTable{
 table.assetTable td{
 	width: 70px
 }
+
+.periodLength {
+	width: 20%;
+}
+
+.formatDownloadPumDiv {
+	margin-left: 2%;
+}
