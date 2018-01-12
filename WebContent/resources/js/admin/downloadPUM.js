@@ -75,6 +75,7 @@ function selectPeriodValuesJson(periodKey) {
 function generateWeeksJson() {
 	var resultJson = { "" : "" };
 	for (i = 1; i <= 52; i++) {
+	  var indexStr = i;
 	  resultJson[indexStr] = "Week " + i;
 	}
 	return resultJson;
