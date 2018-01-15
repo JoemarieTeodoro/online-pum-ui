@@ -71,6 +71,7 @@ public class UserAction extends ActionSupport {
 			employeeID = eventsCreator.getEmployeeID();
 			yearID = eventsCreator.getYearID();
 			locked = eventsCreator.isLocked();
+			recoverable = eventsCreator.isRecoverable();
 		}
 		return "calendarLink";
 	}
