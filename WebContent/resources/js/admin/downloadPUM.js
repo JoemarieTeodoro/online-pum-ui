@@ -1,4 +1,4 @@
-var PERIOD_KEY_SELECT_VALUES = { "": "", "Weekly": "Weekly", "Quarterly": "Quarterly", "Yearly": "Yearly",  };
+var PERIOD_KEY_SELECT_VALUES = { "": "", "Quarterly": "Quarterly", "Yearly": "Yearly",  };
 var QUARTERS = { "1" : "First Quarter", "2" : "Second Quarter", "3" : "Third Quarter", "4" : "Fourth Quarter"};
 var FISCAL_YEARS = {};
 
