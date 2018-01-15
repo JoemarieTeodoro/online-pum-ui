@@ -1,4 +1,4 @@
-var PERIOD_KEY_SELECT_VALUES = { "": "", "Weekly": "Weekly", "Quarterly": "Quarterly", "Yearly": "Yearly",  };
+var PERIOD_KEY_SELECT_VALUES = { "": "", "Quarterly": "Quarterly", "Yearly": "Yearly",  };
 var QUARTERS = { "1" : "First Quarter", "2" : "Second Quarter", "3" : "Third Quarter", "4" : "Fourth Quarter"};
 var FISCAL_YEARS = {};
 
@@ -75,6 +75,7 @@ function selectPeriodValuesJson(periodKey) {
 function generateWeeksJson() {
 	var resultJson = { "" : "" };
 	for (i = 1; i <= 52; i++) {
+	  var indexStr = i;
 	  resultJson[indexStr] = "Week " + i;
 	}
 	return resultJson;
