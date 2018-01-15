@@ -17,7 +17,9 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
 public class EventsCreator {
+	private static final String APPROVED_STATUS = "approved";
 	private static final String PENDING_STATUS = "pending";
+	private static final String DRAFT_STATUS = "draft";
 	private static final String ENCLOSED_QUOTATION = "'";
 	private Logger logger = Logger.getLogger(EventsCreator.class);
 	private String startDate, endDate, empID, yearID, employeeLeaveID;
@@ -42,6 +44,7 @@ public class EventsCreator {
 			eventMapper.setTitle(employeeLeave.getLeaveName());
 			eventMapper.setDate(employeeLeave.getDate());
 			eventMapper.setHoliday(employeeLeave.isHoliday());
+			eventMapper.setStatus(employeeLeave.getStatus());
 			if (startDate == null) {
 				startDate = ENCLOSED_QUOTATION + empEvent.getCurrFYStartDate() + ENCLOSED_QUOTATION;
 			}
@@ -67,6 +70,7 @@ public class EventsCreator {
 	}
 
 	private void changeEmployeeLeaveStatusColor(EmployeeLeave employeeLeave, EventsMapper eventMapper) {
+		
 		if (employeeLeave.getLeaveName().matches("\\d+")) {
 			// recoverable hours color should be different with pre-plotted 8
 			if (Integer.parseInt(employeeLeave.getLeaveName()) > 8) {
@@ -81,6 +85,10 @@ public class EventsCreator {
 		if (employeeLeave.getStatus() != null && employeeLeave.getStatus().equalsIgnoreCase(PENDING_STATUS)) {
 			eventMapper.setColor(CalendarColors.DarkSlateBlue.toString());
 			locked = true;
+		} else if (employeeLeave.getStatus() != null && employeeLeave.getStatus().equalsIgnoreCase(DRAFT_STATUS)) {
+			eventMapper.setColor(CalendarColors.DarkOliveGreen.toString());
+		} else if (employeeLeave.getStatus() != null && employeeLeave.getStatus().equalsIgnoreCase(APPROVED_STATUS)) {
+			eventMapper.setColor(CalendarColors.BostonBlue.toString());
 		}
 	}
 
@@ -134,7 +142,7 @@ public class EventsCreator {
 
 	private enum CalendarColors {
 
-		DarkCyan("DarkCyan"), GRAY("Gray"), OrangeRed("OrangeRed"), DarkSlateBlue("DarkSlateBlue");
+		DarkCyan("DarkCyan"), GRAY("Gray"), OrangeRed("OrangeRed"), DarkSlateBlue("DarkSlateBlue"), DarkOliveGreen("DarkOliveGreen"), BostonBlue("BostonBlue");
 
 		private String colors;
 
