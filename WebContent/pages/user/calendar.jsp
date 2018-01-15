@@ -116,7 +116,7 @@
 	function enableSubmitButton() {
 		var isDisabled = leaveEntries.length > 0 ? false : true;
 		$('#submit').prop('disabled', isDisabled);
-// 		$('#save').prop('disabled', isDisabled);
+		$('#save').prop('disabled', isDisabled);
 	}
 	
 	function createLeaveEvent(event, leaveName) {
@@ -223,9 +223,9 @@
 				id="submit"
 				onclick="return warnUser()">Submit</button>
 			<br> <br>
-<!-- 			<button type="submit" -->
-<!-- 				id="save" -->
-<!-- 				onclick="saveChanges()">Save Changes</button> -->
+			<button type="submit"
+				id="save"
+				onclick="saveChanges()">Save Changes</button>
 		</div>
 	</s:form>
 </body>
