@@ -24,17 +24,19 @@
 	</tr>
 	<tr>
 		<th scope="col" class="ibm-sort"><a href="#sort"><center>Date</center></a></th>
-		<td><input type="text" id="date" name="date" /></td>
+		<td><input type="text" id="date" name="date" disabled = "disabled" /></td>
 	</tr>
 
 	<tr>
 </table>
 
-<input value="Update" name="submit" class="ibm-btn-pri" type="submit"
+<input id="btnUpdate" disabled="disabled" value="Update" name="submit" class="ibm-btn-pri" type="submit"
 	onclick="sendJSON()">
 
-<input value="Delete" name="submit" class="ibm-btn-pri" type="submit"
+<input id="btnDelete" disabled="disabled" value="Delete" name="submit" class="ibm-btn-pri" type="submit"
 	onclick="deleteJSON()">
+
+<script src="../resources/js/jquery-2.2.4.js"></script>
 
 <script>
     var xmlhttp;
@@ -45,7 +47,7 @@
     function getdetails() {
     	xmlhttp = new XMLHttpRequest();
         var searchName = document.getElementById("searchName").value;
-        var url = "http://localhost:8080/onlinePUM/webapi/opum/checkHoliday/" + searchName;
+        var url = "<%=session.getAttribute("form_action")%>" + searchName;
         xmlhttp.open('GET',url, true);
         xmlhttp.send(null);
         xmlhttp.onreadystatechange = function() {
@@ -55,7 +57,9 @@
                    if (xmlhttp.status == 200) {
                        var det = JSON.parse(xmlhttp.responseText);
                        	document.getElementById("name").value = det.name;
-                       	document.getElementById("date").value = det.date; 
+                       	document.getElementById("date").value = det.date.trim(); 
+                       	document.getElementById("btnUpdate").disabled = false;
+                       	document.getElementById("btnDelete").disabled = false;
                  }	
                    else 
                 	   alert("Holiday not found");
@@ -73,17 +77,43 @@
 		 return jsonString;
 	 }
 	 function sendJSON(){
-		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("POST", "http://localhost:8080/onlinePUM/webapi/opum/updateHoliday");
-		  xhttp.setRequestHeader("Content-Type", "application/json");
-		  xhttp.send(formToJSON());  
-		  alert('Updated Holiday Information! ');
+		 var link = "<%=session.getAttribute("update_action")%>";
+		 var data = formToJSON();
+		 $.ajax({
+				type : 'POST',
+				url : link,
+				data : data,
+				datatype : 'json',
+				contentType : 'application/json',
+				processData : false,
+				success : function(data) {
+					alert(data);
+					location.reload();
+				},
+				error : function(data, jqXHR) {
+					alert(data.responseText);
+				}
+			});
+		  
+		  
 	} 
 	 function deleteJSON(){
-		  var xhttp = new XMLHttpRequest();
-		  xhttp.open("POST", "http://localhost:8080/onlinePUM/webapi/opum/deleteHoliday");
-		  xhttp.setRequestHeader("Content-Type", "application/json");
-		  xhttp.send(formToJSON());  
-		  alert('Deleted Holiday Information! ');
+		  var link = "<%=session.getAttribute("delete_action")%>";
+		  var data = formToJSON();
+		  $.ajax( {
+			  type : 'POST',
+			  url : link,
+			  data : data,
+			  datatype : 'json',
+			  contentType : 'application/json',
+			  processData : false,
+			  success : function(data) {
+				alert(data);
+				location.reload();
+			  },
+			  error : function(data, jqXHR) {
+				  alert(data.responseText);
+			  }
+		  });
 	} 	 
   </script>

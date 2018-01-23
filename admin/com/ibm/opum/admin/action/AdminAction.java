@@ -204,6 +204,14 @@ public class AdminAction extends ActionSupport {
 	}
 
 	public String searchHoliday() {
+		String tempEmpLink = REST_BASE_URL + "checkHoliday/";
+		String updateHoliday = REST_BASE_URL + "updateHoliday";
+		String deleteHoliday = REST_BASE_URL + "deleteHoliday";
+
+		ActionContext.getContext().getSession().put("update_action", updateHoliday);
+		ActionContext.getContext().getSession().put("delete_action", deleteHoliday);
+		assignValuesToSession(tempEmpLink, "Search Holiday");
+
 		return "searchHolidayLink";
 	}
 
