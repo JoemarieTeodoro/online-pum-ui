@@ -82,6 +82,9 @@
 	}
 		
 	function createLeave(event) {
+		if (event.lock) {
+			return;
+		}
 		var leaveName = prompt('Request for:');
 		leaveName = leaveName ? leaveName.toUpperCase() : leaveName;
 		if (!isLeaveEntryValid(event, leaveName)) {

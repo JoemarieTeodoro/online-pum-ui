@@ -45,6 +45,7 @@ public class EventsCreator {
 			eventMapper.setDate(employeeLeave.getDate());
 			eventMapper.setHoliday(employeeLeave.isHoliday());
 			eventMapper.setStatus(employeeLeave.getStatus());
+			eventMapper.setLock(employeeLeave.isLocked());
 			if (startDate == null) {
 				startDate = ENCLOSED_QUOTATION + empEvent.getCurrFYStartDate() + ENCLOSED_QUOTATION;
 			}
