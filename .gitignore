@@ -5,6 +5,7 @@
 *.factorypath
 *.project
 *.settings
+*.gitignore
 
 tomcat
 
@@ -38,6 +39,7 @@ target/
 nbproject/private/
 build/
 nbbuild/
+
 dist/
 nbdist/
 nbactions.xml
@@ -54,3 +56,4 @@ pom.xml.releaseBackup
 pom.xml.tag
 /.apt_generated/
 /bin/
+/resources/
