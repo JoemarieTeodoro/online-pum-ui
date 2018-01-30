@@ -38,6 +38,7 @@
                 <a href="<s:url action="searchHolidayLink"/>">Search Holiday</a>
                 <%-- <s:if test="#session.role == 'HR Manager'"> --%>
                 <%-- <a href="<s:url action="adminCalendarLink"/>">My Hours</a> --%>
+                <a href="<s:url action="showDatePickerLink"/>">Edit User Past Date</a>
         </li>
     </ul>
 

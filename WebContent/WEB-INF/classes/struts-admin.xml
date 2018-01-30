@@ -130,5 +130,10 @@
             class="com.ibm.opum.admin.action.AdminAction">
             <result name="uploadILCSheet" type="tiles">uploadILCSheet</result>
         </action>
+        
+        <action name="showDatePickerLink" method="showDatePicker"
+            class="com.ibm.opum.admin.action.AdminAction">
+            <result name="showDatePicker" type="tiles">showDatePicker</result>
+        </action>
 	</package>
 </struts>

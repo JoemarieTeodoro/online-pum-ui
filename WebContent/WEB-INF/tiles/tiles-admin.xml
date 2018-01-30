@@ -109,16 +109,9 @@
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition> 
 	
-	<definition name="adminCalendarLink" extends="baseLayout">
-		<put-attribute name="title" value="Enter My Hours" />
-		<put-attribute name="body" value="/pages/user/calendar.jsp" />
+	<definition name="showDatePicker" extends="baseLayout">
+		<put-attribute name="title" value="Edit User Past Date" />
+		<put-attribute name="body" value="/pages/admin/insertUserDate.jsp" />
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
-	
-	<definition name="adminGetCalendarLink" extends="baseLayout">
-		<put-attribute name="title" value="Enter My Hours" />
-		<put-attribute name="body" value="/pages/user/pum.jsp" />
-		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
-	</definition>
-
 </tiles-definitions>

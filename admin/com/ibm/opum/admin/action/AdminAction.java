@@ -250,6 +250,12 @@ public class AdminAction extends ActionSupport {
 		return "adminShowAllHolidaysLink";
 	}
 
+	public String showDatePicker() {
+		String editUserPastDateLink = REST_BASE_URL + "insertUserPastDate/";
+        assignValuesToSession( editUserPastDateLink, "Edit User Past Date" );
+		return "showDatePicker";
+	}
+	
 	public PUMYearList getPumYearList() {
 		return pumYearList;
 	}
