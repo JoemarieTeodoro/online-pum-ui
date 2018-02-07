@@ -98,22 +98,25 @@
 		  
 	} 
 	 function deleteJSON(){
-		  var link = "<%=session.getAttribute("delete_action")%>";
-		  var data = formToJSON();
-		  $.ajax( {
-			  type : 'POST',
-			  url : link,
-			  data : data,
-			  datatype : 'json',
-			  contentType : 'application/json',
-			  processData : false,
-			  success : function(data) {
-				alert(data);
-				location.reload();
-			  },
-			  error : function(data, jqXHR) {
-				  alert(data.responseText);
-			  }
-		  });
+		 var result = confirm("Are you sure you want to delete this holiday?");
+		 if (result) {
+			 var link = "<%=session.getAttribute("delete_action")%>";
+			  var data = formToJSON();
+			  $.ajax( {
+				  type : 'POST',
+				  url : link,
+				  data : data,
+				  datatype : 'json',
+				  contentType : 'application/json',
+				  processData : false,
+				  success : function(data) {
+					alert(data);
+					location.reload();
+				  },
+				  error : function(data, jqXHR) {
+					  alert(data.responseText);
+				  }
+			  });
+		 }
 	} 	 
   </script>
