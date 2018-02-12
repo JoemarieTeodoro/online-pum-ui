@@ -61,6 +61,14 @@
 		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
 	</definition>
 	
+	<definition name="definePUMMonthLink" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/pages/layout/header.jsp"/>
+		<put-attribute name="body" value="/pages/admin/PUMMonth.jsp" />
+		<put-attribute name="footer" value="/pages/layout/footer.jsp"/>
+		<put-attribute name="menu" value="/pages/admin/adminMenu.jsp" />
+	</definition>
+	
 	<definition name="defineHolidaysLink" extends="baseLayout">
 		<put-attribute name="title" value="Admin" />
 		<put-attribute name="header" value="/pages/layout/header.jsp"/>

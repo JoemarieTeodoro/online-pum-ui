@@ -31,6 +31,7 @@
 <%--                <a href="<s:url action="projectEngagementLink"/>">Project Engagement Date</a>  --%>
                 <a href="<s:url action="downloadPUMLink"/>">Download PUM</a>
                 <a href="<s:url action="definePUMYearLink"/>">Define Fiscal Year</a>
+                <a href="<s:url action="definePUMMonthLink"/>">Define Month End</a>
 				<%-- <a href="<s:url action="viewPUMYearLink"/>">View Fiscal Year</a> --%>
                 <a href="<s:url action="viewAllPUMYearLink"/>">View All Fiscal Year</a>
                 <a href="<s:url action="defineHolidaysLink"/>">Define Holidays</a>

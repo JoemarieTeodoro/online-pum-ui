@@ -118,12 +118,27 @@ public class AdminAction extends ActionSupport {
 		return "definePUMYearLink";
 	}
 
+	public String definePUMMonth() {
+		String tempEmpLink = REST_BASE_URL + "savePUMMonthLink";
+		String getPumMonthLink = REST_BASE_URL + "getPUMMonth";
+
+		extractFiscalYears();
+		assignValuesToSession(tempEmpLink, "PUM Month End Date");
+		ActionContext.getContext().getSession().put("get_PumMonth_Link", getPumMonthLink);
+		return "definePUMMonthLink";
+	}
+
 	public String viewPUMYear() {
 		return "viewPUMYearLink";
 	}
 
 	public String viewAllPUMYear() {
 
+		extractFiscalYears();
+		return "viewAllPUMYearLink";
+	}
+
+	private void extractFiscalYears() {
 		String jsonData = null;
 
 		try {
@@ -156,8 +171,6 @@ public class AdminAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return "viewAllPUMYearLink";
 	}
 
 	public String viewSpecificYearDate() {
