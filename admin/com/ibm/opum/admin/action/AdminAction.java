@@ -93,6 +93,13 @@ public class AdminAction extends ActionSupport {
 		assignValuesToSession(tempEmpLink, "Upload ILC Sheet");
 		return "uploadILCSheet";
 	}
+	
+	public String downloadUtilizationReport() {
+		String tempEmpLink = REST_BASE_URL + "downloadOverallUtilization";
+		
+		assignValuesToSession(tempEmpLink, "Download Utilization Report");
+		return "downloadUtilizationReportLink";
+	}
 
 	private void assignValuesToSession(String tempEmpLink, String subtitle) {
 		ActionContext.getContext().getSession().put("form_action", tempEmpLink);

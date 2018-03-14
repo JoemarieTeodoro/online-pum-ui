@@ -25,6 +25,7 @@
             <a href="<s:url action="uploadEmployeeTeamCSVLink"/>">Upload Employee Team List</a>
             <a href="<s:url action="uploadEmployeeRolesCSVLink"/>">Upload Employee Roles</a>
             <a href="<s:url action="uploadILCSheetLink"/>">Upload ILC Spreadsheet</a>
+            <a href="<s:url action="downloadUtilizationReportLink"/>">Download Utilization Report</a>
 				<%-- <a href="<s:url action="uploadPEMCSVLink"/>">Upload PEM List</a> --%>
         </s:if>
                <a href="<s:url action="searchEmployeeLink"/>">Search Employee</a>

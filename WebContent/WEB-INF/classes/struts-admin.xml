@@ -14,11 +14,11 @@
 				class="com.ibm.opum.cacheInterceptor.action.CacheInterceptor" />
 			<interceptor name="sessionInterceptor"
 				class="com.ibm.opum.sessionInterceptor.action.SessionInterceptor" />
-                <interceptor name="adminInterceptor"
-                class="com.ibm.opum.admin.action.AdminInterceptor" />
+			<interceptor name="adminInterceptor"
+				class="com.ibm.opum.admin.action.AdminInterceptor" />
 			<interceptor-stack name="cacheSessionStack">
 				<interceptor-ref name="defaultStack" />
-                <interceptor-ref name="adminInterceptor" />
+				<interceptor-ref name="adminInterceptor" />
 				<interceptor-ref name="cacheInterceptor" />
 				<interceptor-ref name="sessionInterceptor" />
 			</interceptor-stack>
@@ -28,29 +28,29 @@
 
 		<global-results>
 			<result name="login" type="redirect">../login/loginLink</result>
-            <result name="user" type="redirect">../user/userLink</result>
+			<result name="user" type="redirect">../user/userLink</result>
 		</global-results>
 
 		<action name="adminHomeLink" method="home"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="adminHome" type="tiles">adminHomeLink</result>
 		</action>
-    
+
 		<action name="uploadSysAdminCSVLink" method="uploadSysAdminCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
-		
+
 		<action name="uploadAdminCSVLink" method="uploadAdminCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
-		
+
 		<action name="uploadTeamListCSVLink" method="uploadTeamListCSVLink"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
-        </action>
-		
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
+		</action>
+
 		<action name="uploadEmployeeTeamCSVLink" method="uploadEmployeeTeamCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
@@ -60,15 +60,16 @@
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
-		
+
 		<action name="uploadPEMCSVLink" method="uploadPEMCSVLink"
 			class="com.ibm.opum.admin.action.AdminAction">
 			<result name="uploadCSVLink" type="tiles">uploadCSVLink</result>
 		</action>
-    
+
 		<action name="projectEngagementLink" method="projectEngagement"
 			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="projectEngagementLink" type="tiles">projectEngagementLink</result>
+			<result name="projectEngagementLink" type="tiles">projectEngagementLink
+			</result>
 		</action>
 
 		<action name="downloadPUMLink" method="downloadPUM"
@@ -78,67 +79,82 @@
 
 		<action name="searchEmployeeLink" method="searchEmployee"
 			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="searchEmployeeLink" type="tiles">searchEmployeeLink</result>
+			<result name="searchEmployeeLink" type="tiles">searchEmployeeLink
+			</result>
 		</action>
 
 		<action name="viewAllPUMYearLink" method="viewAllPUMYear"
 			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink</result>
+			<result name="viewAllPUMYearLink" type="tiles">viewAllPUMYearLink
+			</result>
 		</action>
 
 		<action name="resetPasswordLink" method="resetPassword"
 			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="resetPasswordLink" type="tiles">resetPasswordLink</result>
+			<result name="resetPasswordLink" type="tiles">resetPasswordLink
+			</result>
 		</action>
-		
-        <action name="forgotPasswordLink" method="forgotPassword"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="forgotPasswordLink" type="tiles">forgotPasswordLink</result>
-        </action>
-        
-        <action name="definePUMYearLink" method="definePUMYear"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="definePUMYearLink" type="tiles">definePUMYearLink</result>
-        </action>
-        
-        <action name="viewPUMYearLink" method="viewPUMYear"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="viewPUMYearLink" type="tiles">viewPUMYearLink</result>
-        </action>
-        
-     	<action name="definePUMMonthLink" method="definePUMMonth"
+
+		<action name="forgotPasswordLink" method="forgotPassword"
 			class="com.ibm.opum.admin.action.AdminAction">
-			<result name="definePUMMonthLink" type="tiles">definePUMMonthLink</result>
+			<result name="forgotPasswordLink" type="tiles">forgotPasswordLink
+			</result>
 		</action>
-        
-        <action name="defineHolidaysLink" method="defineHolidays"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="defineHolidaysLink" type="tiles">defineHolidaysLink</result>
-        </action>
-        
-        <action name="adminShowAllHolidaysLink" method="showAllHolidays"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="adminShowAllHolidaysLink" type="tiles">adminShowAllHolidaysLink</result>
-        </action>
-        
-        <action name="searchHolidayLink" method="searchHoliday"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="searchHolidayLink" type="tiles">searchHolidayLink</result>
-        </action>
-        
-        <action name="adminCalendarLink" method="adminCalendar"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="adminCalendarLink" type="tiles">adminCalendarLink</result>
-        </action>
-        
-        <action name="uploadILCSheetLink" method="uploadILCSheet"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="uploadILCSheet" type="tiles">uploadILCSheet</result>
-        </action>
-        
-        <action name="showDatePickerLink" method="showDatePicker"
-            class="com.ibm.opum.admin.action.AdminAction">
-            <result name="showDatePicker" type="tiles">showDatePicker</result>
-        </action>
+
+		<action name="definePUMYearLink" method="definePUMYear"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="definePUMYearLink" type="tiles">definePUMYearLink
+			</result>
+		</action>
+
+		<action name="viewPUMYearLink" method="viewPUMYear"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="viewPUMYearLink" type="tiles">viewPUMYearLink</result>
+		</action>
+
+		<action name="definePUMMonthLink" method="definePUMMonth"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="definePUMMonthLink" type="tiles">definePUMMonthLink
+			</result>
+		</action>
+
+		<action name="defineHolidaysLink" method="defineHolidays"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="defineHolidaysLink" type="tiles">defineHolidaysLink
+			</result>
+		</action>
+
+		<action name="adminShowAllHolidaysLink" method="showAllHolidays"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="adminShowAllHolidaysLink" type="tiles">adminShowAllHolidaysLink
+			</result>
+		</action>
+
+		<action name="searchHolidayLink" method="searchHoliday"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="searchHolidayLink" type="tiles">searchHolidayLink
+			</result>
+		</action>
+
+		<action name="adminCalendarLink" method="adminCalendar"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="adminCalendarLink" type="tiles">adminCalendarLink
+			</result>
+		</action>
+
+		<action name="uploadILCSheetLink" method="uploadILCSheet"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="uploadILCSheet" type="tiles">uploadILCSheet</result>
+		</action>
+
+		<action name="showDatePickerLink" method="showDatePicker"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="showDatePicker" type="tiles">showDatePicker</result>
+		</action>
+		<action name="downloadUtilizationReportLink" method="downloadUtilizationReport"
+			class="com.ibm.opum.admin.action.AdminAction">
+			<result name="downloadUtilizationReportLink" type="tiles">downloadUtilizationReportLink
+			</result>
+		</action>
 	</package>
 </struts>

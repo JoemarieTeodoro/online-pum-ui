@@ -102,6 +102,11 @@
             class="com.ibm.opum.admin.action.AdminAction">
             <result name="uploadILCSheet" type="tiles">uploadILCSheet</result>
         </action>
+        
+        <action name="downloadUtilizationReportLink" method="downloadUtilizationReport"
+        	class="com.ibm.opum.admin.action.AdminAction">
+        	<result name="downloadUtilizationReportLink" type="tiles">downloadUtilizationReportLink</result>
+        </action>
 		
 	</package>
 </struts>
